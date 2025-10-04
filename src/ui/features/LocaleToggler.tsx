@@ -13,7 +13,7 @@ export function LocaleToggler() {
   };
 
   return (
-    <button onClick={changeLocale}>
+    <button onClick={changeLocale} className="text-xl/5">
       {currentLocale.toUpperCase()}
     </button>
   );
