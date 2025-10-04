@@ -2,6 +2,7 @@
 import { createThemeScript } from 'neato/theme/script';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
+import "./globals.css";
 import { Provider } from './provider';
 
 export default async function RootLayout({
@@ -17,7 +18,7 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <head>
-        <script 
+        <script
           dangerouslySetInnerHTML={{ 
             __html: createThemeScript() 
           }} 
