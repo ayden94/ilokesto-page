@@ -15,6 +15,8 @@ export function ThemeIcon({ theme, ...props }: ThemeIconProps) {
     setMounted(true)
   }, [])
 
+  if (!mounted) return <div style={{ width: 24, height: 24 }} />
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

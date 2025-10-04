@@ -1,7 +1,7 @@
 'use client'
 
-import { ThemeIcon } from '@/ui/components/icons/ThemeIcon'
 import { useTheme } from 'neato/theme'
+import { ThemeIcon } from '../components/icons/ThemeIcon'
 
 export function ThemeToggler() {
   const { setTheme, effectiveTheme } = useTheme()

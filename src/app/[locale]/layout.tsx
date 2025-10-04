@@ -1,27 +1,27 @@
 // app/[locale]/layout.tsx
-import { createThemeScript } from 'neato/theme/script';
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
-import "./globals.css";
-import { Provider } from './provider';
+import { createThemeScript } from 'neato/theme/script'
+import { NextIntlClientProvider } from 'next-intl'
+import { getMessages } from 'next-intl/server'
+import './globals.css'
+import { Provider } from './provider'
 
 export default async function RootLayout({
   children,
   params,
 }: Readonly<{
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  children: React.ReactNode
+  params: Promise<{ locale: string }>
 }>) {
-  const locale = (await params).locale;
-  const messages = await getMessages();
+  const locale = (await params).locale
+  const messages = await getMessages()
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <head>
         <script
-          dangerouslySetInnerHTML={{ 
-            __html: createThemeScript() 
-          }} 
+          dangerouslySetInnerHTML={{
+            __html: createThemeScript(),
+          }}
         />
       </head>
 
@@ -31,5 +31,5 @@ export default async function RootLayout({
         </NextIntlClientProvider>
       </body>
     </html>
-  );
+  )
 }
