@@ -18,8 +18,8 @@ importers:
         specifier: ^0.544.0
         version: 0.544.0
       neato:
-        specifier: file:../ilokesto/neato
-        version: file:../ilokesto/neato(@ilokesto/common-resolver@1.0.1)(react@19.2.0)
+        specifier: 0.0.20
+        version: 0.0.20(@ilokesto/common-resolver@1.0.1)(react@19.2.0)
       next:
         specifier: 15.5.4
         version: 15.5.4(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -1501,8 +1501,8 @@ packages:
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
-  neato@file:../ilokesto/neato:
-    resolution: {directory: ../ilokesto/neato, type: directory}
+  neato@0.0.20:
+    resolution: {integrity: sha512-GAxImaUe8HrovsUOtknLa2ETAOC6Ru29YotYAn8HgsHbA1K/D7BF02QrN4OyM5g243S19tK3u+Qfgs/QIoPhqQ==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     peerDependencies:
@@ -3430,7 +3430,7 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  neato@file:../ilokesto/neato(@ilokesto/common-resolver@1.0.1)(react@19.2.0):
+  neato@0.0.20(@ilokesto/common-resolver@1.0.1)(react@19.2.0):
     dependencies:
       '@ilokesto/caro-kann': 4.0.1(@ilokesto/common-resolver@1.0.1)(react@19.2.0)
       clsx: 2.1.1
