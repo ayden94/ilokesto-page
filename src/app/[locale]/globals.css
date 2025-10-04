@@ -94,11 +94,3 @@
   transform: rotate(0deg);
   opacity: 1;
 }
-
-/* Ensure anchor targets are offset by the sticky header height so they're not hidden
-   when navigating to hashes or using automatic scroll. Apply `.anchor-offset` to
-   headings or rely on the :target rule for id-based navigation. */
-:target,
-.anchor-offset {
-  scroll-margin-top: var(--header-offset);
-}
