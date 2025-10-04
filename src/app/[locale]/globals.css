@@ -4,19 +4,71 @@
 :root {
   --background: #fff;
   --text-primary: #333;
+  /* Height used to offset anchored elements so sticky header doesn't cover them */
+  --header-offset: 4rem; /* match header height (h-16) — adjust if your header size changes */
+  /* Default (light) shadow tokens */
+  --shadow: 0 1px 2px rgba(16, 24, 40, 0.05), 0 6px 16px rgba(16, 24, 40, 0.06);
+  --shadow-elev-1: 0 1px 2px rgba(16, 24, 40, 0.06);
+  --shadow-elev-2: 0 6px 16px rgba(16, 24, 40, 0.08);
+  --shadow-elev-3: 0 20px 40px rgba(16, 24, 40, 0.12);
 }
 
 .dark {
   --background: #121212;
   --text-primary: #eee;
+  /* Dark theme shadow tokens (darker, more subtle light scattering) */
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.6), 0 8px 24px rgba(0, 0, 0, 0.7);
+  --shadow-elev-1: 0 1px 2px rgba(0, 0, 0, 0.6);
+  --shadow-elev-2: 0 8px 20px rgba(0, 0, 0, 0.72);
+  --shadow-elev-3: 0 24px 60px rgba(0, 0, 0, 0.85);
 }
 
-body {
+* {
   background-color: var(--background);
   color: var(--text-primary);
 }
 
 @theme {
+
+}
+
+@layer components {
+  /* Reusable shadow utilities using the design tokens above */
+  .custom-shadow {
+    box-shadow: var(--shadow);
+  }
+
+  .custom-shadow-elev-1 {
+    box-shadow: var(--shadow-elev-1);
+  }
+
+  .custom-shadow-elev-2 {
+    box-shadow: var(--shadow-elev-2);
+  }
+
+  .custom-shadow-elev-3 {
+    box-shadow: var(--shadow-elev-3);
+  }
+
+  /* Common card component that responds to hover and theme */
+  .card {
+    border: 1px solid rgba(16, 24, 40, 0.04);
+    box-shadow: var(--shadow);
+    background-color: var(--background);
+    color: var(--text-primary);
+    transition: box-shadow 200ms ease, transform 150ms ease;
+    border-radius: 0.75rem;
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-elev-2);
+    transform: translateY(-4px);
+  }
+
+  /* Adjust card border in dark mode for a subtle separation */
+  .dark .card {
+    border: 1px solid rgba(255, 255, 255, 0.04);
+  }
 }
 
 .theme-toggler svg {
@@ -41,4 +93,12 @@ body {
 .dark .theme-toggler .moon-icon {
   transform: rotate(0deg);
   opacity: 1;
+}
+
+/* Ensure anchor targets are offset by the sticky header height so they're not hidden
+   when navigating to hashes or using automatic scroll. Apply `.anchor-offset` to
+   headings or rely on the :target rule for id-based navigation. */
+:target,
+.anchor-offset {
+  scroll-margin-top: var(--header-offset);
 }

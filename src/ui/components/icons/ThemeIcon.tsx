@@ -1,14 +1,19 @@
-"use client"
+'use client'
 
-import { motion } from "framer-motion"
-import { SVGProps } from "react"
+import { motion } from 'framer-motion'
+import { SVGProps, useEffect, useState } from 'react'
 
 interface ThemeIconProps extends SVGProps<SVGSVGElement> {
-  theme: "light" | "dark"
+  theme: 'light' | 'dark'
 }
 
 export function ThemeIcon({ theme, ...props }: ThemeIconProps) {
-  const isLight = theme === "light"
+  const isLight = theme === 'light'
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   return (
     <svg
@@ -28,14 +33,18 @@ export function ThemeIcon({ theme, ...props }: ThemeIconProps) {
         cy="12"
         r="5"
         stroke="orange"
-        initial={false}
+        initial={{
+          scale: isLight ? 1 : 0,
+          opacity: isLight ? 1 : 0,
+          fill: isLight ? 'orange' : 'transparent',
+        }}
         animate={{
           scale: isLight ? 1 : 0,
           opacity: isLight ? 1 : 0,
-          fill: isLight ? "orange" : "transparent",
+          fill: isLight ? 'orange' : 'transparent',
         }}
         transition={{
-          duration: 0.4,
+          duration: mounted ? 0.4 : 0,
           ease: [0.34, 1.56, 0.64, 1],
         }}
       />
@@ -55,20 +64,24 @@ export function ThemeIcon({ theme, ...props }: ThemeIconProps) {
           key={`ray-${i}`}
           {...line}
           stroke="orange"
-          initial={false}
+          initial={{
+            opacity: isLight ? 1 : 0,
+            scale: isLight ? 1 : 0.5,
+            rotate: isLight ? 0 : 45,
+          }}
           animate={{
             opacity: isLight ? 1 : 0,
             scale: isLight ? 1 : 0.5,
             rotate: isLight ? 0 : 45,
           }}
           transition={{
-            duration: 0.4,
+            duration: mounted ? 0.4 : 0,
             ease: [0.34, 1.56, 0.64, 1],
-            delay: isLight ? i * 0.03 : 0,
+            delay: mounted && isLight ? i * 0.03 : 0,
           }}
           style={{
-            originX: "12px",
-            originY: "12px",
+            originX: '12px',
+            originY: '12px',
           }}
         />
       ))}
@@ -77,20 +90,25 @@ export function ThemeIcon({ theme, ...props }: ThemeIconProps) {
       <motion.path
         d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
         stroke="royalblue"
-        initial={false}
+        initial={{
+          scale: isLight ? 0 : 1,
+          opacity: isLight ? 0 : 1,
+          rotate: isLight ? -30 : 0,
+          fill: isLight ? 'transparent' : 'royalblue',
+        }}
         animate={{
           scale: isLight ? 0 : 1,
           opacity: isLight ? 0 : 1,
           rotate: isLight ? -30 : 0,
-          fill: isLight ? "transparent" : "royalblue",
+          fill: isLight ? 'transparent' : 'royalblue',
         }}
         transition={{
-          duration: 0.4,
+          duration: mounted ? 0.4 : 0,
           ease: [0.34, 1.56, 0.64, 1],
         }}
         style={{
-          originX: "12px",
-          originY: "12px",
+          originX: '12px',
+          originY: '12px',
         }}
       />
     </svg>
