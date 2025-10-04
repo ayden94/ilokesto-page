@@ -3,7 +3,7 @@ import { Header } from '@/ui/widgets/Header'
 export default function IndexPage() {
   return (
     <>
-      <Header githubLink="https://github.com/ilokesto/caro-kann" title="@ilokesto" />
+      <Header githubLink="https://github.com/ilokesto" title="@ilokesto" />
       <br />
       <br />
       <br />

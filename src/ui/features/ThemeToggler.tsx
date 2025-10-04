@@ -4,9 +4,7 @@ import { ThemeIcon } from '@/ui/components/icons/ThemeIcon'
 import { useTheme } from 'neato/theme'
 
 export function ThemeToggler() {
-  const { setTheme, effectiveTheme, theme } = useTheme()
-
-  console.log(effectiveTheme, theme)
+  const { setTheme, effectiveTheme } = useTheme()
 
   return (
     <button
