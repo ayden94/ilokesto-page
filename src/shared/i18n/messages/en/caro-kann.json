@@ -26,7 +26,8 @@
     },
     "useCart": {
       "title": "Changing Global State with useCart",
-      "0": "Now let's look at how to change the shopping cart state in actual components using the <cd>useCart</cd> hook we created.<br></br><br></br>First, the <cd>ProductBinder</cd> component receives a list of products (`productList`) from the server as props and is responsible for rendering a <cd>ProductCard</cd> component for each product. It acts as a list renderer, serving as a container to display multiple product information on the screen."
+      "0": "Now let's look at how to change the shopping cart state in actual components using the <cd>useCart</cd> hook we created.<br></br><br></br>First, the <cd>ProductBinder</cd> component receives a list of products (<cd>productList</cd>) from the server as props and is responsible for rendering a <cd>ProductCard</cd> component for each product. It acts as a list renderer, serving as a container to display multiple product information on the screen.",
+      "1": "Calling the <cd>useCart()</cd> hook inside this component returns a tuple containing the current cart state (<cd>cart</cd>) and a function to change the state (<cd>setCart</cd>), similar to React's <cd>useState</cd> hook."
     }
   }
 }

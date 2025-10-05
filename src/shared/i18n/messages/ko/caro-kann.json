@@ -25,7 +25,8 @@
     },
     "useCart": {
       "title": "useCart로 전역 상태 변경하기",
-      "0": "이제 생성한 useCart 훅을 사용하여 실제 컴포넌트에서 장바구니 상태를 변경하는 방법을 살펴보겠습니다.<br></br><br></br>먼저 ProductBinder 컴포넌트는 서버로부터 받아온 제품 목록(productList)을 props로 받아, 각 제품에 대해 ProductCard 컴포넌트를 렌더링하는 역할을 합니다. 이는 일종의 리스트 렌더러로, 여러 제품 정보를 화면에 표시하기 위한 컨테이너 역할을 수행합니다."
+      "0": "이제 생성한 <cd>useCart</cd> 훅을 사용하여 실제 컴포넌트에서 장바구니 상태를 변경하는 방법을 살펴보겠습니다.<br></br><br></br>먼저 <cd>ProductBinder</cd> 컴포넌트는 서버로부터 받아온 제품 목록(<cd>productList</cd>)을 props로 받아, 각 제품에 대해 <cd>ProductCard</cd> 컴포넌트를 렌더링하는 역할을 합니다. 이는 일종의 리스트 렌더러로, 여러 제품 정보를 화면에 표시하기 위한 컨테이너 역할을 수행합니다.",
+      "1": "이 컴포넌트 내부에서 <cd>useCart()</cd> 훅을 호출하면, React의 <cd>useState</cd> 훅과 유사하게 현재 장바구니 상태(<cd>cart</cd>)와 상태를 변경할 수 있는 함수(<cd>setCart</cd>)를 담은 튜플을 반환받습니다."
     }
   }
 }

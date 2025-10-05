@@ -41,7 +41,7 @@ export const useCart = create<Array<Product>>([])`}
 
       <Textline>{t.rich('useCart.0', codeFormatObject)}</Textline>
 
-      <CodeBlock filename="components/AddToCartButton.tsx" language="tsx">
+      <CodeBlock filename="components/ProductBinder.tsx" language="tsx">
         {`function ProductBinder({ productList }: { productList: Array<Product> }) {
   const [cart, setCart] = useCart()
 
@@ -60,6 +60,8 @@ export const useCart = create<Array<Product>>([])`}
   )
 }`}
       </CodeBlock>
+
+      <Textline>{t.rich('useCart.1', codeFormatObject)}</Textline>
     </>
   )
 }
