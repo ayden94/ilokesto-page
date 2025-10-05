@@ -27,7 +27,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             />
 
             <main className="overflow-auto">
-              <div className="max-w-none p-8">{children}</div>
+              <div className="max-w-[920px] p-8 m-auto">{children}</div>
             </main>
           </div>
         </div>
