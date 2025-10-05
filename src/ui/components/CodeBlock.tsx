@@ -43,7 +43,7 @@ export function CodeBlock({ language, children, filename, ...props }: CodeBlockP
 
   if (!mounted) {
     return (
-      <div className="my-6">
+      <div className="my-6" style={{ visibility: mounted ? 'visible' : 'hidden' }}>
         {filename && (
           <div className="flex items-center gap-2 px-4 py-2 text-xs text-gray-600 bg-gray-200 rounded-t-md">
             <FileIcon className="w-3 h-3" />
