@@ -32,7 +32,9 @@ export function DocsSidebar({ navigation, basePath, isOpen = true, onClose }: Do
   }
 
   const renderNavItem = (item: NavItem, level = 0) => {
-    const isCurrentPage = item.href && pathname === `${basePath}${item.href}`
+    const normalize = (p: string) => (p ? p.replace(/\/+$/, '') : '')
+    const targetPath = item.href ? `${basePath}${item.href}` : ''
+    const isCurrentPage = !!item.href && normalize(pathname).endsWith(normalize(targetPath))
     const hasChildren = item.children && item.children.length > 0
     const isOpen = openSections.has(item.title.toLowerCase())
     const indentClass = level === 0 ? '' : 'ml-4 pl-4 border-l border-gray-200 dark:border-gray-700'
