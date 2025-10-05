@@ -44,7 +44,7 @@ export function CodeBlock({ language, children, ...props }: CodeBlockProps) {
       <button
         onClick={handleCopy}
         disabled={isCopied}
-        className={`absolute top-3 right-3 p-2 rounded-lg ${buttonStyle}`}
+        className={`absolute top-3 right-3 p-2 z-10 rounded-lg ${buttonStyle}`}
       >
         {isCopied ? <CheckIcon className="w-4 h-4 text-green-500" /> : <CopyIcon className="w-4 h-4" />}
       </button>
