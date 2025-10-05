@@ -1,7 +1,7 @@
 'use client'
 
-import { DocsSidebar } from '@/ui/widgets/DocsSidebar'
 import { Header } from '@/ui/widgets/Header'
+import { Sidebar } from '@/ui/widgets/Sidebar'
 import { useState } from 'react'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -19,7 +19,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className="overflow-hidden">
         <div className="max-w-[1440px] mx-auto h-full">
           <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] p-4 pb-0 gap-6 h-full overflow-hidden">
-            <DocsSidebar
+            <Sidebar
               navigation={navigation}
               basePath="/caro-kann"
               isOpen={sidebarOpen}

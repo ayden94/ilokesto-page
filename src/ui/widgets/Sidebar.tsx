@@ -17,7 +17,7 @@ interface DocsSidebarProps {
   onClose?: () => void
 }
 
-export function DocsSidebar({ navigation, basePath, isOpen = true, onClose }: DocsSidebarProps) {
+export function Sidebar({ navigation, basePath, isOpen = true, onClose }: DocsSidebarProps) {
   const pathname = usePathname()
   const [openSections, setOpenSections] = useState<Set<string>>(new Set(['guides', 'utils', 'middlewares']))
 
