@@ -87,7 +87,7 @@
   },
   "provider": {
     "title": "Provider",
-    "0": "There's one more special method hidden in `useStore`. The `Provider` method is a special feature provided by Caro-Kann that allows you to configure independent state trees while using the same store. This feature enables the creation and management of different instances of the same store within an application.<br></br><br></br>Provider acts like a React component and receives the store as props. `useStore` is a means to access the store created via `create`, not the store itself. Therefore, Caro-Kann provides a `createStore` function that returns the store directly, instead of `useStore`. This allows you to provide independent state to specific component trees.",
+    "0": "There's one more special method hidden in <cd>useStore</cd>. The <cd>Provider</cd> method is a special feature provided by Caro-Kann that allows you to configure independent state trees while using the same store. This feature enables the creation and management of different instances of the same store within an application.<br></br><br></br>Provider acts like a React component and receives the store as props. <cd>useStore</cd> is a means to access the store created via <cd>create</cd>, not the store itself. Therefore, Caro-Kann provides a <cd>createStore</cd> function that returns the store directly, instead of <cd>useStore</cd>. This allows you to provide independent state to specific component trees.",
     "subtitle1": "Use Cases",
     "1": "Provider is particularly useful in the following situations:",
     "2": "Through Provider, you can significantly enhance the flexibility of state management and achieve both state isolation and reusability in complex applications.",
@@ -97,10 +97,10 @@
     "5": "\"Warning: Reducer usage must be consistent. Both should use reducers, or neither should.\"",
     "6": "This helps prevent potential errors that might occur during the development process.",
     "list": {
-      "0": "Testing environments: Provides independent state for each test, enabling isolated testing.",
-      "1": "Multiple instance components: When the same component is used multiple times but needs to have independent states.",
-      "2": "Theme management: When different parts of the application need to use different theme settings.",
-      "3": "User-specific settings: When independent state management is needed for each user in a multi-user interface."
+      "0": "<b>Testing environments</b>: Provides independent state for each test, enabling isolated testing.",
+      "1": "<b>Multiple instance components</b>: When the same component is used multiple times but needs to have independent states.",
+      "2": "<b>Theme management</b>: When different parts of the application need to use different theme settings.",
+      "3": "<b>User-specific settings</b>: When independent state management is needed for each user in a multi-user interface."
     }
   }
 }
