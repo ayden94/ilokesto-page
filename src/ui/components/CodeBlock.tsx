@@ -5,6 +5,9 @@ import { useEffect, useState } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { materialDark, materialLight } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
+import { CheckIcon } from './icons/CheckIcon'
+import { CopyIcon } from './icons/CopyIcon'
+
 interface CodeBlockProps {
   language: string
   children: React.ReactNode
@@ -36,40 +39,25 @@ export function CodeBlock({ language, children, ...props }: CodeBlockProps) {
       ? 'bg-gray-800 text-gray-300 hover:bg-gray-700'
       : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
 
-  if (!mounted) {
-    return (
-      <div className="my-6">
-        <pre
-          style={{
-            padding: '1rem',
-            borderRadius: '0.25rem',
-            backgroundColor: '#f6f8fa',
-          }}
-        >
-          <code style={{ visibility: 'hidden' }}>{codeString}</code>
-        </pre>
-      </div>
-    )
-  }
-
   return (
     <div className="relative my-6">
       <button
         onClick={handleCopy}
         disabled={isCopied}
-        className={`absolute top-3 right-3 p-1.5 rounded-md text-xs z-10 ${buttonStyle}`}
+        className={`absolute top-3 right-3 p-2 rounded-lg ${buttonStyle}`}
       >
-        {isCopied ? 'Copied!' : 'Copy'}
+        {isCopied ? <CheckIcon className="w-4 h-4 text-green-500" /> : <CopyIcon className="w-4 h-4" />}
       </button>
       <SyntaxHighlighter
         language={language}
         style={style}
+        className={`rounded-lg text-sm ${!mounted ? 'invisible' : ''}`}
         showLineNumbers
         lineNumberStyle={{ opacity: 0.6, userSelect: 'none' }}
         {...props}
       >
         {codeString}
-      </SyntaxHighlighter>{' '}
+      </SyntaxHighlighter>
     </div>
   )
 }
