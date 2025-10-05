@@ -1,9 +1,11 @@
 // next.config.ts
-import { NextConfig } from 'next';
+import { NextConfig } from 'next'
 
-import createNextIntlPlugin from 'next-intl/plugin';
+import createNextIntlPlugin from 'next-intl/plugin'
 
-const nextConfig: NextConfig = {};
+const nextConfig: NextConfig = {
+  viewTransition: true,
+}
 
-const withNextIntl = createNextIntlPlugin('./src/shared/i18n/request.ts');
-export default withNextIntl(nextConfig);
+const withNextIntl = createNextIntlPlugin('./src/shared/i18n/request.ts')
+export default withNextIntl(nextConfig)

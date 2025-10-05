@@ -79,6 +79,7 @@ async function LibraryCard({
     <div key={name} className={`card p-6 flex flex-col transition-all duration-200 ${primary} ${secondary}`}>
       <div className="flex-grow">
         <h4 className={`text-xl font-semibold mb-2 `}>{name}</h4>
+
         <p className="mb-4">{t.rich(`${name}.description`)}</p>
         <div className="flex flex-wrap gap-2 mb-4">
           {tags.map((tag) => (
