@@ -3,6 +3,15 @@
     "title": "Introduce the caro-kann",
     "description": "caro-kann is a global state management tool internally built with the useSyncExternalStore hook. It supports TypeScript and is compatible with both Next.js and React.js. With a syntax similar to useState, caro-kann is intuitive for developers familiar with React.js.",
     "whatsNew": "What’s new in caro-kann@4.0.0",
+    "newArray": [
+      "The Zustand middleware has now been completely removed. Also, the usage of the validate middleware has changed.",
+      "<cd>useStore.derived</cd> has been renamed to <cd>useStore.readOnly</cd>. Additionally, a <cd>writeOnly</cd> method has been added to <cd>useStore</cd>. This allows for clearer and more efficient state management, even in components that need to change state but do not need to subscribe to the state directly. These changes make the code's intent clearer and contribute to reducing unnecessary re-renders.",
+      "The provider, which was removed in the previous version, has returned. This allows for the configuration of independent state trees within specific contexts, further enhancing the application's flexibility and reusability.",
+      "All rules to follow when writing selector functions have been removed. Consequently, developers can define selector functions freely without unnecessary constraints, which contributes to increasing the code's flexibility and expressiveness. Internally, selector processing has been improved, enabling stable state management without performance degradation despite this freedom.",
+      "<cd>setValue</cd> now always operates consistently, regardless of the presence or absence of a selector function. This change enhances the API's intuitiveness and significantly helps reduce the possibility of bugs caused by exceptional behavior. As a result, developers can update state in a more predictable and stable manner.",
+      "An <cd>adaptor</cd> utility function has been added for use with <cd>setValue</cd> to easily change complex object states.",
+      "A <cd>merge</cd> utility function has been added to combine multiple <cd>useStore</cd> instances. This allows developers to flexibly configure state using either a top-down approach with <cd>selector function + adaptor</cd> or a bottom-up approach with <cd>merge`. Each approach can be selectively applied depending on the component structure or data flow, effectively addressing various architectural requirements. Overall, this update is an improvement that considers both consistency and scalability, significantly enhancing productivity and maintainability in actual development environments."
+    ],
     "installation": "Installation",
     "installationBody": "Caro-Kann can be installed in various ways as below."
   }

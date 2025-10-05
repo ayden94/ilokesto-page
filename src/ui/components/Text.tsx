@@ -1,6 +1,8 @@
-export function Textline({ children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
+export function Textline({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <p className="mt-6 font-normal text-base/8" {...props}>
+    // use a div instead of p because making <br/> display:block inside a <p> is invalid HTML
+    // and browsers may auto-close/restructure the <p>, preventing margins from applying.
+    <p className="mt-6 font-normal text-base/8 [&>br]:block [&>br]:my-6" {...props}>
       {children}
     </p>
   )
