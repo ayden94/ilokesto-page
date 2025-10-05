@@ -40,7 +40,7 @@ export default async function IndexPage() {
 
   return (
     <>
-      <Header githubLink="https://github.com/ilokesto" title="@ilokesto" />
+      <Header githubLink="https://github.com/ilokesto" className="custom-shadow" title="@ilokesto" />
 
       <main className="max-w-[1440px] mx-auto p-6">
         {/* Hero Section: 자신을 소개하는 섹션 */}

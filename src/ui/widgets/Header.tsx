@@ -1,11 +1,12 @@
+import { neato } from 'neato'
 import Link from 'next/link'
 import { GithubIcon } from '../components/icons/GithubIcon'
 import { LocaleToggler } from '../features/LocaleToggler'
 import { ThemeToggler } from '../features/ThemeToggler'
 
-export function Header({ githubLink, title }: { githubLink: string; title: string }) {
+export function Header({ githubLink, title, className }: { githubLink: string; title: string; className?: string }) {
   return (
-    <header className="sticky top-0 z-50 custom-shadow">
+    <header className={neato(`sticky top-0 z-50 ${className}`)}>
       <div className="flex items-center h-16 max-w-[1440px] mx-auto p-6">
         <h1 className="flex-grow text-2xl/6 font-medium">{title}</h1>
 
