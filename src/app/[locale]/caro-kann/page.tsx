@@ -1,3 +1,4 @@
+import Heading from '@/ui/components/Heading'
 import { getTranslations } from 'next-intl/server'
 
 export default async function CaroKannPage() {
@@ -5,7 +6,7 @@ export default async function CaroKannPage() {
 
   return (
     <>
-      <h1>{t('introduce.title')}</h1>
+      <Heading.h1>{t('introduce.title')}</Heading.h1>
       <p>{t('introduce.description')}</p>
     </>
   )
