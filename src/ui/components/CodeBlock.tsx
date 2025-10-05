@@ -48,6 +48,7 @@ export function CodeBlock({ language, children, ...props }: CodeBlockProps) {
       >
         {isCopied ? <CheckIcon className="w-4 h-4 text-green-500" /> : <CopyIcon className="w-4 h-4" />}
       </button>
+
       <SyntaxHighlighter
         language={language}
         style={style}
