@@ -1,21 +1,17 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { SVGProps, useEffect, useState } from 'react'
+import { SVGProps } from 'react'
 
 interface ThemeIconProps extends SVGProps<SVGSVGElement> {
   theme: 'light' | 'dark'
+  isHydrated?: boolean
 }
 
-export function ThemeIcon({ theme, ...props }: ThemeIconProps) {
+export function ThemeIcon({ theme, isHydrated, ...props }: ThemeIconProps) {
   const isLight = theme === 'light'
-  const [mounted, setMounted] = useState(false)
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) return <div style={{ width: 24, height: 24 }} />
+  if (!isHydrated) return <div style={{ width: 24, height: 24 }} />
 
   return (
     <svg
@@ -46,7 +42,7 @@ export function ThemeIcon({ theme, ...props }: ThemeIconProps) {
           fill: isLight ? 'orange' : 'transparent',
         }}
         transition={{
-          duration: mounted ? 0.4 : 0,
+          duration: isHydrated ? 0.4 : 0,
           ease: [0.34, 1.56, 0.64, 1],
         }}
       />
@@ -77,9 +73,9 @@ export function ThemeIcon({ theme, ...props }: ThemeIconProps) {
             rotate: isLight ? 0 : 45,
           }}
           transition={{
-            duration: mounted ? 0.4 : 0,
+            duration: isHydrated ? 0.4 : 0,
             ease: [0.34, 1.56, 0.64, 1],
-            delay: mounted && isLight ? i * 0.03 : 0,
+            delay: isHydrated && isLight ? i * 0.03 : 0,
           }}
           style={{
             originX: '12px',
@@ -105,7 +101,7 @@ export function ThemeIcon({ theme, ...props }: ThemeIconProps) {
           fill: isLight ? 'transparent' : 'royalblue',
         }}
         transition={{
-          duration: mounted ? 0.4 : 0,
+          duration: isHydrated ? 0.4 : 0,
           ease: [0.34, 1.56, 0.64, 1],
         }}
         style={{

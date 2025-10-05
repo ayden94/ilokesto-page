@@ -4,7 +4,7 @@ import { useTheme } from 'neato/theme'
 import { ThemeIcon } from '../components/icons/ThemeIcon'
 
 export function ThemeToggler() {
-  const { setTheme, effectiveTheme } = useTheme()
+  const { setTheme, effectiveTheme, isHydrated } = useTheme()
 
   return (
     <button
@@ -14,7 +14,7 @@ export function ThemeToggler() {
         setTheme(effectiveTheme === 'light' ? 'dark' : 'light')
       }}
     >
-      <ThemeIcon theme={effectiveTheme} />
+      <ThemeIcon theme={effectiveTheme} isHydrated={isHydrated} />
     </button>
   )
 }

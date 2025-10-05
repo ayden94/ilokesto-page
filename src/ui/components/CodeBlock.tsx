@@ -16,11 +16,8 @@ interface CodeBlockProps {
 }
 
 export function CodeBlock({ language, children, filename, ...props }: CodeBlockProps) {
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => setMounted(true), [])
-
   const codeString = String(children).replace(/\n$/, '')
-  const { effectiveTheme } = useTheme()
+  const { effectiveTheme, isHydrated } = useTheme()
   const style = effectiveTheme === 'dark' ? oneDark : oneLight
   const [isCopied, setIsCopied] = useState(false)
 
@@ -41,9 +38,9 @@ export function CodeBlock({ language, children, filename, ...props }: CodeBlockP
       ? 'bg-gray-800 text-gray-300 hover:bg-gray-700'
       : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
 
-  if (!mounted) {
+  if (!isHydrated) {
     return (
-      <div className="my-6" style={{ visibility: mounted ? 'visible' : 'hidden' }}>
+      <div className="my-6" style={{ visibility: isHydrated ? 'visible' : 'hidden' }}>
         {filename && (
           <div className="flex items-center gap-2 px-4 py-2 text-xs text-gray-600 bg-gray-200 rounded-t-md">
             <FileIcon className="w-3 h-3" />
@@ -101,6 +98,7 @@ export function CodeBlock({ language, children, filename, ...props }: CodeBlockP
               borderTopLeftRadius: 0,
               borderTopRightRadius: 0,
               marginTop: 0,
+              fontSize: '0.9rem',
             }),
           }}
           {...props}
