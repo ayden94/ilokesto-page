@@ -44,13 +44,13 @@ export default async function IndexPage() {
 
       <main className="max-w-[1440px] mx-auto p-6">
         {/* Hero Section: 자신을 소개하는 섹션 */}
-        <section className="text-center my-16 md:my-24">
-          <p className="text-lg md:text-xl max-w-3xl mx-auto">{t.rich('introduce', { br: () => <br /> })}</p>
+        <section className="my-16 text-center md:my-24">
+          <p className="max-w-3xl mx-auto text-lg md:text-xl">{t.rich('introduce', { br: () => <br /> })}</p>
         </section>
 
         {/* Libraries Section: 라이브러리 목록을 보여주는 섹션 */}
         <section>
-          <For.div each={libraries} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <For.div each={libraries} className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {(tag) => <LibraryCard key={tag.name} {...tag} />}
           </For.div>
         </section>
@@ -83,7 +83,7 @@ async function LibraryCard({
         <p className="mb-4">{t.rich(`${name}.description`)}</p>
         <div className="flex flex-wrap gap-2 mb-4">
           {tags.map((tag) => (
-            <span key={tag} className="text-xs font-mono px-2 py-1 rounded-full">
+            <span key={tag} className="px-2 py-1 font-mono text-xs rounded-full">
               {tag}
             </span>
           ))}

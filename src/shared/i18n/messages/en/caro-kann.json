@@ -10,9 +10,23 @@
       "All rules to follow when writing selector functions have been removed. Consequently, developers can define selector functions freely without unnecessary constraints, which contributes to increasing the code's flexibility and expressiveness. Internally, selector processing has been improved, enabling stable state management without performance degradation despite this freedom.",
       "<cd>setValue</cd> now always operates consistently, regardless of the presence or absence of a selector function. This change enhances the API's intuitiveness and significantly helps reduce the possibility of bugs caused by exceptional behavior. As a result, developers can update state in a more predictable and stable manner.",
       "An <cd>adaptor</cd> utility function has been added for use with <cd>setValue</cd> to easily change complex object states.",
-      "A <cd>merge</cd> utility function has been added to combine multiple <cd>useStore</cd> instances. This allows developers to flexibly configure state using either a top-down approach with <cd>selector function + adaptor</cd> or a bottom-up approach with <cd>merge`. Each approach can be selectively applied depending on the component structure or data flow, effectively addressing various architectural requirements. Overall, this update is an improvement that considers both consistency and scalability, significantly enhancing productivity and maintainability in actual development environments."
+      "A <cd>merge</cd> utility function has been added to combine multiple <cd>useStore</cd> instances. This allows developers to flexibly configure state using either a top-down approach with <cd>selector function + adaptor</cd> or a bottom-up approach with <cd>merge</cd>. Each approach can be selectively applied depending on the component structure or data flow, effectively addressing various architectural requirements. Overall, this update is an improvement that considers both consistency and scalability, significantly enhancing productivity and maintainability in actual development environments."
     ],
     "installation": "Installation",
-    "installationBody": "Caro-Kann can be installed in various ways as below."
+    "installationBody": "Caro-Kann can be installed in various ways as below.",
+    "createStore": "Create a store"
+  },
+  "tutorials": {
+    "title": "Tutorial: Building a Shopping Cart",
+    "description": "This tutorial guides you through the process of implementing a simple yet practical shopping cart feature using the Caro-Kann library in a React environment. You will learn how to efficiently manage state and easily integrate various additional features through Caro-Kann's intuitive state management approach and powerful middleware system.<br></br><br></br>This tutorial is aimed at developers with a basic understanding of React and aims to help you grasp the core concepts and practical usage of Caro-Kann so that you can apply it to real projects.",
+    "createStore": {
+      "title": "Create a store",
+      "0": "Before starting application state management, it's a good idea to first define the structure of the data we'll be working with. Here, we create a TypeScript type to clearly specify the attributes of a 'Product' that will be placed in the shopping cart. Each product should have a required id, name, and price, and may optionally include imageUrl and description. Defining the type upfront helps reduce data-related errors during development and improves code readability and maintainability.",
+      "1": "Next, we import the <cd>create</cd> function from the Caro-Kann library to create a global state store. The <cd>create</cd> function takes an initial state value as an argument and returns a custom hook that can manage that state. In this example, we set an empty array <cd>[]</cd> as the initial state, indicating that the shopping cart is initially empty. The <cd>useCart</cd> hook, returned by the <cd>create'<'Array'<'Product'>>'([])</cd> call, will now be the core interface used by all components in our application to access and modify the shopping cart state."
+    },
+    "useCart": {
+      "title": "Changing Global State with useCart",
+      "0": "Now let's look at how to change the shopping cart state in actual components using the <cd>useCart</cd> hook we created.<br></br><br></br>First, the <cd>ProductBinder</cd> component receives a list of products (`productList`) from the server as props and is responsible for rendering a <cd>ProductCard</cd> component for each product. It acts as a list renderer, serving as a container to display multiple product information on the screen."
+    }
   }
 }

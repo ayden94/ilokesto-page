@@ -13,7 +13,7 @@ export default async function CaroKannPage() {
     <>
       <Heading.h1>{t('title')}</Heading.h1>
 
-      <Textline>{t('description')}</Textline>
+      <Textline>{t.rich('description', codeFormatObject)}</Textline>
 
       <Heading.h2>{t('whatsNew')}</Heading.h2>
 
