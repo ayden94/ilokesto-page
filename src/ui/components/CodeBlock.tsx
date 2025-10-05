@@ -3,7 +3,7 @@
 import { useTheme } from 'neato/theme'
 import { useEffect, useState } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { materialDark, materialLight } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { oneDark, oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 import { CheckIcon } from './icons/CheckIcon'
 import { CopyIcon } from './icons/CopyIcon'
@@ -21,7 +21,7 @@ export function CodeBlock({ language, children, filename, ...props }: CodeBlockP
 
   const codeString = String(children).replace(/\n$/, '')
   const { effectiveTheme } = useTheme()
-  const style = effectiveTheme === 'dark' ? materialDark : materialLight
+  const style = effectiveTheme === 'dark' ? oneDark : oneLight
   const [isCopied, setIsCopied] = useState(false)
 
   const handleCopy = () => {
