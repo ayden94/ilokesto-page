@@ -23,7 +23,7 @@ const liSizeClasses: Record<LiSize, string> = {
   xs: 'text-xs',
   sm: 'text-sm',
   // 기본값: 보통 글꼴 굵기, 기본 크기와 줄높이 8, list-item 표시
-  base: 'font-normal text-base leading-6 list-item',
+  base: 'font-normal text-base leading-6 list-item break-keep',
   lg: 'text-lg',
 }
 

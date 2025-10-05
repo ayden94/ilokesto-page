@@ -102,5 +102,41 @@
       "2": "<b>Theme management</b>: When different parts of the application need to use different theme settings.",
       "3": "<b>User-specific settings</b>: When independent state management is needed for each user in a multi-user interface."
     }
+  },
+  "adaptor": {
+    "title": "the Adaptor Function",
+    "0": "Often, an application's state takes the form of a complex object with multiple layers. For example, it might include user profile information, settings, and other nested objects within them. In such situations, if you try to change only a specific part of the state using the <cd>setValue</cd> function, writing code to update only the desired value while keeping the rest unchanged can be cumbersome. This is because you might need to use the spread operator (<cd>...</cd>) multiple times to maintain immutability or worry about deep copying.",
+    "1": "To alleviate this inconvenience, Caro-Kann provides the adaptor utility function. The adaptor function is internally implemented using Immer library's produce function, allowing developers to write code as if they are directly modifying a 'draft' version of the state object. Internally, it maintains immutability while creating a new state object, so developers can intuitively update the state without complex spread operators."
+  },
+  "merge": {
+    "title": "the Merge Function",
+    "0": "The <cd>merge</cd> function is a useful utility that bundles multiple independent <cd>useStore</cd> hooks to act like a single, unified <cd>useStore</cd> hook. As applications grow in scale, it often becomes common to manage state by separating it into multiple smaller stores based on features or domains. For example, you might have a <cd>useCart</cd> store for managing cart state and a <cd>useUserProfile</cd> store for managing user profile information.<br></br><br></br>In such cases, a specific component might require both cart information and user profile information. Without the <cd>merge</cd> function, you would have to call <cd>useCart()</cd> and <cd>useUserProfile()</cd> separately within that component. This could lead to multiple state subscription logics within the component, making the code somewhat verbose.",
+    "1": "The merge function was introduced to improve this situation. It bundles a maximum of eight useStore hooks into a single object, creating a useMergedStore hook similar to useStore. Using this new hook, you can fetch the state of multiple related stores with a single call and receive a unified setValue function to update those states. This is a 'bottom-up' approach, allowing you to combine individually well-defined small stores as needed to construct larger state logic. Consequently, component code becomes more concise, and the consistency of state access and management is enhanced.",
+    "2": "useMergedStore can use selector functions or the readOnly and writeOnly methods provided by useStore in the same way. However, Provider is not provided. This is because the merge function itself focuses on combining multiple store instances (or store access hooks) that can already be created and managed independently.",
+    "subtitle1": "Merging Stores with Different Middleware",
+    "3": "One of the powerful features of the merge function is its ability to freely combine stores that use different middleware. Each store can independently use middleware suited to its requirements, while being managed through a unified interface via merge.<br></br><br></br>The following example implements sidebar toggle functionality, applying different data persistence strategies for desktop and mobile environments:",
+    "4": "Using the merged store this way allows you to manage state consistently while maintaining each store's individual characteristics:",
+    "5": "The main advantages of this approach are:",
+    "6": "The merge function efficiently combines states with different requirements, enabling consistent and intuitive state management even in complex applications.",
+    "subtitle2": "getStoreFrom",
+    "7": "A merged store created by the merge function (e.g., useMergedStore), when rendered under a useSomeStore.Provider component, will by default fetch values for each constituent store from the nearest Provider context. For example, if useMergedStore includes useUserProfile and is inside a useUserProfile.Provider, the userProfile part of useMergedStore will get its value from the store instance provided by that Provider.<br></br><br></br>However, the merge function can accept a getStoreFrom option as its second optional argument. This option, in object form, allows you to explicitly specify where each useStore key used in the merge should fetch its value from. You can set a value of 'context' or 'root' for each key.",
+    "8": "This <cd>getStoreFrom</cd> option gives developers fine-grained control over which scope of state each part of the merged store references, greatly enhancing flexibility in complex application architectures.",
+    "subtitle3": "Limitations",
+    "9": "While the merge function offers a powerful way to conveniently combine multiple useStore hooks, it has a few limitations.",
+    "10": "Error: merge function can only merge up to 8 stores at a time. Please reduce the number of stores you are trying to merge.",
+    "11": "There are two main reasons for this limitation:",
+    "12": "Furthermore, because the merge function returns <cd>useMergedStore</cd> and not <cd>useStore</cd>, fundamentally, it's impossible to recombine multiple merge results. Understanding these limitations when using the merge function will help in effectively designing your application's state management structure and preventing unexpected issues.",
+    "list": {
+      "0": "<b>Appropriate Data Persistence</b>: The desktop sidebar is considered a user preference and is permanently stored, while the mobile sidebar is treated as temporary UI state.",
+      "1": "<b>Flexible Architecture</b>: Each store is independently optimized while providing a unified interface.",
+      "2": "<b>Maintainability</b>: Changes or additions to individual store middleware don't affect component code that uses the merged store.",
+      "3": "<b><cd>context</cd></b> (or default behavior if the option is omitted): The corresponding useStore part follows the nearest Provider context. If there is no enclosing Provider, it uses the top-level (global) store created by create.",
+      "4": "<b><cd>root</cd></b>: The corresponding useStore part always fetches its value directly from the top-level (global) store created by create, regardless of the presence of a Provider context.",
+
+      "5": "<b>Cannot Merge Stores Using reducer Middleware</b>: useStore hooks created using the reducer middleware cannot be merged with other stores via the merge function. Attempting to do so will result in a type error in a TypeScript environment, preventing it beforehand. This is because the reducer middleware fundamentally changes how the setValue function behaves, and its state update logic differs from a typical useStore. The merge function operates on the assumption that each useStore adheres to the standard [value, setValue] interface, thus leading to compatibility issues with stores using reducer.",
+      "6": "<b>Maximum Merge Count Limit</b>: As briefly mentioned earlier, the merge function can only merge up to 8 useStore hooks at a time. Attempting to merge more than 8 stores will result in the following error:",
+      "7": "<b>React Hook Rules</b>: Internally, the merge function uses useContext to get the context value of each useStore. React Hooks have a rule that they cannot be called inside loops or conditional statements, which imposes constraints on dynamically handling an unlimited number of contexts.",
+      "8": "<b>Performance Considerations</b>: While it might be theoretically possible to implement merging for more stores, as the number of merged stores increases, the internal logic becomes more complex, and there's a potential for performance degradation during state changes, subscriptions, and updates. The limit of 8 can be seen as a balance between usability and performance."
+    }
   }
 }
