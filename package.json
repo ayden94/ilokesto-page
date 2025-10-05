@@ -9,7 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@ilokesto/utilinent": "^0.0.21",
+    "@ilokesto/utilinent": "^0.0.22",
     "framer-motion": "^12.23.22",
     "lucide": "^0.544.0",
     "neato": "0.0.20",

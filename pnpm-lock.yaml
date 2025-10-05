@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@ilokesto/utilinent':
-        specifier: ^0.0.21
-        version: 0.0.21(react@19.2.0)
+        specifier: ^0.0.22
+        version: 0.0.22(react@19.2.0)
       framer-motion:
         specifier: ^12.23.22
         version: 12.23.22(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -178,8 +178,8 @@ packages:
       zod:
         optional: true
 
-  '@ilokesto/utilinent@0.0.21':
-    resolution: {integrity: sha512-HRXk01I5T83fqsh18w+6VXN563rsUpScrIWzo4gMvBWQZna75Hzcy6S0RHQhilwRjnojZaiEKZ7MaZzHAkhAfg==}
+  '@ilokesto/utilinent@0.0.22':
+    resolution: {integrity: sha512-KjFfzD/+oHKdbl+n7HXN/Afnu4EkYrZTQSDnLYOg9mDM2n/ZfbXSYPZrlUKuH9GwyNoTAMQdu1ah0djWTNOKMw==}
     peerDependencies:
       react: '>=18.0.0'
 
@@ -2038,7 +2038,7 @@ snapshots:
 
   '@ilokesto/common-resolver@1.0.1': {}
 
-  '@ilokesto/utilinent@0.0.21(react@19.2.0)':
+  '@ilokesto/utilinent@0.0.22(react@19.2.0)':
     dependencies:
       react: 19.2.0
 

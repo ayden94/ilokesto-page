@@ -1,14 +1,14 @@
 // src/global.ts
-import { routing } from "@/shared/i18n";
-import messages from "@/shared/i18n/messages/ko.json";
-import { Formats } from "next-intl";
+import { routing } from '@/shared/i18n'
+import koMessages from '@/shared/i18n/messages/ko'
+import { Formats } from 'next-intl'
 
 export const formats = {
   dateTime: {
     short: {
-      day: "numeric",
-      month: "short",
-      year: "numeric",
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
     },
   },
   number: {
@@ -18,16 +18,16 @@ export const formats = {
   },
   list: {
     enumeration: {
-      style: "long",
-      type: "conjunction",
+      style: 'long',
+      type: 'conjunction',
     },
   },
-} satisfies Formats;
+} satisfies Formats
 
-declare module "next-intl" {
+declare module 'next-intl' {
   interface AppConfig {
-    Locale: (typeof routing.locales)[number];
-    Messages: typeof messages;
-    Formats: typeof formats;
+    Locale: (typeof routing.locales)[number]
+    Messages: typeof koMessages
+    Formats: typeof formats
   }
 }

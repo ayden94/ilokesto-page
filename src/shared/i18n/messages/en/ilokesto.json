@@ -1,0 +1,15 @@
+{
+  "introduce": "ilokesto[iloˈkɛsto], which means \"toolbox\" in Esperanto,<br></br>is a collection of various libraries for TypeScript and React.",
+  "caro-kann": {
+    "description": "A concise and predictable global state management library — low learning curve yet capable of managing large-scale application state reliably and with high performance."
+  },
+  "sicilian": {
+    "description": "A lightweight and flexible form state management tool — simplifies validation, error handling, and async submission to keep complex form flows clean and maintainable."
+  },
+  "grunfeld": {
+    "description": "A declarative, lightweight dialog library — provides a Promise-based API that handles modal/prompt flows plus focus and accessibility concerns, making complex interactive UIs simple and safe to implement."
+  },
+  "utilinent": {
+    "description": "A lightweight library that adapts Solid's declarative control-flow APIs for React — express conditional rendering and complex view flows declaratively to improve readability and reusability."
+  }
+}
