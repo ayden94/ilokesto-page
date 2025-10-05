@@ -2,6 +2,8 @@
   "introduce": {
     "title": "caro-kann을 소개합니다",
     "description": "caro-kann은 useSyncExternalStore 훅을 내부적으로 사용해 만든 전역 상태 관리 도구입니다. TypeScript를 지원하며 Next.js와 React.js 모두 호환됩니다. useState와 유사한 문법으로 React.js에 익숙한 개발자라면 직관적으로 사용할 수 있습니다.",
-    "whatsNew": "caro-kann@4.0.0에서 새로 추가된 것"
+    "whatsNew": "caro-kann@4.0.0에서 새로 추가된 것",
+    "installation": "설치 방법",
+    "installationBody": "Caro-Kann은 아래의 다양한 방법으로 설치할 수 있습니다."
   }
 }
