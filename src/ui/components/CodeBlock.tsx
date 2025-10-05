@@ -11,6 +11,9 @@ interface CodeBlockProps {
 }
 
 export function CodeBlock({ language, children, ...props }: CodeBlockProps) {
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+
   const codeString = String(children).replace(/\n$/, '')
   const { effectiveTheme } = useTheme()
   const style = effectiveTheme === 'dark' ? materialDark : materialLight
@@ -33,20 +36,40 @@ export function CodeBlock({ language, children, ...props }: CodeBlockProps) {
       ? 'bg-gray-800 text-gray-300 hover:bg-gray-700'
       : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
 
+  if (!mounted) {
+    return (
+      <div className="my-6">
+        <pre
+          style={{
+            padding: '1rem',
+            borderRadius: '0.25rem',
+            backgroundColor: '#f6f8fa',
+          }}
+        >
+          <code style={{ visibility: 'hidden' }}>{codeString}</code>
+        </pre>
+      </div>
+    )
+  }
+
   return (
-    <div className="my-6 relative group">
+    <div className="relative my-6">
       <button
         onClick={handleCopy}
         disabled={isCopied}
-        className={`absolute top-3 right-3 p-1.5 rounded-md text-xs transition-opacity opacity-0 group-hover:opacity-100 ${
-          isCopied ? '!opacity-100' : ''
-        } ${buttonStyle}`}
+        className={`absolute top-3 right-3 p-1.5 rounded-md text-xs z-10 ${buttonStyle}`}
       >
         {isCopied ? 'Copied!' : 'Copy'}
       </button>
-      <SyntaxHighlighter language={language} style={style} {...props}>
+      <SyntaxHighlighter
+        language={language}
+        style={style}
+        showLineNumbers
+        lineNumberStyle={{ opacity: 0.6, userSelect: 'none' }}
+        {...props}
+      >
         {codeString}
-      </SyntaxHighlighter>
+      </SyntaxHighlighter>{' '}
     </div>
   )
 }
