@@ -72,6 +72,7 @@ export function DocsSidebar({ navigation, basePath, isOpen = true, onClose }: Do
         <div key={item.title} className={indentClass}>
           <Link
             href={`${basePath}${item.href}`}
+            onClick={() => onClose?.()}
             className={`block py-2 px-3 rounded-md text-sm transition-colors ${
               isCurrentPage
                 ? 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 font-medium'
@@ -86,7 +87,7 @@ export function DocsSidebar({ navigation, basePath, isOpen = true, onClose }: Do
 
     return (
       <div key={item.title} className={`${indentClass} py-2`}>
-        <span className="text-gray-500 dark:text-gray-400 font-medium text-sm uppercase tracking-wide">
+        <span className="text-sm font-medium tracking-wide text-gray-500 uppercase dark:text-gray-400">
           {item.title}
         </span>
       </div>
@@ -112,26 +113,26 @@ export function DocsSidebar({ navigation, basePath, isOpen = true, onClose }: Do
 
         {/* Sliding sidebar */}
         <aside
-          className={`fixed left-0 top-0 h-full w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 overflow-y-auto transform transition-transform duration-300 ${
+          className={`fixed left-0 top-0 h-full w-64 border-r border-gray-200 dark:border-gray-700 overflow-y-auto transform transition-transform duration-300 ${
             isOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="flex items-center justify-end p-3 h-16 border-b border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-end h-16 p-3 border-b border-gray-200 dark:border-gray-700">
             <button onClick={onClose} className="p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
-          <div className="pt-10 p-6">
+          <div className="p-6 pt-10">
             <nav className="space-y-2">{navigation.map((item) => renderNavItem(item))}</nav>
           </div>
         </aside>
       </div>
 
       {/* Desktop sidebar */}
-      <aside className="hidden lg:block overflow-y-auto h-full pt-6">
+      <aside className="hidden h-full pt-6 overflow-y-auto lg:block">
         <nav className="space-y-2">{navigation.map((item) => renderNavItem(item))}</nav>
       </aside>
     </>

@@ -71,7 +71,7 @@ body{
 }
 
 
-body, footer, header {
+body, footer, header, aside {
   background-color: var(--background);
   color: var(--text-primary);
 }
