@@ -50,12 +50,12 @@
   --utilinent-secondary: #cbcbcb;
 
 
-  --sicilian-primary: #c9cccf;
-  --sicilian-secondary: #b3701f;
+  --sicilian-primary: #e2e2e5;
+  --sicilian-secondary: #583300;
 
   
-  --carokann-primary: #4c4c1a;
-  --carokann-secondary: #8282af;
+  --carokann-primary: #1c1c17;
+  --carokann-secondary: #8c8cdd;
 }
 
 body, footer, header {
@@ -99,14 +99,17 @@ body, footer, header {
   .card {
     border: 1px solid rgba(16, 24, 40, 0.04);
     box-shadow: var(--shadow);
+    position: relative;
+    z-index: 1;
     background-color: var(--background);
     color: var(--text-primary);
-    transition: box-shadow 200ms ease, transform 150ms ease;
+    transition: box-shadow 200ms ease, transform 150ms ease, z-index 0ms ease;
     border-radius: 0.75rem;
   }
 
   .card:hover {
     box-shadow: var(--shadow-elev-2);
+    z-index: 10;
     transform: translateY(-4px);
   }
 
