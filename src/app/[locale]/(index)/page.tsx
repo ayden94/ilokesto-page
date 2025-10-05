@@ -11,39 +11,29 @@ type LibraryNames = 'caro-kann' | 'sicilian' | 'grunfeld' | 'utilinent'
 const libraries = [
   {
     name: 'caro-kann',
-    tags: [
-      'State Management',
-      'React',
-      'Global State',
-      'Hooks',
-      'Middleware',
-      'Persistence',
-      'Derived State',
-      'ReadOnly',
-      'Mergeable Store',
-    ],
+    primary: 'hover:bg-carokann-primary',
+    secondary: 'hover:text-carokann-secondary',
+    tags: ['State Management', 'Global State', 'Middleware', 'Persistence', 'Derived State', 'Mergeable Store'],
   },
   {
     name: 'sicilian',
-    tags: [
-      'Form State',
-      'Global State',
-      'Validation',
-      'Controlled Components',
-      'Runtime Validation',
-      'React',
-      'Schema Integration',
-    ],
+    primary: 'hover:bg-sicilian-primary',
+    secondary: 'hover:text-sicilian-secondary',
+    tags: ['Form State', 'Validation', 'Controlled Components', 'Runtime Validation', 'Schema Integration'],
   },
   {
     name: 'grunfeld',
+    primary: 'hover:bg-grunfeld-primary',
+    secondary: 'hover:text-grunfeld-secondary',
     tags: ['Dialog', 'Modal', 'Prompt', 'Promise-based', 'React', 'Positioning', 'Customizable', 'Async UI'],
   },
   {
     name: 'utilinent',
+    primary: 'hover:bg-utilinent-primary',
+    secondary: 'hover:text-utilinent-secondary',
     tags: ['Control Flow', 'Conditional Rendering', 'Flow API', 'React', 'Declarative UI', 'Lightweight'],
   },
-] satisfies Array<{ name: LibraryNames; tags: Array<string> }>
+] satisfies Array<{ name: LibraryNames; tags: Array<string>; primary: string; secondary: string }>
 
 export default async function IndexPage() {
   const t = await getTranslations('ilokesto')
@@ -72,17 +62,27 @@ export default async function IndexPage() {
   )
 }
 
-async function LibraryCard({ name, tags }: { name: LibraryNames; tags: string[] }) {
+async function LibraryCard({
+  name,
+  tags,
+  primary,
+  secondary,
+}: {
+  name: LibraryNames
+  tags: string[]
+  primary: string
+  secondary: string
+}) {
   const t = await getTranslations('ilokesto')
 
   return (
-    <div key={name} className="card p-6 flex flex-col">
+    <div key={name} className={`card p-6 flex flex-col transition-all duration-200 ${primary} ${secondary}`}>
       <div className="flex-grow">
-        <h4 className="text-xl font-semibold mb-2">{name}</h4>
+        <h4 className={`text-xl font-semibold mb-2 `}>{name}</h4>
         <p className="mb-4">{t.rich(`${name}.description`)}</p>
         <div className="flex flex-wrap gap-2 mb-4">
           {tags.map((tag) => (
-            <span key={tag} className="text-xs font-mono px-2 py-1 rounded-full bg-black/5 dark:bg-white/10">
+            <span key={tag} className="text-xs font-mono px-2 py-1 rounded-full">
               {tag}
             </span>
           ))}

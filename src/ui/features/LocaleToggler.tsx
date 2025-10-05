@@ -9,7 +9,7 @@ export function LocaleToggler() {
   const nextLocale = currentLocale === 'en' ? 'ko' : 'en'
 
   return (
-    <Link href={pathname} className="text-xl/5" locale={nextLocale}>
+    <Link href={pathname} className="text-xl/5" locale={nextLocale} scroll={false}>
       {currentLocale.toUpperCase()}
     </Link>
   )
