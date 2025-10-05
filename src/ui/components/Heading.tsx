@@ -26,7 +26,7 @@ const renderForTag = (tag: HeadingTag) => {
   const defaultClasses: Record<HeadingTag, string> = {
     h1: 'text-3xl lg:text-4xl font-bold leading-tight',
     h2: 'text-2xl lg:text-3xl font-semibold leading-snug mt-10 pb-2 border-b border-gray-200 dark:border-gray-700',
-    h3: 'text-1xl lg:text-2xl font-medium',
+    h3: 'text-1xl lg:text-2xl font-medium mt-8 mb-4',
     h4: 'text-lg font-medium',
     h5: 'text-md font-medium',
     h6: 'text-base font-medium',
