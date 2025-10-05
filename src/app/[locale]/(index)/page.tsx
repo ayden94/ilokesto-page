@@ -94,7 +94,7 @@ async function LibraryCard({
           <GithubIcon />
         </Link>
 
-        <Link href={`https://github.com/ilokesto/${name}#readme`} className="text-sm font-medium hover:underline">
+        <Link href={`/${name}`} className="text-sm font-medium hover:underline">
           문서 보기
         </Link>
         {/* 필요에 따라 npm 링크 등을 추가할 수 있습니다. */}
