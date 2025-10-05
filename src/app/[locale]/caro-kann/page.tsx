@@ -18,13 +18,9 @@ export default async function CaroKannPage() {
       <Heading.h2>{t('whatsNew')}</Heading.h2>
 
       <List.ul>
-        <List.item>{t.rich(`newArray.0`, codeFormatObject)}</List.item>
-        <List.item>{t.rich(`newArray.1`, codeFormatObject)}</List.item>
-        <List.item>{t.rich(`newArray.2`, codeFormatObject)}</List.item>
-        <List.item>{t.rich(`newArray.3`, codeFormatObject)}</List.item>
-        <List.item>{t.rich(`newArray.4`, codeFormatObject)}</List.item>
-        <List.item>{t.rich(`newArray.5`, codeFormatObject)}</List.item>
-        <List.item>{t.rich(`newArray.6`, codeFormatObject)}</List.item>
+        {(['0', '1', '2', '3', '4', '5', '6'] as const).map((num) => (
+          <List.item key={num}>{t.rich(`newArray.${num}`, codeFormatObject)}</List.item>
+        ))}
       </List.ul>
 
       <Heading.h2>{t('installation')}</Heading.h2>
