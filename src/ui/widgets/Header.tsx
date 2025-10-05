@@ -1,3 +1,4 @@
+import { Show } from '@ilokesto/utilinent'
 import { neato } from 'neato'
 import Link from 'next/link'
 import { GithubIcon } from '../components/icons/GithubIcon'
@@ -6,7 +7,7 @@ import { ThemeToggler } from '../features/ThemeToggler'
 
 interface HeaderProps {
   githubLink: string
-  title: string
+  title?: React.ReactNode
   className?: string
   showMenuButton?: boolean
   onMenuClick?: () => void
@@ -27,7 +28,12 @@ export function Header({ githubLink, title, className, showMenuButton, onMenuCli
               </svg>
             </button>
           )}
-          <h1 className="text-2xl/6 font-medium">{title}</h1>
+          <h1 className="text-2xl/6 font-medium">
+            <Link href="/">@ilokesto</Link>
+            <Show when={title}>
+              <Link href={`/${title}`}>{`/${title}`}</Link>
+            </Show>
+          </h1>
         </div>
 
         <div className="flex-grow" />

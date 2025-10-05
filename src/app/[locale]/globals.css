@@ -58,6 +58,19 @@
   --carokann-secondary: #8c8cdd;
 }
 
+* {
+  outline: none;
+}
+
+body{
+ -ms-overflow-style: none;
+ }
+ 
+::-webkit-scrollbar {
+  display: none;
+}
+
+
 body, footer, header {
   background-color: var(--background);
   color: var(--text-primary);

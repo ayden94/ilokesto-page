@@ -42,7 +42,7 @@ export function DocsSidebar({ navigation, basePath, isOpen = true, onClose }: Do
         <div key={item.title} className={indentClass}>
           <button
             onClick={() => toggleSection(item.title)}
-            className="flex items-center justify-between w-full py-2 text-left text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+            className="flex items-center justify-between w-full py-2 text-left"
           >
             <span className="font-medium">{item.title}</span>
             <svg
@@ -59,7 +59,7 @@ export function DocsSidebar({ navigation, basePath, isOpen = true, onClose }: Do
               isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
             }`}
           >
-            <div className="space-y-1">{item.children?.map((child) => renderNavItem(child, level + 1))}</div>
+            <div>{item.children?.map((child) => renderNavItem(child, level + 1))}</div>
           </div>
         </div>
       )
@@ -114,10 +114,8 @@ export function DocsSidebar({ navigation, basePath, isOpen = true, onClose }: Do
       )}
 
       {/* Desktop sidebar */}
-      <aside className="hidden lg:block bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 overflow-y-auto">
-        <div className="p-6">
-          <nav className="space-y-2">{navigation.map((item) => renderNavItem(item))}</nav>
-        </div>
+      <aside className="hidden lg:block  overflow-y-auto h-full">
+        <nav className="space-y-2">{navigation.map((item) => renderNavItem(item))}</nav>
       </aside>
     </>
   )
