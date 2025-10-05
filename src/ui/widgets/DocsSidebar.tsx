@@ -93,25 +93,41 @@ export function DocsSidebar({ navigation, basePath, isOpen = true, onClose }: Do
 
   return (
     <>
-      {/* Mobile overlay */}
-      {isOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden" onClick={onClose}>
-          <div className="fixed inset-0 bg-black/50" />
-          <aside className="fixed left-0 top-0 h-full w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 overflow-y-auto">
-            <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
-              <h2 className="font-semibold text-lg">Navigation</h2>
-              <button onClick={onClose} className="p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-            <div className="p-6">
-              <nav className="space-y-2">{navigation.map((item) => renderNavItem(item))}</nav>
-            </div>
-          </aside>
-        </div>
-      )}
+      {/* Mobile overlay (always mounted to allow animation) */}
+      <div
+        className={`fixed inset-0 z-50 lg:hidden transition-opacity duration-300 ${
+          isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+        aria-hidden={!isOpen}
+      >
+        {/* Backdrop */}
+        <div
+          className={`fixed inset-0 bg-black/50 transition-opacity duration-300 ${
+            isOpen ? 'opacity-100' : 'opacity-0'
+          }`}
+          onClick={onClose}
+        />
+
+        {/* Sliding sidebar */}
+        <aside
+          className={`fixed left-0 top-0 h-full w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 overflow-y-auto transform transition-transform duration-300 ${
+            isOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+            <h2 className="font-semibold text-lg">Navigation</h2>
+            <button onClick={onClose} className="p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <div className="p-6">
+            <nav className="space-y-2">{navigation.map((item) => renderNavItem(item))}</nav>
+          </div>
+        </aside>
+      </div>
 
       {/* Desktop sidebar */}
       <aside className="hidden lg:block  overflow-y-auto h-full">
