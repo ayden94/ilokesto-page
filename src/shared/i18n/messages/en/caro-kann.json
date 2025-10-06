@@ -138,5 +138,41 @@
       "7": "<b>React Hook Rules</b>: Internally, the merge function uses useContext to get the context value of each useStore. React Hooks have a rule that they cannot be called inside loops or conditional statements, which imposes constraints on dynamically handling an unlimited number of contexts.",
       "8": "<b>Performance Considerations</b>: While it might be theoretically possible to implement merging for more stores, as the number of merged stores increases, the internal logic becomes more complex, and there's a potential for performance degradation during state changes, subscriptions, and updates. The limit of 8 can be seen as a balance between usability and performance."
     }
+  },
+  "middlewares": {
+    "logger": {
+      "0": "The logger middleware is automatically disabled in a <cd>NODE_ENV=production</cd> environment, preventing unnecessary code from being included in the production build or impacting performance.",
+      "1": "The logger middleware allows you to track state changes in real time and debug your application more effectively. It logs the previous and next state to the console every time the state updates, helping developers easily understand the flow of state changes.",
+      "2": "It supports various options such as timestamp display, state diff logging, and log group collapsing/expanding, allowing you to tailor the logging output to your needs. This is especially useful in applications with complex state management, helping identify bugs and understand state transitions more clearly."
+    },
+    "devtools": {
+      "0": "The devtools middleware is automatically disabled in a <cd>NODE_ENV=production</cd> environment, preventing unnecessary code from being included in the production build or impacting performance.",
+      "1": "The devtools middleware in Caro-Kann makes state management more intuitive and efficient. This middleware enables real-time tracking of state changes through the Redux DevTools extension. Developers gain clear visibility into how the state evolves, making debugging and optimization easier.",
+      "2": "For example, managing a count state with the devtools middleware allows real-time observation of state changes. Each button click, whether incrementing or decrementing the state, is recorded in Redux DevTools. This simplifies complex state management and debugging, significantly enhancing developer productivity."
+    },
+    "debounce": {
+      "0": "The debounce middleware is a powerful tool for efficiently managing rapid, successive state updates. It works by collecting multiple quick state changes over a short period (default: 300ms) and then applying only the final update after the specified time has passed since the last event.<br></br><br></br>This approach is especially beneficial in scenarios with frequent events—such as search input, form changes, or window resizing—as it helps prevent unnecessary renders and computations, thereby significantly improving application performance.",
+      "1": "The real strength of the debounce middleware lies in its ability to preserve all update intents while optimizing performance—not just applying the last one blindly. This is particularly useful when users trigger multiple interactions (e.g., clicks or keystrokes) in a short span, ensuring that each action is respected in order while still avoiding redundant updates."
+    },
+    "persist": {
+      "0": "Caro-Kann allows global state to be stored in local storage, session storage, and cookies. This feature is especially important for improving user experience and is suitable for values that need to persist even after a page refresh or session termination, such as the theme settings of a webpage.",
+      "1": "When storing global state in Caro-Kann, the state is stored alongside a version. This allows the application to easily transform or disregard data from previous versions if the state structure changes.",
+      "2": "For example, suppose the theme needs to support not only background color but also font size. Caro-Kann handles this by using the migrate array. When a migrate object is present, Caro-Kann automatically checks for version differences whenever a client connects to the service. If the client's state is not up to date, it calls the appropriate function(s) in the array to transform the old state into the updated version, ensuring the client always works with the latest schema.",
+      "3": "We successfully used migrate to update version 0 to version 1. However, a few weeks later, a senior developer comes by and requests that the font state property be renamed to font-size. Since migrate only runs when a client connects to the service, any user who hasn't connected yet still retains version 0 of the state. Therefore, we now need to handle both version 0 and version 1 during the migration process.<br></br><br></br>But don't worry! To address this, the migrate array is structured like a pipeline.",
+      "4": "With the help of TypeScript, the migrate pipe enforces two key conditions. First, the return type of a function at a given index must match the parameter type of the function at the next index. This ensures that each step in the migration process is type-safe and properly connected, allowing TypeScript to catch potential type mismatches at compile time and prevent runtime errors. Additionally, the return type of the final function in the pipe must exactly match the current global state type used by the application, ensuring that the final migrated state is fully compatible with the rest of the application logic."
+    },
+    "validate": {
+      "0": "The validate middleware is a useful tool for enhancing type safety in state management. This middleware validates data against a predefined schema before the state is changed. This helps maintain state consistency and stability by preventing invalid data from being reflected in the application state. If an invalid state change attempt occurs, the change is blocked, and detailed error information is immediately printed to the console, facilitating debugging.",
+      "1": "The validate middleware in caro-kann internally utilizes <a><cd>@ilokesto/common-resolver</cd></a>, allowing for easy integration with various widely used validation libraries such as zod, yup, and superstruct. This offers the advantage that developers can effectively manage the integrity of state data using familiar tools or those already implemented in their projects."
+    },
+    "reducer": {
+      "0": "The reducer middleware in Caro-Kann handles centralized state transformations, making state changes predictable and consistent. This pattern, commonly used in Redux, is designed to update state while maintaining immutability. The reducer middleware primarily changes state through actions, centralizing state update logic.",
+      "1": "When the reducer middleware is used, useStore returns a tuple <cd>[value, dispatch]</cd> instead of <cd>[value, setValue]</cd>. The dispatch function takes an action object as its argument, triggering the logic defined in the reduceFn to update the state. The reduceFn is responsible for updating the state based on the type of each action, using the type and payload properties of the action object to define the update logic."
+    },
+    "composition": {
+      "0": "",
+      "1": "",
+      "2": ""
+    }
   }
 }

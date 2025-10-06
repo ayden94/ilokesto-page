@@ -58,14 +58,22 @@
   --carokann-secondary: #8c8cdd;
 }
 
+.link {
+  color: var(--carokann-secondary);
+}
+
+.link:hover {
+  color: var(--carokann-secondary);
+}
+
 * {
   outline: none;
 }
 
 body{
- -ms-overflow-style: none;
- }
- 
+  -ms-overflow-style: none;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
