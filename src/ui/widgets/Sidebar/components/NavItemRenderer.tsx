@@ -31,8 +31,28 @@ export function NavItemRenderer({
   const itemId = generateNavItemId(item.title, item.href, parentId)
   const hasChildren = item.children && item.children.length > 0
 
-  // Section with children (collapsible)
+  // Section with children
   if (hasChildren) {
+    // If the parent has an href, render the section always open and make the title a link.
+    if (item.href) {
+      return (
+        <NavSection title={item.title} level={level} href={item.href}>
+          {item.children?.map((child) => (
+            <NavItemRenderer
+              key={generateNavItemId(child.title, child.href, itemId)}
+              item={child}
+              basePath={basePath}
+              level={level + 1}
+              isSectionOpen={isSectionOpen}
+              toggleSection={toggleSection}
+              onClose={onClose}
+              parentId={itemId}
+            />
+          ))}
+        </NavSection>
+      )
+    }
+
     const isOpen = isSectionOpen(itemId)
 
     return (

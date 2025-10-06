@@ -5,6 +5,8 @@ import { For } from '@ilokesto/utilinent'
 import { getTranslations } from 'next-intl/server'
 import Link from 'next/link'
 
+import json from '@/shared/data/npm-latest.json'
+
 type LibraryNames = 'caro-kann' | 'sicilian' | 'grunfeld' | 'utilinent' | 'common-resolver' | 'path-codegen'
 
 // GitHub 프로필의 Pinned 레포지토리 정보를 기반으로 생성되었습니다.
@@ -90,7 +92,9 @@ async function LibraryCard({
   return (
     <div key={name} className={`card p-6 flex flex-col transition-all duration-200 ${primary} ${secondary}`}>
       <div className="flex-grow">
-        <h4 className={`text-xl font-semibold mb-2 `}>{name}</h4>
+        <h4 className={`text-xl font-semibold mb-2 flex justify-between items-center`}>
+          {name} <span className="text-sm">v{json[`${name}`].version}</span>
+        </h4>
 
         <p className="mb-4">{t.rich(`${name}.description`)}</p>
         <div className="flex flex-wrap gap-2 mb-4">

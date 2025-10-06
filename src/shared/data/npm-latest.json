@@ -1,0 +1,26 @@
+{
+  "caro-kann": {
+    "package": "@ilokesto/caro-kann",
+    "version": "4.0.1"
+  },
+  "sicilian": {
+    "package": "@ilokesto/sicilian",
+    "version": "3.1.1"
+  },
+  "grunfeld": {
+    "package": "@ilokesto/grunfeld",
+    "version": "1.0.6"
+  },
+  "utilinent": {
+    "package": "@ilokesto/utilinent",
+    "version": "0.0.22"
+  },
+  "common-resolver": {
+    "package": "@ilokesto/common-resolver",
+    "version": "1.0.1"
+  },
+  "path-codegen": {
+    "package": "@ilokesto/path-codegen",
+    "version": "0.0.2"
+  }
+}
