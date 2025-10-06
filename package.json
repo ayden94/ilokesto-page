@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@ilokesto/grunfeld": "^1.0.6",
     "@ilokesto/utilinent": "^0.0.22",
     "@types/react-syntax-highlighter": "^15.5.13",
     "framer-motion": "^12.23.22",

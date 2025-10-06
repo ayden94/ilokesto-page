@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@ilokesto/grunfeld':
+        specifier: ^1.0.6
+        version: 1.0.6(react@19.2.0)
       '@ilokesto/utilinent':
         specifier: ^0.0.22
         version: 0.0.22(react@19.2.0)
@@ -187,6 +190,11 @@ packages:
         optional: true
       zod:
         optional: true
+
+  '@ilokesto/grunfeld@1.0.6':
+    resolution: {integrity: sha512-R3oQyDygc1qxK1QqXRs6LEot3/24MvavKESASh2ajQxQOW+2SKQa7XqNDSkbIkPYRiSGDnQHUMzr14Dtd9e6Dg==}
+    peerDependencies:
+      react: '>=18.2.0'
 
   '@ilokesto/utilinent@0.0.22':
     resolution: {integrity: sha512-KjFfzD/+oHKdbl+n7HXN/Afnu4EkYrZTQSDnLYOg9mDM2n/ZfbXSYPZrlUKuH9GwyNoTAMQdu1ah0djWTNOKMw==}
@@ -2136,6 +2144,10 @@ snapshots:
       react: 19.2.0
 
   '@ilokesto/common-resolver@1.0.1': {}
+
+  '@ilokesto/grunfeld@1.0.6(react@19.2.0)':
+    dependencies:
+      react: 19.2.0
 
   '@ilokesto/utilinent@0.0.22(react@19.2.0)':
     dependencies:

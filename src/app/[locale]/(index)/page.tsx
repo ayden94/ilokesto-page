@@ -35,8 +35,8 @@ const libraries = [
   },
   {
     name: 'common-resolver',
-    primary: 'hover:bg-utilinent-primary',
-    secondary: 'hover:text-utilinent-secondary',
+    primary: 'hover:bg-common-resolver-primary',
+    secondary: 'hover:text-common-resolver-secondary',
     tags: ['Schema Validation', 'Adapter', 'Migration', 'Zod', 'Yup', 'Superstruct'],
   },
   {
@@ -110,6 +110,7 @@ async function LibraryCard({
         <Link href={`/${name}`} className="text-sm font-medium hover:underline">
           문서 보기
         </Link>
+
         {/* 필요에 따라 npm 링크 등을 추가할 수 있습니다. */}
       </div>
     </div>

@@ -30,6 +30,12 @@
 
   --carokann-primary: #f5f5d2;
   --carokann-secondary: #41418c;
+
+  --common-resolver-primary: #947653;
+  --common-resolver-secondary: #EDE7DA;
+
+  --pathcodegen-primary: #506070;
+  --pathcodegen-secondary: #B59E9E;
 }
 
 .dark {
@@ -45,17 +51,20 @@
   --grunfeld-primary: #3a4236;
   --grunfeld-secondary: #ababab;
 
-
   --utilinent-primary: #353535;
   --utilinent-secondary: #cbcbcb;
 
-
   --sicilian-primary: #e2e2e5;
   --sicilian-secondary: #583300;
-
   
   --carokann-primary: #1c1c17;
   --carokann-secondary: #8c8cdd;
+
+  --common-resolver-primary: #5E452A;
+  --common-resolver-secondary: #2B241E;
+
+  --pathcodegen-primary: #3B4A56;
+  --pathcodegen-secondary: #7E6C6C;
 }
 
 .link {
@@ -96,6 +105,12 @@ body, footer, header, aside {
 
   --color-carokann-primary: var(--carokann-primary);
   --color-carokann-secondary: var(--carokann-secondary);
+
+  --color-common-resolver-primary: var(--common-resolver-primary);
+  --color-common-resolver-secondary: var(--common-resolver-secondary);
+
+  --color-pathcodegen-primary: var(--pathcodegen-primary);
+  --color-pathcodegen-secondary: var(--pathcodegen-secondary);
 }
 
 @layer components {
