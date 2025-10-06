@@ -11,5 +11,8 @@
   },
   "utilinent": {
     "description": "A lightweight library that adapts Solid's declarative control-flow APIs for React — express conditional rendering and complex view flows declaratively to improve readability and reusability."
+  },
+  "common-resolver": {
+    "description": "A small utility that unifies schema validators (Yup, Zod, Superstruct) behind a consistent adapter API, standardizes error shapes, and simplifies integration or migration."
   }
 }

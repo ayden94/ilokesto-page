@@ -5,7 +5,7 @@ import { For } from '@ilokesto/utilinent'
 import { getTranslations } from 'next-intl/server'
 import Link from 'next/link'
 
-type LibraryNames = 'caro-kann' | 'sicilian' | 'grunfeld' | 'utilinent'
+type LibraryNames = 'caro-kann' | 'sicilian' | 'grunfeld' | 'utilinent' | 'common-resolver'
 
 // GitHub 프로필의 Pinned 레포지토리 정보를 기반으로 생성되었습니다.
 const libraries = [
@@ -32,6 +32,12 @@ const libraries = [
     primary: 'hover:bg-utilinent-primary',
     secondary: 'hover:text-utilinent-secondary',
     tags: ['Control Flow', 'Conditional Rendering', 'Flow API', 'React', 'Declarative UI', 'Lightweight'],
+  },
+  {
+    name: 'common-resolver',
+    primary: 'hover:bg-utilinent-primary',
+    secondary: 'hover:text-utilinent-secondary',
+    tags: ['Schema Validation', 'Adapter', 'Migration', 'Zod', 'Yup', 'Superstruct'],
   },
 ] satisfies Array<{ name: LibraryNames; tags: Array<string>; primary: string; secondary: string }>
 

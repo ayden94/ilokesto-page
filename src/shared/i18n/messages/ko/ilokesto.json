@@ -11,5 +11,8 @@
   },
   "utilinent": {
     "description": "Solid의 선언적 제어 흐름 API를 React에 맞게 재구성한 경량 라이브러리 — 조건부 렌더링과 복잡한 뷰 흐름을 선언적으로 표현해 가독성과 재사용성을 높입니다."
+  },
+  "common-resolver": {
+    "description": "Yup, Zod, Superstruct 등 스키마 검증기를 일관된 어댑터 API로 통합하고 에러 형식을 표준화해 통합 또는 마이그레이션을 단순화하는 소형 유틸리티입니다."
   }
 }

@@ -2,12 +2,14 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface NavItem {
   title: string
   href?: string
   children?: NavItem[]
+  /** Optional initial open state for items with children. Defaults to true. */
+  isOpen?: boolean
 }
 
 interface DocsSidebarProps {
@@ -19,14 +21,39 @@ interface DocsSidebarProps {
 
 export function Sidebar({ navigation, basePath, isOpen = true, onClose }: DocsSidebarProps) {
   const pathname = usePathname()
-  const [openSections, setOpenSections] = useState<Set<string>>(new Set(['guides', 'utils', 'middlewares']))
+  // derive initial open sections from navigation: items with children and isOpen !== false
+  const computeInitialOpen = (nav: NavItem[] | undefined) => {
+    const set = new Set<string>()
+    if (!nav) return set
+    const walk = (items: NavItem[]) => {
+      for (const it of items) {
+        if (it.children && it.children.length > 0) {
+          // default isOpen = true unless explicitly false
+          // normalize title to handle potential whitespace/newline characters
+          const normalizedTitle = it.title.replace(/\s+/g, ' ').trim().toLowerCase()
+          if (it.isOpen !== false) set.add(normalizedTitle)
+          walk(it.children)
+        }
+      }
+    }
+    walk(nav)
+    return set
+  }
+
+  const [openSections, setOpenSections] = useState<Set<string>>(() => computeInitialOpen(navigation))
+
+  // Recompute initial open sections whenever navigation prop changes
+  useEffect(() => {
+    setOpenSections(computeInitialOpen(navigation))
+  }, [navigation])
 
   const toggleSection = (title: string) => {
+    const normalizedTitle = title.replace(/\s+/g, ' ').trim().toLowerCase()
     const newOpenSections = new Set(openSections)
-    if (newOpenSections.has(title.toLowerCase())) {
-      newOpenSections.delete(title.toLowerCase())
+    if (newOpenSections.has(normalizedTitle)) {
+      newOpenSections.delete(normalizedTitle)
     } else {
-      newOpenSections.add(title.toLowerCase())
+      newOpenSections.add(normalizedTitle)
     }
     setOpenSections(newOpenSections)
   }
@@ -36,7 +63,8 @@ export function Sidebar({ navigation, basePath, isOpen = true, onClose }: DocsSi
     const targetPath = item.href ? `${basePath}${item.href}` : ''
     const isCurrentPage = !!item.href && normalize(pathname).endsWith(normalize(targetPath))
     const hasChildren = item.children && item.children.length > 0
-    const isOpen = openSections.has(item.title.toLowerCase())
+    const normalizedTitle = item.title.replace(/\s+/g, ' ').trim().toLowerCase()
+    const isOpen = openSections.has(normalizedTitle)
     const indentClass = level === 0 ? '' : 'ml-4 pl-4 border-l border-gray-200 dark:border-gray-700'
 
     if (hasChildren) {
@@ -48,12 +76,14 @@ export function Sidebar({ navigation, basePath, isOpen = true, onClose }: DocsSi
           >
             <span className="font-medium">{item.title}</span>
             <svg
-              className={`w-4 h-4 transition-transform duration-300 ease-in-out ${isOpen ? 'rotate-180' : ''}`}
+              className={`w-4 h-4 transition-transform duration-200 ease-in-out ${isOpen ? 'rotate-90' : ''}`}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              {/* right chevron; rotate 90deg when open to point down */}
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
           <div
