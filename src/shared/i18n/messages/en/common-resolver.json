@@ -1,0 +1,8 @@
+{
+  "introduce": {
+    "title": "Introduce the common-resolver",
+    "description": "common-resolver is a universal library that simplifies and standardizes the resolution of recurring issues across various environments. Notably, it allows for the application of validation libraries such as zod, yup, and superstruct through a unified adapter interface, making it easy to swap and reuse validation logic. With minimal configuration, it can be quickly integrated and offers a modular design that ensures scalability and flexibility.",
+    "installation": "Installation",
+    "installationBody": "common-resolver can be installed in various ways as shown below."
+  }
+}
