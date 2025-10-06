@@ -47,11 +47,11 @@ const navigation = [
   },
   {
     title: 'API Reference',
-    href: '/api',
+    href: '/api-reference',
   },
   {
     title: 'CLI usage',
-    href: '/cli',
+    href: '/cli-usage',
   },
   {
     title: 'Tutorials',

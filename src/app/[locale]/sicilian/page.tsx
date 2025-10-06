@@ -43,6 +43,56 @@ pnpm add sicilian
 yarn add sicilian
 bun add sicilian`}
       </CodeBlock>
+
+      <Heading.h2>{t('quickStart')}</Heading.h2>
+
+      <Textline>{t('quickStartBody')}</Textline>
+
+      <CodeBlock language="tsx">{`
+import { useForm } from '@ilokesto/sicilian';
+
+export default function MySimpleForm() {
+  const { register, handleSubmit, getErrors } = useForm({
+    initValue: {
+      name: '',
+      email: ''
+    },
+    validator: {
+      name: {
+        required: { required: true, message: 'name is required' }
+      },
+      email: {
+        required: { required: true, message: 'email is required' },
+        RegExp: {
+          RegExp: /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/,
+          message: 'email format is invalid'
+        }
+      }
+    }
+  });
+
+  const onSubmit = (data) => {
+    console.log('data:', data);
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div>
+        <label htmlFor="name">name:</label>
+        <input id="name" {...register({ name: 'name', type: 'text' })} />
+        {getErrors('name')}
+      </div>
+
+      <div>
+        <label htmlFor="email">email:</label>
+        <input id="email" {...register({ name: 'email', type: 'email' })} />
+        {getErrors('email')}
+      </div>
+
+      <button type="submit">login</button>
+    </form>
+  );
+}`}</CodeBlock>
     </>
   )
 }

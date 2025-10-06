@@ -36,7 +36,7 @@ export function NavItemRenderer({
     // If the parent has an href, render the section always open and make the title a link.
     if (item.href) {
       return (
-        <NavSection title={item.title} level={level} href={item.href}>
+        <NavSection title={item.title} level={level} href={item.href} basePath={basePath}>
           {item.children?.map((child) => (
             <NavItemRenderer
               key={generateNavItemId(child.title, child.href, itemId)}

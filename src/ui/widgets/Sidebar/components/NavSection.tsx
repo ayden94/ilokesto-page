@@ -10,17 +10,18 @@ interface NavSectionProps {
   isOpen?: boolean
   onToggle?: () => void
   href?: string
+  basePath?: string
   children: React.ReactNode
 }
 
-export function NavSection({ title, level, isOpen = false, onToggle, href, children }: NavSectionProps) {
+export function NavSection({ title, level, isOpen = false, onToggle, href, basePath, children }: NavSectionProps) {
   const indentClass = level === 0 ? '' : SIDEBAR_STYLES.indent
 
   return (
     <div className={indentClass}>
       {href ? (
         <div className={SIDEBAR_STYLES.section.button}>
-          <Link href={href} className={SIDEBAR_STYLES.section.title}>
+          <Link href={`${basePath ?? ''}${href}`} className={SIDEBAR_STYLES.section.title}>
             {normalizeTitle(title)}
           </Link>
           {/* keep chevron purely visual for now (no toggle) */}
