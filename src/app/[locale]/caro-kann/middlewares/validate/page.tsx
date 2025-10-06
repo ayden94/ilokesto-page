@@ -1,4 +1,5 @@
 import { codeFormatter } from '@/shared/utils/code'
+import { CodeBlock } from '@/ui/components/CodeBlock'
 import { Heading } from '@/ui/components/Heading'
 import { Textline } from '@/ui/components/Text'
 import { getTranslations } from 'next-intl/server'
@@ -14,6 +15,10 @@ export default async function Page() {
 
       <Textline>{t.rich('0', codeFormatObject)}</Textline>
 
+      <CodeBlock language="tsx">{`const useStore = create(
+  validate(initialState, Resolver<T>)
+)`}</CodeBlock>
+
       <Textline>
         {t.rich('1', {
           ...codeFormatObject,
@@ -24,6 +29,35 @@ export default async function Page() {
           ),
         })}
       </Textline>
+
+      <CodeBlock language="tsx">{`import { z } from "zod";
+import * as yup from "yup";
+import { object, number } from "superstruct";
+import { zodResolver } from "common-resolver/zod"
+import { yupResolver } from "common-resolver/yupResolver"
+import { superstructResolver } from "common-resolver/superstructResolver"
+
+const zSchema = z.object({ count: z.number().min(0) });
+const ySchema = yup.object({ count: yup.number().min(0).required() });
+const sSchema = object({ count: number() });
+
+const useStore = create(
+  validate({ count: 0 }, zodResolver(zSchema))
+  // validate({ count: 0 }, yupResolver(ySchema))
+  // validate({ count: 0 }, superstructResolver(sSchema))
+);
+
+export default function Page() {
+  const [count, setCount] = useStore(store => store.count)
+ 
+  return (
+    <div>
+      <h1>{count}</h1>
+      <button onClick={() => setCount(count => count + 1)}>Increment</button>
+      <button onClick={() => setCount(count => count - 1)}>Decrement</button>
+    </div>
+  )
+}`}</CodeBlock>
     </>
   )
 }
