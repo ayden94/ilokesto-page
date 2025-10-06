@@ -1,0 +1,11 @@
+{
+  "description": "Path Codegen is a tool that automates path-based code generation for TypeScript projects. It analyzes the project's directory structure and generates type-safe path constants for each file and folder. By using generated constants instead of hard-coded strings, developers can reduce errors caused by typos or path changes and improve code maintainability.",
+  "usage": "usage",
+  "0": "You can run this tool directly using npx without any installation.",
+  "1": "<cd>'<'source-directory'>'</cd>: (Required) The path to the directory you want to scan.",
+  "2": "<cd>-o, --output '<'file'>'</cd>: The name for the generated output file. (Default: path-codegen.ts)",
+  "example": "example",
+  "3": "Given a directory structure like this:",
+  "4": "Running the following command:",
+  "5": "Will generate the following file at src/generated/paths.ts:"
+}
