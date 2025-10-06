@@ -14,5 +14,8 @@
   },
   "common-resolver": {
     "description": "A small utility that unifies schema validators (Yup, Zod, Superstruct) behind a consistent adapter API, standardizes error shapes, and simplifies integration or migration."
+  },
+  "path-codegen": {
+    "description": "A utility for safely extracting paths from TypeScript types. It supports autocompletion and type-checking even in nested object structures, reducing the risk of errors with string-based path access and enhancing developer experience."
   }
 }
