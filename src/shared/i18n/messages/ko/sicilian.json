@@ -1,0 +1,16 @@
+{
+  "introduce": {
+    "title": "sicilian을 소개합니다",
+    "description": "프론트엔드 분야에서 form 상태 관리 도구로 널리 쓰이는 react-hook-form은 ref를 기반으로 동작합니다. 이 때문에 컴포넌트를 forwardRef로 감싸거나, 라이브러리에서 제공하는 useFormContext를 사용해야 합니다. React.js를 사용하는 개발자로서 이러한 제약 사항이 여러모로 불편하게 느껴졌습니다.<br></br><br></br>sicilian은 이러한 불편함을 해결하기 위해 전역 상태를 기반으로 개발되었습니다. 이는 sicilian이 각각의 input을 state로 관리하며, 제어 컴포넌트 방식으로 form을 작성하도록 도움을 줄 수 있다는 뜻이기도 합니다. Sicilian은 React의 Context API를 내부적으로 활용하여 폼 상태를 전역적으로 관리하며, 이를 통해 별도의 전역 상태 관리 라이브러리(예: Redux, Zustand) 없이도 원하는 컴포넌트 어디에서나 폼 상태에 접근하고 조작할 수 있습니다.",
+    "whatsNew": "sicilian@3.1.0에서 새로 추가된 것",
+    "list": {
+      "0": "zod, yup, superstruct 를 사용한 런타임 유효성 검증을 지원합니다.",
+      "1": "type=\"radio\"에서 register 함수가 오작동하던 버그를 수정했습니다.",
+      "2": "<cd>handleValidate</cd> 대신 범용적으로 사용할 수 있는 <cd>validateOptions</cd> 함수가 추가되었습니다.",
+      "3": "서버 액션을 지원하는 <cd>handleServerAction</cd> 함수가 추가되었습니다.",
+      "4": "CLI를 통해 코드 스니펫을 간편하게 생성하는 기능이 추가되었습니다. 자세한 내용은 <a><cd>CLI 사용법</cd></a> 페이지를 참조하세요."
+    },
+    "installation": "설치 방법",
+    "installationBody": "sicilian은 아래의 다양한 방법으로 설치할 수 있습니다."
+  }
+}
