@@ -59,24 +59,26 @@ const navigation = [
     children: [
       {
         title: 'Static Form',
-        href: '/tutorials/static-form',
+        href: '/tutorials/static',
       },
       {
         title: 'Dynamic Form',
-        href: '/tutorials/dynamic-form',
+        href: '/tutorials/dynamic',
       },
       {
         title: 'Custom Form',
-        href: '/tutorials/custom-form',
+        href: '/tutorials/custom',
       },
     ],
   },
   {
     title: 'Guides',
     children: [
-      { title: 'Create a store', href: '/guides/create-store' },
-      { title: 'Basic usage', href: '/guides/basic-usage' },
-      { title: 'Provider', href: '/guides/provider' },
+      { title: 'Create a formController', href: '/guides/create-a-form-controller' },
+      { title: 'Tools of the formController', href: '/guides/tools-of-the-form-controller' },
+      { title: 'Resolver and Validator', href: '/guides/resolver-and-validator' },
+      { title: 'Sicilian Provider', href: '/guides/sicilian-provider' },
+      { title: 'In App Router', href: '/guides/in-app-router' },
     ],
   },
 ]

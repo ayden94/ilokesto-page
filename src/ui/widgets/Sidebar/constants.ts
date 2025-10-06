@@ -1,5 +1,5 @@
 export const SIDEBAR_STYLES = {
-  indent: 'ml-4 pl-4 border-l border-gray-200 dark:border-gray-700',
+  indent: 'ml-4 pl-2 border-l border-gray-200 dark:border-gray-700',
   link: {
     base: 'block py-2 px-3 rounded-md text-sm transition-colors',
     active: 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 font-medium',
