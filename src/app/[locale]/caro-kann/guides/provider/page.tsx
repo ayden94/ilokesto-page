@@ -5,6 +5,7 @@ import List from '@/ui/components/List'
 import { Textline } from '@/ui/components/Text'
 import Warning from '@/ui/components/Warning'
 import { getTranslations } from 'next-intl/server'
+import Image from 'next/image'
 
 export default async function Page() {
   const t = await getTranslations('caroKann.provider')
@@ -121,6 +122,8 @@ function test() {
     </useBear.Provider>
   )
 }`}</CodeBlock>
+
+      <Image src="/images/provider.png" width={2352} height={1016} alt="" />
     </>
   )
 }
