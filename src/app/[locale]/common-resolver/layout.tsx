@@ -46,10 +46,6 @@ const navigation = [
     href: '/',
   },
   {
-    title: 'Tutorials',
-    href: '/tutorials',
-  },
-  {
     title: 'Resolver',
     href: '/resolver',
   },
