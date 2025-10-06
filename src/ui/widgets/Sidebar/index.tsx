@@ -28,5 +28,7 @@ export function Sidebar({ navigation, basePath, isOpen = false, onClose }: Sideb
   )
 }
 
-// Re-export types for convenience
+// Re-export types and utilities for convenience
 export type { NavItem, SidebarProps } from './types'
+export { findAdjacentPages, flattenNavigation } from './utils/flattenNavigation'
+export type { FlatNavItem } from './utils/flattenNavigation'

@@ -1,6 +1,7 @@
 'use client'
 
 import { Header } from '@/ui/widgets/Header'
+import { PageNavigation } from '@/ui/widgets/PageNavigation'
 import { Sidebar } from '@/ui/widgets/Sidebar'
 import { useState } from 'react'
 
@@ -27,7 +28,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             />
 
             <main className="overflow-auto">
-              <div className="max-w-[920px] pt-12 px-8 pb-30 m-auto">{children}</div>
+              <div className="max-w-[920px] pt-12 px-8 pb-30 m-auto">
+                {children}
+                <PageNavigation navigation={navigation} basePath="/caro-kann" />
+              </div>
             </main>
           </div>
         </div>
