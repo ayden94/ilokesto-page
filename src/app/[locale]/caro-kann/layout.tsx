@@ -18,7 +18,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       <div className="overflow-hidden">
         <div className="max-w-[1440px] mx-auto h-full">
-          <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] p-4 pb-0 gap-6 h-full overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] pb-0 gap-6 h-full overflow-hidden">
             <Sidebar
               navigation={navigation}
               basePath="/caro-kann"
@@ -27,7 +27,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             />
 
             <main className="overflow-auto">
-              <div className="max-w-[920px] p-8 m-auto">{children}</div>
+              <div className="max-w-[920px] pt-12 px-8 pb-30 m-auto">{children}</div>
             </main>
           </div>
         </div>

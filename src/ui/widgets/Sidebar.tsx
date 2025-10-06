@@ -132,7 +132,7 @@ export function Sidebar({ navigation, basePath, isOpen = true, onClose }: DocsSi
       </div>
 
       {/* Desktop sidebar */}
-      <aside className="hidden h-full pt-6 overflow-y-auto lg:block">
+      <aside className="hidden h-full pt-10 pl-4 overflow-y-auto lg:block">
         <nav className="space-y-2">{navigation.map((item) => renderNavItem(item))}</nav>
       </aside>
     </>
