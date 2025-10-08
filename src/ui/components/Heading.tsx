@@ -4,9 +4,23 @@ type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 
 type HeadingProps = {
   as?: HeadingTag
+  id?: string
 } & React.HTMLAttributes<HTMLHeadingElement>
 
-const BaseHeading: React.FC<HeadingProps> = ({ as = 'h2', children, ...props }) => {
+const slugify = (value: string) =>
+  value
+    .toLowerCase()
+    .trim()
+    .replace(/<[^>]*>/g, '')
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+
+const getTextFromChildren = (children: React.ReactNode) => {
+  const arr = React.Children.toArray(children)
+  return arr.map((c) => (typeof c === 'string' ? c : '')).join(' ')
+}
+
+const BaseHeading: React.FC<HeadingProps> = ({ as = 'h2', id, children, ...props }) => {
   const defaultClasses: Record<HeadingTag, string> = {
     h1: 'text-4xl lg:text-5xl font-extrabold leading-tight',
     h2: 'text-3xl lg:text-4xl font-bold leading-snug',
@@ -19,7 +33,30 @@ const BaseHeading: React.FC<HeadingProps> = ({ as = 'h2', children, ...props }) 
   const defaultClass = defaultClasses[as]
   const className = [defaultClass, props.className].filter(Boolean).join(' ')
 
-  return createElement(as, { ...props, className }, children)
+  const headingText = getTextFromChildren(children)
+  const autoId = id ?? (headingText ? slugify(headingText) : undefined)
+
+  // show anchor for headings except h1
+  const showAnchor = autoId && as !== 'h1'
+
+  // Wrap children and append anchor link that appears on hover
+  const content = (
+    <>
+      <span className="inline">{children}</span>
+      {showAnchor && (
+        <a
+          href={`#${autoId}`}
+          aria-label="anchor"
+          className="ml-2 opacity-0 group-hover:opacity-100 text-gray-400 transition-opacity"
+          style={{ fontSize: 'inherit', lineHeight: 'inherit' }}
+        >
+          #
+        </a>
+      )}
+    </>
+  )
+
+  return createElement(as, { id: autoId, ...props, className: `${className} group scroll-mt-24` }, content)
 }
 
 const renderForTag = (tag: HeadingTag) => {
@@ -32,9 +69,30 @@ const renderForTag = (tag: HeadingTag) => {
     h6: 'text-base font-medium',
   }
 
-  const Comp: React.FC<React.HTMLAttributes<HTMLHeadingElement>> = ({ children, ...props }) => {
+  const Comp: React.FC<React.HTMLAttributes<HTMLHeadingElement> & { id?: string }> = ({ children, id, ...props }) => {
     const className = [defaultClasses[tag], props.className].filter(Boolean).join(' ')
-    return createElement(tag, { ...props, className }, children)
+
+    const headingText = getTextFromChildren(children)
+    const autoId = id ?? (headingText ? slugify(headingText) : undefined)
+    const showAnchor = autoId && tag !== 'h1'
+
+    const content = (
+      <>
+        <span className="inline">{children}</span>
+        {showAnchor && (
+          <a
+            href={`#${autoId}`}
+            aria-label="anchor"
+            className="ml-2 opacity-0 group-hover:opacity-100 text-gray-400 transition-opacity"
+            style={{ fontSize: 'inherit', lineHeight: 'inherit' }}
+          >
+            #
+          </a>
+        )}
+      </>
+    )
+
+    return createElement(tag, { id: autoId, ...props, className: `${className} group scroll-mt-24` }, content)
   }
 
   Comp.displayName = `Heading.${tag}`

@@ -73,7 +73,8 @@ export const {
   getErrors,
   setValues,
   setErrors,
-  handleSubmit
+  handleSubmit,
+  handleServerAction
 } = new CreateForm({ 
   initValue: {}, 
   resolver: undefined, 
