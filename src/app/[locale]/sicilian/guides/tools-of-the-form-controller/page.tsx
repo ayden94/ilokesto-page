@@ -31,14 +31,14 @@ export default async function Page() {
       <Textline>{t.rich('1', codeFormatObject)}</Textline>
 
       <CodeBlock language="tsx">{`type TRegister<T extends InitState> = {
-  // radio 타입일 경우 - ExtractKeys<T> 버전
-  <K extends ExtractKeys<T>>(params: { name: K; validate?: RegisterErrorObj<T>; type: 'radio'; value: string}): IRegister<T>,
-  // radio 타입이 아닌 경우 - ExtractKeys<T> 버전
+  // For radio type – ExtractKeys<T> version
+  <K extends ExtractKeys<T>>(params: { name: K; validate?: RegisterErrorObj<T>; type: 'radio'; value: string }): IRegister<T>,
+  // For non-radio types – ExtractKeys<T> version
   <K extends ExtractKeys<T>>(params: { name: K; validate?: RegisterErrorObj<T>; type?: Exclude<ValidInputTypes, 'radio'> }): IRegister<T>,
   
-  // radio 타입일 경우 - string 버전
+  // For radio type – string version
   (params: { name: string; validate?: RegisterErrorObj<T>; type: 'radio'; value: string }): IRegister<T>,
-  // radio 타입이 아닌 경우 - string 버전
+  // For non-radio types – string version
   (params: { name: string; validate?: RegisterErrorObj<T>; type?: Exclude<ValidInputTypes, 'radio'> }): IRegister<T>;
 }`}</CodeBlock>
 
