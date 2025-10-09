@@ -1,6 +1,6 @@
 {
   "introduce": {
-    "title": "Introducing sicilian",
+    "title": "Introduce the sicilian",
     "description": "react-hook-form, a widely used form state library in frontend development, operates around refs. That often requires wrapping components with forwardRef or using useFormContext. For many React developers, that constraint can be inconvenient.<br></br><br></br>sicilian addresses these issues by building on a global state approach. It manages each input as state and helps you write forms in a controlled-component style. Sicilian uses React's Context API internally to manage form state globally, so any component can access and manipulate form state without adding a separate global state library (e.g., Redux, Zustand).",
     "whatsNew": "What's new in sicilian@3.1.0",
     "list": {
