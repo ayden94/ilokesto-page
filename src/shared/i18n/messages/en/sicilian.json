@@ -1,1 +1,116 @@
-{}
+{
+  "introduce": {
+    "title": "Introducing sicilian",
+    "description": "react-hook-form, a widely used form state library in frontend development, operates around refs. That often requires wrapping components with forwardRef or using useFormContext. For many React developers, that constraint can be inconvenient.<br></br><br></br>sicilian addresses these issues by building on a global state approach. It manages each input as state and helps you write forms in a controlled-component style. Sicilian uses React's Context API internally to manage form state globally, so any component can access and manipulate form state without adding a separate global state library (e.g., Redux, Zustand).",
+    "whatsNew": "What's new in sicilian@3.1.0",
+    "list": {
+      "0": "Runtime validation support using zod, yup, and superstruct.",
+      "1": "Fixed a bug in register for type=\"radio\".",
+      "2": "Added <cd>validateOptions</cd> as a general replacement for <cd>handleValidate</cd>.",
+      "3": "Added <cd>handleServerAction</cd> to support server actions.",
+      "4": "A CLI to generate code snippets quickly has been added. See the <a><cd>CLI usage</cd></a> page for details."
+    },
+    "installation": "Installation",
+    "installationBody": "sicilian can be installed using several methods listed below.",
+    "quickStart": "Quick start",
+    "quickStartBody": "The example below shows basic sicilian usage. It implements a simple login form including validation for email and password fields. See how the sicilian form controller manages state and displays error messages for inputs."
+  },
+  "api": {
+    "0": "This page provides detailed information about the core APIs of the Sicilian library. Check parameters, return values, types, and usage examples for each function, component, and hook."
+  },
+  "cli": {
+    "title": "Sicilian CLI Usage",
+    "description": "<cd>@ilokesto/sicilian</cd> is a CLI tool designed to improve developer productivity and reduce repetitive code. The CLI helps you generate sicilian code snippets quickly and insert them into your project.",
+    "subtitle1": "help command",
+    "0": "The <cd>help</cd> command displays usage information and available flags and options for the Sicilian CLI.",
+    "1": "Running <cd>sicilian</cd> without arguments also shows the help output.",
+    "subtitle2": "generate command",
+    "2": "The <cd>generate</cd> command creates a new code snippet and inserts it into the specified file.",
+    "subtitle3": "1. Generate a basic snippet (destructured)",
+    "3": "Use the following command to generate a destructured snippet into <cd>src/components/MyForm.tsx</cd>.",
+    "4": "The command result will append code similar to the example below to <cd>src/components/MyForm.tsx</cd>:",
+    "subtitle4": "2. Generate an object-style snippet",
+    "5": "Use the following command to generate an object-style snippet into <cd>src/utils/formHooks.ts</cd>.",
+    "6": "The command result will append code similar to the example below to <cd>src/utils/formHooks.ts</cd>.",
+    "list": {
+      "0": "<cd>'<'file_path'>'</cd>: the file path to add the snippet to. If the file doesn't exist, it will be created; if it does exist, the snippet will be appended. Parent directories will be created if necessary.",
+      "1": "<cd>-o, --object</cd>: generate an object-style snippet. If omitted, the CLI will default to destructured output."
+    }
+  },
+  "tutorials": {
+    "title": "Tutorials: Understanding three form patterns",
+    "0": "Forms are the primary mechanism for collecting user input on the frontend. But simply receiving input isn't enough — you must also consider which inputs are needed and how they change. To reason about forms systematically, sicilian classifies forms into three patterns: <b>static form</b>, <b>dynamic form</b>, and <b>dynamic input</b>. These categories depend on whether the form itself is static or dynamic and whether the inputs inside are static or dynamic. The table below summarizes these patterns.",
+    "1": "We'll examine each pattern later. First, implement a static form using sicilian to learn the basics of form management.",
+    "static": {
+      "0": "A static form's presence and input set are fixed. A typical example is a registration form — it always appears on the registration page and its fields (email, password, nickname) are constant. Similarly, a post creation form's fields remain constant (title, content, tags).<br></br><br></br>I recommend using CreateForm with initValue or validator for type-safe static form definitions. CreateForm lets you define the form outside components.",
+      "1": "Defining the form spec externally separates concerns: UI components handle rendering while validation logic lives elsewhere, improving readability and maintainability."
+    },
+    "dynamic": {
+      "0": "Not all forms are static. Some appear conditionally. For example, a reply form only shows after clicking reply; an edit button may swap in an edit form; comment, reply, and edit forms often share structure. sicilian calls these dynamic forms — the form's presence is dynamic while the input structure remains static.<br></br><br></br>For dynamic forms, use useForm since the form lifecycle must be bound to the component."
+    },
+    "custom": {
+      "0": "A custom form's presence is static but its input structure is dynamic. A todo-list where users can add/remove inputs is a common example.",
+      "1": "Be careful: naive dynamic input implementations that create hooks conditionally can trigger the React \"Rendered more hooks than during the previous render.\" error. Use SicilianProvider and useSicilianContext to move registration logic into children and avoid this."
+    }
+  },
+  "guides": {
+    "create": {
+      "title": "Creating a formController",
+      "0": "sicilian provides a collection of tools for managing forms called the <cd>formController</cd>. Obtain the controller via the <cd>CreateForm</cd> class or the <cd>useForm</cd> hook. They differ only in lifecycle semantics: CreateForm is external to components while useForm is component-bound. Both accept an initialization object with optional properties: <cd>initValue</cd>, <cd>resolver</cd>, <cd>validator</cd>, <cd>validateOn</cd>, and <cd>clearFormOn</cd>.",
+      "1": "The <cd>initValue</cd> option supplies initial values for inputs and helps TypeScript infer field shapes. Initial values can be empty strings, defaults, or API-fetched data; checkboxes and radios can also be initialized.",
+      "2": "The <cd>resolver</cd> option enables declarative validation rules, for example using <cd>zodResolver</cd> with <cd>zod</cd>. Use it to define email format checks, string length, password complexity, required fields, and field relationships (e.g., <cd>.refine()</cd>).",
+      "3": "The <cd>validator</cd> object defines per-field validation rules. It complements resolver-based schema validation and can be used independently for conditional or dynamic checks. See the <a><cd>resolver and validator</cd></a> page for details.",
+      "4": "<cd>validateOn</cd> controls when validation runs: any combination of <cd>change</cd>, <cd>blur</cd>, and <cd>submit</cd>. Choose combinations that balance instant feedback and user experience.",
+      "5": "CreateForm-produced controllers are independent of component lifecycle, so use <cd>clearFormOn</cd> to decide when to reset stored data: <cd>submit</cd> clears after submit, while <cd>routeChange</cd> clears on navigation. Note: <cd>routeChange</cd> currently works in React Router and Next.js Page Router/App Router environments."
+    },
+    "tools": {
+      "title": "formController tools",
+      "0": "The <cd>formController</cd> exposes various methods for managing forms. Each method has a specific role — together they manage the form's lifecycle. <cd>register</cd> registers inputs and wires event handlers; <cd>getValues</cd> and <cd>getErrors</cd> read current form state and errors. Use <cd>setValues</cd> and <cd>setErrors</cd> to inject external data or manipulate state, and <cd>handleSubmit</cd> to validate and run callbacks on successful submission. These tools enable declarative, maintainable form logic and improve developer productivity and code quality.",
+      "1": "<cd>register</cd> registers an input with the Sicilian controller and auto-connects event handlers. As the type definitions below show, it supports many input types and provides type safety in TypeScript. The <cd>ExtractKeys&lt;T&gt;</cd> variant restricts allowed field names to those defined in <cd>initValue</cd> or <cd>validator</cd>, preventing typos. The <cd>string</cd> variant allows dynamic field addition. For <cd>radio</cd>, <cd>value</cd> is required to distinguish radio buttons sharing the same <cd>name</cd>. You may also pass a <cd>validate</cd> object per-field for custom rules.",
+      "2": "The object returned by <cd>register</cd> (the <cd>IRegister</cd> interface) provides props and handlers to integrate with React inputs. <cd>onChange</cd>, <cd>onBlur</cd>, and <cd>onFocus</cd> update form state and optionally trigger validation. SicilianEvent handles DOM and custom events. <cd>name</cd> and <cd>id</cd> identify fields; <cd>type</cd>, <cd>checked</cd>, and <cd>value</cd> reflect native input props. Apply them to JSX with the spread syntax <cd>'{'...register('{' name: \"email\" '}')'}'</cd> to reduce boilerplate.",
+      "3": "The <cd>formController</cd> provides access to current values and errors. <cd>getValues</cd> returns all values or a specific field; <cd>getErrors</cd> returns field error messages. These functions can be subscribed to so components re-render when observed values change. <cd>setStore</cd> and <cd>getStore</cd> expose low-level store access for advanced scenarios. Note: <br></br><br></br>The objects returned by <cd>getValues</cd> and <cd>getErrors</cd> reflect global state, which can cause re-render cascades similar to Context API patterns. To avoid broad re-renders, <cd>getValues</cd> and <cd>getErrors</cd> accept optional field names to subscribe to specific fields; without args they return complete objects.",
+      "4": "<cd>setValues</cd> and <cd>setErrors</cd> update parts of the form state or error state, enabling fine-grained updates useful for performance optimization.",
+      "5": "<cd>handleSubmit</cd> accepts a callback invoked with the current <cd>formState</cd> and the event object. It internally calls <cd>e.preventDefault()</cd> to prevent navigation on form submit.",
+      "6": "You can implement submit logic by manually reading <cd>formState</cd> from <cd>getValues</cd>, but <cd>handleSubmit</cd> offers additional safety and conveniences.",
+      "7": "Even if <cd>clearFormOn</cd> includes [\"submit\"], the form will not clear if submission fails.",
+      "8": "<cd>handleServerAction</cd> handles server actions or server functions to submit form data and process responses. It integrates with server-side async functions and lets you provide a server action function that receives form data and an event. Validation runs before the server action is invoked; if validation fails, the server action won't be called. Optionally provide a callback to handle success or error responses from the server.<br></br><br></br>",
+      "9": "Typical server action functions accept a FormData argument, but <cd>handleServerAction</cd> converts form data to an object before calling the server action, making server-side handling easier and avoiding direct FormData manipulation. The event object is also passed for additional context.",
+      "10": "This design simplifies form submission and server communication using <cd>handleServerAction</cd>.",
+      "list": {
+        "0": "If any unresolved error message remains, <cd>handleSubmit</cd> cancels submission to prevent unwanted data from going to the backend.",
+        "1": "Similarly, if all inputs managed by the <cd>formController</cd> are empty, submission is canceled to avoid accidental HTTP requests."
+      }
+    },
+    "validate": {
+      "title": "resolver and validator",
+      "subtitle": "priority and order of validation",
+      "0": "CreateForm and useForm support two validation mechanisms: a resolver and a validator. The resolver performs schema-based validation using zod, yup, or superstruct. The validator uses built-in rules such as required, checked, minLength, maxLength, RegExp, and custom. Both approaches can be used together or independently. Note: if both are used, resolver runs first — if resolver fails, validator won't run. This enables a layered approach: use schema validation for basic shape and types and use validator for more dynamic or complex checks.",
+      "1": "validator and validate may seem similar but differ in purpose and scope.",
+      "2": "In short, validator defines what to validate (a map of validate objects for the whole form), while validate defines how to validate a single field. This hierarchy enables systematic form validation and allows register to override per-field validators when needed.",
+      "3": "The required rule checks whether a field has a value. It accepts a boolean or an object like <cd>'{' required: boolean, message: string '}'</cd>. If only a boolean is provided, a default error message is used. Providing an object allows a custom message. Place required early in the validator array so subsequent rules run only when required passes.",
+      "4": "minLength and maxLength validate string length. They accept a number or an object like <cd>'{' number: number, message: string '}'</cd>. Use minLength for minimum characters and maxLength for maximum characters.",
+      "5": "checked validates whether checkbox-like inputs are selected. It accepts boolean or an object like <cd>'{' checked: boolean, message: string '}'</cd>. Use it for terms acceptance or required consent checkboxes.",
+      "6": "RegExp and custom accept arrays of validator objects, enabling multiple checks. RegExp validates patterns, custom accepts a function. If no message is provided, a default message is used. Sicilian evaluates validators sequentially and stops at the first failure.",
+      "7": "custom's checkFn receives the field value and the full formState and returns a boolean: true indicates an error, false indicates success. For example, checkFn: (value, store) => value !== store.password checks password confirmation. Multiple validators can be provided as an array.",
+      "8": "The strength of custom is enabling dynamic, external-data-driven validation. For instance, a backend-managed blocklist can be fetched and applied by a custom validator without changing frontend code when the blocklist updates.",
+      "9": "sicilian provides validateOptions to help write type-safe validate objects. While it may appear to return the provided object unchanged, in TypeScript it improves inference and IDE autocomplete by preserving accurate types for store and field values.<br></br><br></br>",
+      "10": "There are two ways to provide validate: the validator option on CreateForm/useForm or the validate object passed to register. Both formats are the same, but register's validate overrides the form-level validator. The order of rules matters; validators run in declared order and stop on first failure.",
+      "11": "The order of validations matters: the rules inside a validate object are evaluated in the declared order, and validation stops at the first failing rule. In the first example below, the minLength rule runs before required (so if minLength passes, required effectively does nothing). In the second example, required first checks for a value and minLength then checks its length. If a field's validation behaves unexpectedly, check the order of the rules for that field.",
+      "list": {
+        "0": "<cd>validate object</cd>: a per-field validation object (required, minLength, RegExp, ...).",
+        "1": "<cd>validator object</cd>: a top-level map of validate objects for the whole form, keyed by field name."
+      }
+    },
+    "provider": {
+      "title": "SicilianProvider component and useSicilianContext hook",
+      "0": "Previously, developers often used the spread operator to apply the props returned by register directly onto input elements. While convenient, this can cause the entire form to re-render when an input changes.",
+      "1": "To avoid that, provide register and name as separate props and compose them inside the Input component rather than spreading. However, that pattern narrows the types of register and name and complicates passing them as props.",
+      "2": "Sicilian solves this by offering SicilianProvider and useSicilianContext. These use React Context internally and bundle a value object containing register, name, validate, type, getValues, and getErrors. register and name are required; other properties are optional and can be accessed by children via <cd>useSicilianContext</cd>. If no provider exists higher in the tree, the hook throws an error.",
+      "3": "If getValues/getErrors are not provided to SicilianProvider but a descendant calls useSicilianContext for them, the hook returns functions that log an error to the console. This helps reveal where props are missing at runtime.",
+      "4": "Below is a compact Input example using SicilianProvider and useSicilianContext."
+    },
+    "appRouter": {
+      "0": "In Next.js App Router environments, sicilian must be used from client components (add \"use client\") because the building blocks (useSyncExternalStore, useContext, etc.) require client execution. Other syntax remains the same as before."
+    }
+  }
+}

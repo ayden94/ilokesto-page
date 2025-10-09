@@ -102,10 +102,15 @@
       }
     },
     "provider": {
-      "title": ""
+      "title": "SicilianProvider 컴포넌트와 useSicilianContext 훅",
+      "0": "기존에는 input 태그에 스프레드 연산자를 사용하여 register 함수가 반환하는 객체의 프로퍼티를 그대로 전달했다. 이 방식은 매우 편리하지만, 한 가지 단점이 있다. 특정 input에 입력이 발생할 때 폼 전체가 리렌더링되는 문제가 생기는 것이다.",
+      "1": "이를 방지하기 위해서는 스프레드 연산자를 사용하는 대신, register와 name을 개별 props로 전달하고 Input 컴포넌트 내부에서 이를 조합해 사용하는 방식으로 바꿔야 한다. 다만 이 접근 방식에는 또 다른 불편함이 있다. register와 name의 타입이 지나치게 좁게 추론되기 때문에, 이들을 컴포넌트의 props로 넘겨주는 과정이 상당히 번거롭다는 점이다.<br></br><br></br>이러한 문제를 해결하기 위해 Sicilian은 SicilianProvider 컴포넌트와 useSicilianContext 훅을 제공합니다. 앞서 간단히 언급했듯이, 이들은 내부적으로 React Context API를 기반으로 구현되어 있습니다. Context는 미리 정의된 값과 함수만 전달할 수 있기 때문에, 복잡한 타입 정의 문제에서도 비교적 자유롭게 사용할 수 있습니다.<br></br><br></br>SicilianProvider 컴포넌트는 register, name, validate, type, getValues, getErrors — 총 여섯 개의 값과 메서드를 포함하는 value 객체를 인자로 받습니다. 이 중 register와 name은 반드시 제공해야 하며, 특히 register의 타입에 따라 name에 허용되는 문자열의 타입이 자동으로 추론됩니다.",
+      "2": "register와 name를 제외한 나머지는 옵셔널하게 제공할 수 있습니다. 그리고 이렇게 넣어준 값들은 하위 노드 어딘가에서 <cd>useSicilianContext</cd> 훅을 통해 조회할 수 있습니다. 만약 상위 노드에 SicilianProvider 컴포넌트가 존재하지 않으면 useSicilianContext 훅은 아래와 같은 에러를 던지게 됩니다.",
+      "3": "만약 옵셔널하게 제공하는 validate, type, getValues, getErrors props를 SicilianProvider에 제공하지 않은 채 useSicilianContext 훅을 통해 조회하려 한다면 어떻게 될까요? validate와 type의 경우 타입 자체가 undefined를 포함하고 있어 상관이 없지만, 문제는 getValues와 getErrors 함수입니다.<br></br><br></br>이 두 함수를 SicilianProvider 컴포넌트에 제공하지 않은 채 useSicilianContext 훅을 통해 조회한다면, 실제로 조회되는 것은 getValues와 getErrors 함수가 아니라 <b>콘솔에 에러 메세지를 남기는 함수가 조회</b>됩니다. 이 에러 메세지를 통해 현재 어떤 컴포넌트에서 props로 넘겨주지 않고 getValues와 getErrors 함수를 사용하고 있는지를 확인할 수 있게 됩니다.",
+      "4": "아래는 SicilianProvider와 useSicilianContext를 사용하는 Input 컴포넌트에 대한 간단한 예시입니다."
     },
     "appRouter": {
-      "title": ""
+      "0": "Next.js App Router 환경에서 Sicilian은 반드시 ‘use client’를 붙여서 사용해야 합니다. 이는 Sicilian을 구성하는 ─ useSyncExternalStore, useContext 등의 ─ 요소는 모두 ‘use client’를 필요로 하기 때문입니다. 그 외의 문법은 기존과 동일하게 사용할 수 있습니다."
     }
   }
 }
