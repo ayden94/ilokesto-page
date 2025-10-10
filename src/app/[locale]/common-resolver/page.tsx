@@ -19,10 +19,10 @@ export default async function Page() {
       <Textline>{t('installationBody')}</Textline>
 
       <CodeBlock filename="install.sh" language="bash">
-        {`npm install common-resolver
-pnpm add common-resolver
-yarn add common-resolver
-bun add common-resolver`}
+        {`npm install @ilokesto/common-resolver
+pnpm add @ilokesto/common-resolver
+yarn add @ilokesto/common-resolver
+bun add @ilokesto/common-resolver`}
       </CodeBlock>
 
       <Heading.h2>{t('subtitle0')}</Heading.h2>

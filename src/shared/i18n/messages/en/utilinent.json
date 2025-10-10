@@ -1,5 +1,73 @@
 {
   "introduce": {
-    "title": "Introduce the utilinent"
+    "title": "Introducing utilinent",
+    "description": "utilinent provides a set of declarative, easy-to-read components for recurring UI patterns and logic in React applications. Inspired by the concise, opinionated style of SolidJS, utilinent encapsulates conditional rendering, list rendering, and lazy-loading into clear APIs so you can avoid exposing ternary operators or inline map implementations throughout your components. By extracting messy logic into reusable components, utilinent helps improve readability, maintainability, and overall team productivity.",
+    "installation": "Installation",
+    "installationBody": "You can install utilinent using the methods below.",
+    "quickStart": "Quick start",
+    "0": "When handling async data in React, it's common to render different UI for loading, empty, or populated states. The examples below show typical patterns and how utilinent components simplify them.",
+    "1": "utilinent's <cd>Show</cd> and <cd>For</cd> components make conditional and list rendering more declarative and concise. They help express loading and list states clearly so your UI intent is easier to read and maintain."
+  },
+
+  "show": {
+    "0": "<cd>Show</cd> is a component for expressing conditional rendering in a declarative and readable way. In React, inline ternaries (<cd>? :</cd>) or logical operators (<cd>&&</cd>) frequently clutter JSX and obscure intent; <cd>Show</cd> replaces those with a clear API. When the <cd>when</cd> prop is truthy, children are rendered; when it is falsy, the <cd>fallback</cd> is shown. This makes conditional UI intent explicit and easier to maintain.",
+    "subtitle1": "Basic usage",
+    "1": "In the simplest form, pass a condition to <cd>when</cd> and optionally provide <cd>fallback</cd>. If you pass children as a function, you receive the evaluated value in a type-safe way at render time.",
+    "subtitle2": "Multiple conditions (array)",
+    "2": "If you pass an array to <cd>when</cd>, children will only render when every element of the array is truthy. The children receive the array values, so destructure them to perform checks and render accordingly.",
+    "subtitle3": "DOM-preserving variants",
+    "3": "Use variants like <cd>Show.div</cd> or <cd>Show.span</cd> when you want the outer DOM node to always exist while swapping the inner content. This preserves layout and prevents CSS from breaking when content appears or disappears."
+  },
+
+  "observer": {
+    "0": "<cd>Observer</cd> is a performance-focused component that renders content based on viewport visibility. Internally it combines conditional rendering (<cd>Show</cd>) with a <cd>useIntersectionObserver</cd> hook to detect element visibility. This pattern defers heavy rendering until the user actually sees the element, reducing initial load cost and avoiding wasted work. It's ideal for lazy-loading images, infinite scroll, and scroll-triggered animations.",
+    "subtitle1": "Basic usage",
+    "1": "Provide a <cd>fallback</cd> for the placeholder state; when the target enters the viewport the real children will be mounted. Useful for delaying heavy components until they are likely to be seen.",
+    "subtitle2": "Advanced usage",
+    "2": "Use the <cd>onIntersect</cd> callback to trigger side effects such as analytics events, prefetching data, or starting animations once a section becomes visible. This lets you proactively prepare content just-in-time for the user.",
+    "subtitle3": "useIntersectionObserver hook",
+    "3": "The internal <cd>useIntersectionObserver</cd> hook abstracts the native Intersection Observer API into a React-friendly hook. It accepts options like <cd>root</cd>, <cd>rootMargin</cd>, and <cd>threshold</cd>, and can be configured to trigger once or multiple times. The hook includes SSR guards so it safely degrades during server rendering. Use it directly for more advanced intersection-driven behavior such as prefetching or fine-grained animation triggers."
+  },
+
+  "optional": {
+    "0": "<cd>OptionalWrapper</cd> is a utility for elegant conditional wrapping. Internally it uses <cd>Show</cd> to decide whether to apply a wrapper, avoiding nested ternaries or duplicated wrapper code. For example, you can render content wrapped in an <cd>a</cd> tag when a link is required, or render the content as-is when no wrapper is needed.",
+    "subtitle1": "Basic usage",
+    "1": "In the simplest case you provide a boolean condition and a wrapper (or 'as' prop); the content will be wrapped only when the condition is true. This pattern is useful for conditionally applying links, tooltips, or other wrappers without duplicating markup.",
+    "subtitle2": "Advanced usage",
+    "2": "OptionalWrapper can accept dynamic wrapper props or custom wrapper components. For example, you might pass different <cd>href</cd> or <cd>target</cd> values depending on the condition, or supply accessibility attributes (aria-*) dynamically.",
+    "subtitle3": "Typing and API",
+    "3": "When used in TypeScript, OptionalWrapper preserves the wrapper's prop types via generics. Because it delegates to <cd>Show</cd>, children are passed through unchanged. Typical props include <cd>as</cd> (to specify the element/component) and <cd>wrapperProps</cd> for passing attributes to the wrapper element."
+  },
+
+  "slacker": {
+    "0": "<cd>Slacker</cd> is a data-lazy-loading component designed to dramatically improve initial load performance in large applications. It pairs with <cd>Observer</cd> to run a <cd>loader</cd> only when the component enters the viewport—deferring expensive API calls or dynamic imports until they are needed. Slacker includes built-in retry and error handling strategies to make deferred loading resilient.",
+    "subtitle1": "Basic usage",
+    "1": "Provide a <cd>loader</cd> function; when the element becomes visible the loader runs and its result is passed to children. This is ideal for lazy-loading large image sets, widgets, or section-level data.",
+    "subtitle2": "Error handling & retries",
+    "2": "Pass an <cd>errorFallback</cd> function to receive the error info and a retry callback for custom UI. Configure <cd>maxRetries</cd> and backoff settings to automatically retry transient failures.",
+    "subtitle3": "Advanced options & SSR",
+    "3": "Slacker supports request cancellation (via AbortController), caching, and concurrency control. Use caching to avoid duplicate network requests and AbortController to cancel stale loads. For SSR, Slacker should render only placeholders on the server and run loaders on the client to avoid blocking server rendering."
+  },
+
+  "for": {
+    "0": "<cd>For</cd> is a declarative component that unifies list rendering and empty-state handling. While React developers commonly use <cd>Array.map()</cd>, handling empty or null data often requires extra conditionals. <cd>For</cd> consolidates iteration and fallback behavior into a single, readable construct.",
+    "subtitle1": "Basic usage",
+    "1": "Render list items declaratively and provide a <cd>fallback</cd> to display when the array is empty, null, or undefined.",
+    "subtitle2": "DOM-preserving variants",
+    "2": "Variants such as <cd>For.ui</cd> or <cd>For.div</cd> let you keep the outer DOM node present while swapping inner content, preserving layout and avoiding CSS reflow issues when the list changes."
+  },
+  "repeat": {
+    "0": "<cd>Repeat</cd> is a small utility for rendering repeated UI blocks. Internally it delegates to the list-focused <cd>For</cd> component, so it supports index access, empty state handling, and tag-based variants. Use it for skeleton loaders, star ratings, or grid placeholders where you need to render an element N times.",
+    "subtitle1": "Basic usage",
+    "1": "Specify a repeat count and render a callback that receives the current index. This produces concise, intention-revealing code.",
+    "subtitle2": "DOM-preserving variants",
+    "2": "<cd>Repeat</cd> offers variants like <cd>Repeat.div</cd> so you can preserve a container element while repeating its children—handy for consistent skeletons or grid layouts."
+  },
+  "slot": {
+    "0": "<cd>Slot</cd> implements a flexible composition pattern for components that need to render as different elements. Sometimes a Button component must render as a native <cd>button</cd> or as an <cd>a</cd> depending on usage. <cd>Slot</cd> merges parent props into the chosen child element while preserving styles, event handlers, and refs.",
+    "subtitle1": "Basic usage",
+    "1": "Use the <cd>asChild</cd> pattern to let consumers control the rendered element while maintaining the component's styling and behavior.",
+    "subtitle2": "Slottable",
+    "2": "Wrap parts of complex structures with <cd>Slottable</cd> to pass props to specific child elements—useful for buttons with icons or compound components."
   }
 }

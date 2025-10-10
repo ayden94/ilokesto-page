@@ -1,13 +1,11 @@
 import { codeFormatter } from '@/shared/utils/code'
 import { CodeBlock } from '@/ui/components/CodeBlock'
 import { Heading } from '@/ui/components/Heading'
-import List from '@/ui/components/List'
 import { Textline } from '@/ui/components/Text'
 import { getTranslations } from 'next-intl/server'
-import Link from 'next/link'
 
 export default async function Page() {
-  const t = await getTranslations('sicilian.introduce')
+  const t = await getTranslations('utilinent.introduce')
   const codeFormatObject = codeFormatter()
 
   return (
@@ -16,83 +14,71 @@ export default async function Page() {
 
       <Textline>{t.rich('description', codeFormatObject)}</Textline>
 
-      <Heading.h2>{t('whatsNew')}</Heading.h2>
-
-      <List.ul>
-        {(['0', '1', '2', '3', '4'] as const).map((num) => (
-          <List.item key={num}>
-            {t.rich(`list.${num}`, {
-              ...codeFormatObject,
-              a: (chunk) => (
-                <Link className="link" href="">
-                  {chunk}
-                </Link>
-              ),
-            })}
-          </List.item>
-        ))}
-      </List.ul>
-
       <Heading.h2>{t('installation')}</Heading.h2>
 
       <Textline>{t('installationBody')}</Textline>
 
       <CodeBlock filename="install.sh" language="bash">
-        {`npm install sicilian
-pnpm add sicilian
-yarn add sicilian
-bun add sicilian`}
+        {`npm install @ilokesto/utilinent
+pnpm add @ilokesto/utilinent
+yarn add @ilokesto/utilinent
+bun add @ilokesto/utilinent`}
       </CodeBlock>
 
       <Heading.h2>{t('quickStart')}</Heading.h2>
 
-      <Textline>{t('quickStartBody')}</Textline>
+      <Textline>{t('0')}</Textline>
 
-      <CodeBlock language="tsx">{`
-import { useForm } from '@ilokesto/sicilian';
-
-export default function MySimpleForm() {
-  const { register, handleSubmit, getErrors } = useForm({
-    initValue: {
-      name: '',
-      email: ''
-    },
-    validator: {
-      name: {
-        required: { required: true, message: 'name is required' }
-      },
-      email: {
-        required: { required: true, message: 'email is required' },
-        RegExp: {
-          RegExp: /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/,
-          message: 'email format is invalid'
-        }
-      }
-    }
-  });
-
-  const onSubmit = (data) => {
-    console.log('data:', data);
-  };
+      <CodeBlock language="tsx">{`import React, { useState, useEffect } from 'react';
+  
+const UserList = () => {
+  const { data: users } = useQuery( ... )
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label htmlFor="name">name:</label>
-        <input id="name" {...register({ name: 'name', type: 'text' })} />
-        {getErrors('name')}
-      </div>
-
-      <div>
-        <label htmlFor="email">email:</label>
-        <input id="email" {...register({ name: 'email', type: 'email' })} />
-        {getErrors('email')}
-      </div>
-
-      <button type="submit">login</button>
-    </form>
+    <div>
+      <h2>User List</h2>
+      {loading ? (
+        <p>Loading users...</p>
+      ) : (
+        users.length > 0 ? (
+          <ul>
+            {users.map(user => (
+              <li key={user.id}>{user.name}</li>
+            ))}
+          </ul>
+        ) : (
+          <p>No users found.</p>
+        )
+      )}
+    </div>
   );
-}`}</CodeBlock>
+};
+  
+export default UserList;`}</CodeBlock>
+
+      <Textline>{t.rich('1', codeFormatObject)}</Textline>
+
+      <CodeBlock language="tsx">{`import React, { useState, useEffect } from 'react';
+import { Show, For } from '@ilokesto/utilinent';
+
+const UserListAfter = () => {
+  const { data: users } = useQuery( ... )
+
+  return (
+    <div>
+      <h2>User List</h2>
+      <Show when={!loading} fallback={<p>Loading users...</p>}>
+        <For.ul each={users} fallback={<p>No users found.</p>}>
+          {(user) => (
+            <li key={user.id}>{user.name}</li>
+          )}
+        </For.ul>
+      </Show>
+    </div>
+  );
+};
+
+export default UserListAfter;`}</CodeBlock>
     </>
   )
 }

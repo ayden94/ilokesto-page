@@ -28,10 +28,10 @@ export default async function CaroKannPage() {
       <Textline>{t('installationBody')}</Textline>
 
       <CodeBlock filename="install.sh" language="bash">
-        {`npm install caro-kann
-pnpm add caro-kann
-yarn add caro-kann
-bun add caro-kann`}
+        {`npm install @ilokesto/caro-kann
+pnpm add @ilokesto/caro-kann
+yarn add @ilokesto/caro-kann
+bun add @ilokesto/caro-kann`}
       </CodeBlock>
     </>
   )

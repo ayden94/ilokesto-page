@@ -46,15 +46,15 @@ const navigation = [
     href: '/',
   },
   {
-    title: 'Guides',
+    title: 'Components',
     children: [
-      { title: 'Show', href: '/guides/show' },
-      { title: 'OptionalWrapper', href: '/guides/optional-wrapper' },
-      { title: 'Observer', href: '/guides/observer' },
-      { title: 'Slacker', href: '/guides/slacker' },
-      { title: 'For', href: '/guides/for' },
-      { title: 'Repeat', href: '/guides/repeat' },
-      { title: 'Slot', href: '/guides/slot' },
+      { title: 'Show', href: '/components/show' },
+      { title: 'OptionalWrapper', href: '/components/optional-wrapper' },
+      { title: 'Observer', href: '/components/observer' },
+      { title: 'Slacker', href: '/components/slacker' },
+      { title: 'For', href: '/components/for' },
+      { title: 'Repeat', href: '/components/repeat' },
+      { title: 'Slot', href: '/components/slot' },
     ],
   },
 ]

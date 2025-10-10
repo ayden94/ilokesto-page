@@ -38,10 +38,10 @@ export default async function Page() {
       <Textline>{t('installationBody')}</Textline>
 
       <CodeBlock filename="install.sh" language="bash">
-        {`npm install sicilian
-pnpm add sicilian
-yarn add sicilian
-bun add sicilian`}
+        {`npm install @ilokesto/sicilian
+pnpm add @ilokesto/sicilian
+yarn add @ilokesto/sicilian
+bun add @ilokesto/sicilian`}
       </CodeBlock>
 
       <Heading.h2>{t('quickStart')}</Heading.h2>
