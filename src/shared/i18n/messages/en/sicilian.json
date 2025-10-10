@@ -39,7 +39,7 @@
   },
   "tutorials": {
     "title": "Tutorials: Understanding three form patterns",
-    "0": "Forms are the primary mechanism for collecting user input on the frontend. But simply receiving input isn't enough — you must also consider which inputs are needed and how they change. To reason about forms systematically, sicilian classifies forms into three patterns: <b>static form</b>, <b>dynamic form</b>, and <b>dynamic input</b>. These categories depend on whether the form itself is static or dynamic and whether the inputs inside are static or dynamic. The table below summarizes these patterns.",
+    "0": "Forms are the primary mechanism for collecting user input on the frontend. But simply receiving input isn't enough — you must also consider which inputs are needed and how they change. To reason about forms systematically, sicilian classifies forms into three patterns: <b>static form</b>, <b>dynamic form</b>, and <b>custom form</b>. These categories depend on whether the form itself is static or dynamic and whether the inputs inside are static or dynamic. The table below summarizes these patterns.",
     "1": "We'll examine each pattern later. First, implement a static form using sicilian to learn the basics of form management.",
     "static": {
       "0": "A static form's presence and input set are fixed. A typical example is a registration form — it always appears on the registration page and its fields (email, password, nickname) are constant. Similarly, a post creation form's fields remain constant (title, content, tags).<br></br><br></br>I recommend using CreateForm with initValue or validator for type-safe static form definitions. CreateForm lets you define the form outside components.",
@@ -50,7 +50,7 @@
     },
     "custom": {
       "0": "A custom form's presence is static but its input structure is dynamic. A todo-list where users can add/remove inputs is a common example.",
-      "1": "Be careful: naive dynamic input implementations that create hooks conditionally can trigger the React \"Rendered more hooks than during the previous render.\" error. Use SicilianProvider and useSicilianContext to move registration logic into children and avoid this."
+      "1": "Be careful: naive custom form implementations that create hooks conditionally can trigger the React \"Rendered more hooks than during the previous render.\" error. Use SicilianProvider and useSicilianContext to move registration logic into children and avoid this."
     }
   },
   "guides": {

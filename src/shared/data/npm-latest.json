@@ -13,7 +13,7 @@
   },
   "utilinent": {
     "package": "@ilokesto/utilinent",
-    "version": "0.0.22"
+    "version": "0.0.26"
   },
   "common-resolver": {
     "package": "@ilokesto/common-resolver",
