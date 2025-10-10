@@ -1,0 +1,68 @@
+{
+  "default": {
+    "title": "ilokesto - React 라이브러리 모음",
+    "description": "상태 관리, 폼 검증, 다이얼로그 관리 등 React 개발을 위한 고품질 라이브러리 모음"
+  },
+  "grunfeld": {
+    "title": "Grunfeld - Promise 기반 다이얼로그 관리",
+    "description": "React를 위한 Promise 기반 다이얼로그 관리 라이브러리. 간단한 API로 모달, 알림, 확인 창을 손쉽게 구현하세요.",
+    "guides": {
+      "title": "가이드",
+      "basicUsage": "기본 사용법 - Grunfeld로 다이얼로그 생성하기",
+      "providerSetup": "Provider 설정 - Grunfeld Provider 구성하기",
+      "dialogPatterns": "다이얼로그 패턴 - 일반적인 다이얼로그 사용 패턴",
+      "asyncHandling": "비동기 처리 - 비동기 작업과 다이얼로그 통합"
+    },
+    "api": {
+      "title": "API 참조",
+      "addMethod": "add 메서드 - 다이얼로그 추가하기",
+      "removeClear": "remove/clear 메서드 - 다이얼로그 제거하기",
+      "types": "타입 정의 - TypeScript 타입과 인터페이스"
+    },
+    "config": {
+      "title": "설정",
+      "providerOptions": "Provider 옵션 - 전역 설정 구성",
+      "dialogOptions": "다이얼로그 옵션 - 개별 다이얼로그 설정",
+      "positionSystem": "위치 시스템 - 다이얼로그 배치 방법",
+      "renderModes": "렌더 모드 - inline과 top-layer 모드"
+    },
+    "examples": {
+      "title": "예제",
+      "alertDialog": "알림 다이얼로그 - 간단한 알림 구현",
+      "confirmDialog": "확인 다이얼로그 - 사용자 확인 받기",
+      "inputDialog": "입력 다이얼로그 - 사용자 입력 받기",
+      "customStyling": "커스텀 스타일링 - 다이얼로그 스타일 커스터마이징",
+      "promiseHandling": "Promise 처리 - Promise 기반 워크플로우"
+    }
+  },
+  "caroKann": {
+    "title": "Caro-Kann - 강력한 상태 관리",
+    "description": "미들웨어, 파생 상태, 병합 가능한 스토어를 지원하는 React 상태 관리 라이브러리",
+    "guides": "가이드 - Caro-Kann 시작하기",
+    "middlewares": "미들웨어 - 상태 관리 확장하기",
+    "utils": "유틸리티 - 헬퍼 함수와 도구"
+  },
+  "commonResolver": {
+    "title": "Common Resolver - 스키마 검증 어댑터",
+    "description": "Zod, Yup, Superstruct 등 다양한 검증 라이브러리를 통합하는 어댑터",
+    "resolver": "Resolver - 검증 어댑터 사용하기",
+    "cres": "Cres - 공통 검증 스키마 변환"
+  },
+  "utilinent": {
+    "title": "Utilinent - React 제어 흐름 컴포넌트",
+    "description": "선언적이고 직관적인 조건부 렌더링과 제어 흐름을 위한 경량 라이브러리",
+    "components": "컴포넌트 - 제어 흐름 유틸리티"
+  },
+  "sicilian": {
+    "title": "Sicilian - 폼 상태 관리",
+    "description": "검증, 제어 컴포넌트, 런타임 검증을 지원하는 React 폼 상태 관리 라이브러리",
+    "guides": "가이드 - Sicilian 시작하기",
+    "tutorials": "튜토리얼 - 실전 예제",
+    "apiReference": "API 참조 - 상세 문서",
+    "cliUsage": "CLI 사용법 - 명령줄 도구"
+  },
+  "pathCodegen": {
+    "title": "Path Codegen - 타입 안전 경로 유틸리티",
+    "description": "TypeScript 타입 안전성을 제공하는 경로 유틸리티 코드 생성 도구"
+  }
+}

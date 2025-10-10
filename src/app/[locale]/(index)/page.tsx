@@ -2,10 +2,21 @@ import { GithubIcon } from '@/ui/components/icons/GithubIcon'
 import { Footer } from '@/ui/widgets/Footer'
 import { Header } from '@/ui/widgets/Header'
 import { For } from '@ilokesto/utilinent'
+import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 import Link from 'next/link'
 
 import json from '@/shared/data/npm-latest.json'
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const locale = (await params).locale as 'ko' | 'en'
+  const t = await getTranslations({ locale, namespace: 'metadata.default' })
+
+  return {
+    title: t('title'),
+    description: t('description'),
+  }
+}
 
 type LibraryNames = 'caro-kann' | 'sicilian' | 'grunfeld' | 'utilinent' | 'common-resolver' | 'path-codegen'
 

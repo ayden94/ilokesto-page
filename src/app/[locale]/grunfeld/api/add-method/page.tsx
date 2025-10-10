@@ -3,7 +3,18 @@ import { CodeBlock } from '@/ui/components/CodeBlock'
 import { Heading } from '@/ui/components/Heading'
 import List from '@/ui/components/List'
 import { Textline } from '@/ui/components/Text'
+import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const locale = (await params).locale as 'ko' | 'en'
+  const t = await getTranslations({ locale, namespace: 'metadata.grunfeld.api' })
+
+  return {
+    title: t('addMethod'),
+    description: t('addMethod'),
+  }
+}
 
 export default async function Page() {
   const t = await getTranslations('grunfeld.api.add-method')

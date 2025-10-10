@@ -1,0 +1,68 @@
+{
+  "default": {
+    "title": "ilokesto - React Library Collection",
+    "description": "High-quality library collection for React development including state management, form validation, dialog management, and more"
+  },
+  "grunfeld": {
+    "title": "Grunfeld - Promise-based Dialog Management",
+    "description": "Promise-based dialog management library for React. Easily implement modals, alerts, and confirm dialogs with a simple API.",
+    "guides": {
+      "title": "Guides",
+      "basicUsage": "Basic Usage - Creating Dialogs with Grunfeld",
+      "providerSetup": "Provider Setup - Configuring Grunfeld Provider",
+      "dialogPatterns": "Dialog Patterns - Common Dialog Usage Patterns",
+      "asyncHandling": "Async Handling - Integrating Async Operations with Dialogs"
+    },
+    "api": {
+      "title": "API Reference",
+      "addMethod": "add Method - Adding Dialogs",
+      "removeClear": "remove/clear Methods - Removing Dialogs",
+      "types": "Type Definitions - TypeScript Types and Interfaces"
+    },
+    "config": {
+      "title": "Configuration",
+      "providerOptions": "Provider Options - Global Configuration",
+      "dialogOptions": "Dialog Options - Individual Dialog Settings",
+      "positionSystem": "Position System - Dialog Placement Methods",
+      "renderModes": "Render Modes - inline and top-layer Modes"
+    },
+    "examples": {
+      "title": "Examples",
+      "alertDialog": "Alert Dialog - Simple Alert Implementation",
+      "confirmDialog": "Confirm Dialog - Getting User Confirmation",
+      "inputDialog": "Input Dialog - Receiving User Input",
+      "customStyling": "Custom Styling - Customizing Dialog Styles",
+      "promiseHandling": "Promise Handling - Promise-based Workflows"
+    }
+  },
+  "caroKann": {
+    "title": "Caro-Kann - Powerful State Management",
+    "description": "React state management library supporting middleware, derived state, and mergeable stores",
+    "guides": "Guides - Getting Started with Caro-Kann",
+    "middlewares": "Middlewares - Extending State Management",
+    "utils": "Utilities - Helper Functions and Tools"
+  },
+  "commonResolver": {
+    "title": "Common Resolver - Schema Validation Adapter",
+    "description": "Adapter integrating various validation libraries including Zod, Yup, and Superstruct",
+    "resolver": "Resolver - Using Validation Adapters",
+    "cres": "Cres - Common Validation Schema Conversion"
+  },
+  "utilinent": {
+    "title": "Utilinent - React Control Flow Components",
+    "description": "Lightweight library for declarative and intuitive conditional rendering and control flow",
+    "components": "Components - Control Flow Utilities"
+  },
+  "sicilian": {
+    "title": "Sicilian - Form State Management",
+    "description": "React form state management library supporting validation, controlled components, and runtime validation",
+    "guides": "Guides - Getting Started with Sicilian",
+    "tutorials": "Tutorials - Practical Examples",
+    "apiReference": "API Reference - Detailed Documentation",
+    "cliUsage": "CLI Usage - Command Line Tools"
+  },
+  "pathCodegen": {
+    "title": "Path Codegen - Type-safe Path Utilities",
+    "description": "Code generation tool providing TypeScript type-safe path utilities"
+  }
+}

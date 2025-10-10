@@ -2,8 +2,15 @@ import { codeFormatter } from '@/shared/utils/code'
 import { CodeBlock } from '@/ui/components/CodeBlock'
 import { Heading } from '@/ui/components/Heading'
 import { Textline } from '@/ui/components/Text'
+import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 import Link from 'next/link'
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const locale = (await params).locale as 'ko' | 'en'
+  const t = await getTranslations({ locale, namespace: 'metadata.caroKann' })
+  return { title: t('middlewares'), description: t('middlewares') }
+}
 
 export default async function Page() {
   const t = await getTranslations('caroKann.middlewares.validate')

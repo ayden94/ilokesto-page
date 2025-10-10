@@ -3,7 +3,14 @@ import { CodeBlock } from '@/ui/components/CodeBlock'
 import { Heading } from '@/ui/components/Heading'
 import { Textline } from '@/ui/components/Text'
 import Warning from '@/ui/components/Warning'
+import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const locale = (await params).locale as 'ko' | 'en'
+  const t = await getTranslations({ locale, namespace: 'metadata.sicilian' })
+  return { title: t('guides'), description: t('guides') }
+}
 
 export default async function Page() {
   const t = await getTranslations('sicilian.guides.provider')
