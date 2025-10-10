@@ -11,8 +11,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="h-screen grid grid-rows-[auto_1fr]">
       <Header
-        githubLink="https://github.com/ilokesto/utilinent"
-        title="utilinent"
+        githubLink="https://github.com/ilokesto/grunfeld"
+        title="grunfeld"
         showMenuButton
         onMenuClick={() => setSidebarOpen(true)}
       />
@@ -22,7 +22,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] pb-0 gap-6 h-full overflow-hidden">
             <Sidebar
               navigation={navigation}
-              basePath="/utilinent"
+              basePath="/grunfeld"
               isOpen={sidebarOpen}
               onClose={() => setSidebarOpen(false)}
             />
@@ -30,7 +30,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <main className="overflow-auto">
               <div className="max-w-[920px] pt-12 px-8 pb-30 m-auto">
                 {children}
-                <PageNavigation navigation={navigation} basePath="/utilinent" />
+                <PageNavigation navigation={navigation} basePath="/grunfeld" />
               </div>
             </main>
           </div>
@@ -42,19 +42,43 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
 const navigation = [
   {
-    title: 'Introduce the utilinent',
+    title: 'Introduce Grunfeld',
     href: '/',
   },
   {
-    title: 'Components',
+    title: 'Guides',
     children: [
-      { title: 'Show', href: '/components/show' },
-      { title: 'OptionalWrapper', href: '/components/optional-wrapper' },
-      { title: 'Observer', href: '/components/observer' },
-      { title: 'Slacker', href: '/components/slacker' },
-      { title: 'For', href: '/components/for' },
-      { title: 'Repeat', href: '/components/repeat' },
-      { title: 'Slot', href: '/components/slot' },
+      { title: 'Basic Usage', href: '/guides/basic-usage' },
+      { title: 'Provider Setup', href: '/guides/provider-setup' },
+      { title: 'Dialog Patterns', href: '/guides/dialog-patterns' },
+      { title: 'Async Handling', href: '/guides/async-handling' },
+    ],
+  },
+  {
+    title: 'API Reference',
+    children: [
+      { title: 'grunfeld.add()', href: '/api/add-method' },
+      { title: 'remove & clear', href: '/api/remove-clear' },
+      { title: 'TypeScript Types', href: '/api/types' },
+    ],
+  },
+  {
+    title: 'Configuration',
+    children: [
+      { title: 'Provider Options', href: '/config/provider-options' },
+      { title: 'Dialog Options', href: '/config/dialog-options' },
+      { title: 'Position System', href: '/config/position-system' },
+      { title: 'Render Modes', href: '/config/render-modes' },
+    ],
+  },
+  {
+    title: 'Examples',
+    children: [
+      { title: 'Alert Dialog', href: '/examples/alert-dialog' },
+      { title: 'Confirmation Dialog', href: '/examples/confirm-dialog' },
+      { title: 'Input Dialog', href: '/examples/input-dialog' },
+      { title: 'Custom Styling', href: '/examples/custom-styling' },
+      { title: 'Promise Handling', href: '/examples/promise-handling' },
     ],
   },
 ]

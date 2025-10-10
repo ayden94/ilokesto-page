@@ -1,1 +1,264 @@
-{}
+{
+  "introduce": {
+    "title": "Introducing Grunfeld",
+    "description": "Grunfeld is a lightweight library that makes it easy and consistent to manage dialogs (modals, alerts, confirmations, etc.) in React applications. It's designed to allow you to display dialogs for user interaction and handle results with just a few lines of declarative code, without cumbersome state management or complex control flow.<br></br><br></br>The core goals are simplicity, accessibility, and extensibility. It supports accessibility considerations by default, such as focus trapping, keyboard dismissal, and ARIA attributes, and allows you to easily change appearance and behavior with custom components, handle multiple modal stacks, integrate animation hooks. It provides a Promise-based API to naturally handle asynchronous flows (e.g., waiting for user decisions in confirmation dialogs).<br></br><br></br>It also provides TypeScript-friendly type definitions to help you use it safely at compile time, and maintains consistent dialog behavior across your application through the Context/Provider pattern. In server-side rendering (SSR) environments, it's designed to safely render fallback UI, clearly separating client-only logic. It's suitable for teams that want to implement complex dialog scenarios with concise code while maintaining accessibility and maintainability.",
+    "installation": "Installation",
+    "installationBody": "Grunfeld can be installed in various ways:",
+    "quickStart": "Quick Start",
+    "quickStartBody": "Add <cd>GrunfeldProvider</cd> at the top level of your app:",
+    "subtitle1": "Basic Usage",
+    "0": "You can create a simple confirmation dialog and receive the user's response. The <cd>grunfeld.add()</cd> method returns a Promise, so you can use <cd>async/await</cd> to wait for the user's choice."
+  },
+  "guides": {
+    "basic-usage": {
+      "title": "Basic Usage",
+      "0": "Grunfeld provides two main usage patterns: simple alerts and dialogs that receive user responses. Each pattern is implemented using different overloads.",
+      "subtitle1": "Alert Dialogs",
+      "1": "Using a factory function without parameters creates a simple alert. This approach returns <cd>void</cd> and executes synchronously.",
+      "subtitle2": "Confirmation Dialogs",
+      "2": "Confirmation dialogs that wait for user selection receive the <cd>removeWith</cd> function as a parameter. Call this function to close the dialog and return a result value.",
+      "subtitle3": "Input Dialogs",
+      "3": "Dialogs that receive data input from users follow the same pattern. Create an input component and pass the value through <cd>removeWith</cd>."
+    },
+    "provider-setup": {
+      "title": "Provider Setup",
+      "0": "To use Grunfeld, you first need to set up the <cd>GrunfeldProvider</cd> at the top level of your application. This Provider is responsible for rendering and managing the state of dialogs.",
+      "subtitle1": "Next.js App Router",
+      "1": "If you're using Next.js App Router, add the Provider to your layout file:",
+      "subtitle2": "Next.js Pages Router",
+      "2": "If you're using Pages Router, add the Provider to your <cd>_app.tsx</cd> file:",
+      "subtitle3": "React (Vite, CRA)",
+      "3": "In a regular React application, add the Provider to your app's root component:"
+    },
+    "dialog-patterns": {
+      "title": "Dialog Patterns",
+      "0": "Grunfeld supports various dialog patterns. Each pattern is optimized for specific use cases.",
+      "subtitle1": "Alert",
+      "1": "A simple alert that conveys information to the user. It has no return value and provides only a confirmation button.",
+      "subtitle2": "Confirm",
+      "2": "Used when a user decision is required. Typically returns a boolean value.",
+      "subtitle3": "Prompt",
+      "3": "Receives text input from the user. Returns the entered string.",
+      "subtitle4": "Custom Dialog",
+      "4": "Use custom components when complex UI or multi-step interaction is required."
+    },
+    "async-handling": {
+      "title": "Async Handling",
+      "0": "One of Grunfeld's powerful features is the ability to naturally handle asynchronous operations. You can perform async operations when creating dialogs or display multiple dialogs sequentially.",
+      "subtitle1": "Loading Dialog",
+      "1": "You can create a dialog that displays loading state during async operations:",
+      "subtitle2": "Sequential Dialogs",
+      "2": "You can implement complex workflows by displaying multiple dialogs sequentially:",
+      "subtitle3": "Timeout Handling",
+      "3": "You can automatically close a dialog after a certain time and handle the Promise:"
+    }
+  },
+  "api": {
+    "add-method": {
+      "title": "grunfeld.add()",
+      "0": "The <cd>grunfeld.add()</cd> method is the core API for creating new dialogs. It provides two overloads to support various use cases.",
+      "subtitle1": "Alert Overload",
+      "1": "Using a factory function without parameters creates a simple alert:",
+      "2": "This overload returns <cd>void</cd> and executes immediately. You can return a React element directly or return a <cd>GrunfeldProps</cd> object.",
+      "subtitle2": "Response Overload",
+      "3": "Using a factory function that receives the <cd>removeWith</cd> parameter allows you to receive user responses:",
+      "4": "This overload returns <cd>Promise'<'T | undefined'>'</cd>. When the user calls <cd>removeWith(value)</cd>, the Promise resolves with that value.",
+      "subtitle3": "GrunfeldProps",
+      "5": "An object specifying dialog options:",
+      "list": {
+        "0": "<cd>element</cd>: The React element to display in the dialog",
+        "1": "<cd>position</cd>: The position of the dialog (default: 'center')",
+        "2": "<cd>lightDismiss</cd>: Whether to close on backdrop click (default: true)",
+        "3": "<cd>renderMode</cd>: Rendering mode ('inline' | 'top-layer', default: 'inline')",
+        "4": "<cd>backdropStyle</cd>: CSS styles for the backdrop",
+        "5": "<cd>dismissCallback</cd>: Callback executed when the dialog closes"
+      },
+      "subtitle4": "Promise Interruption",
+      "6": "When a dialog is forcibly closed by <cd>grunfeld.remove()</cd> or <cd>grunfeld.clear()</cd>, the Promise resolves with <cd>undefined</cd>:",
+      "7": "You can use this to handle interruptions due to timeouts or external events."
+    },
+    "remove-clear": {
+      "title": "remove & clear",
+      "0": "Grunfeld provides two methods for removing dialogs.",
+      "subtitle1": "grunfeld.remove()",
+      "1": "Removes the most recently added dialog. Dialogs are removed in LIFO (Last In First Out) order:",
+      "2": "This method resolves the dialog's Promise with <cd>undefined</cd>. When multiple dialogs are stacked, only the topmost dialog is removed.",
+      "subtitle2": "grunfeld.clear()",
+      "3": "Removes all dialogs at once:",
+      "4": "This method resolves all dialogs' Promises with <cd>undefined</cd>. Useful in emergencies or during route changes.",
+      "subtitle3": "ESC Key and Light Dismiss",
+      "5": "Users can also close dialogs using the following methods:",
+      "list": {
+        "0": "<b>ESC Key</b>: Closes the most recent dialog (same as grunfeld.remove())",
+        "1": "<b>Backdrop Click</b>: Closes the dialog if <cd>lightDismiss: true</cd>"
+      },
+      "6": "These user actions also resolve the Promise with <cd>undefined</cd>."
+    },
+    "types": {
+      "title": "TypeScript Types",
+      "0": "Grunfeld provides full TypeScript support. All types can be imported from the package.",
+      "subtitle1": "Core Types",
+      "1": "Main type definitions:",
+      "subtitle2": "Position Type",
+      "2": "A type that specifies the dialog's position. You can specify exact positions using a 9-grid system:",
+      "subtitle3": "Generic Type Parameters",
+      "3": "The generic parameter of <cd>grunfeld.add'<'T'>'()</cd> determines the argument type of the <cd>removeWith</cd> function and the type of the returned Promise:",
+      "4": "For type safety, it's recommended to always explicitly specify the generic type."
+    }
+  },
+  "config": {
+    "provider-options": {
+      "title": "Provider Options",
+      "0": "<cd>GrunfeldProvider</cd> accepts an <cd>options</cd> prop to set global defaults. Individual dialogs can override these values.",
+      "subtitle1": "Available Options",
+      "1": "All options configurable in the Provider:",
+      "list": {
+        "0": "<cd>defaultPosition</cd>: Default position for all dialogs (default: 'center')",
+        "1": "<cd>defaultLightDismiss</cd>: Default value for backdrop click to dismiss (default: true)",
+        "2": "<cd>defaultRenderMode</cd>: Default rendering mode (default: 'inline')",
+        "3": "<cd>defaultBackdropStyle</cd>: Default backdrop styles"
+      },
+      "subtitle2": "Usage Example",
+      "2": "Example applying consistent styles across the project:",
+      "subtitle3": "Individual Override",
+      "3": "Individual dialogs can override the Provider's defaults:",
+      "4": "This dialog ignores the Provider's default settings and displays in the top-right corner without allowing backdrop click to dismiss."
+    },
+    "dialog-options": {
+      "title": "Dialog Options",
+      "0": "Individual dialogs can customize their behavior and appearance through various options. All options are optional, and if not specified, the Provider's defaults are used.",
+      "subtitle1": "position",
+      "1": "Specifies the position on screen where the dialog will appear. Uses a 9-grid system:",
+      "2": "Each position is precisely placed using CSS flexbox.",
+      "subtitle2": "lightDismiss",
+      "3": "Determines whether to close the dialog when clicking the backdrop (background):",
+      "4": "When set to <cd>false</cd>, users must explicitly click a button or press ESC to close the dialog.",
+      "subtitle3": "renderMode",
+      "5": "Determines how the dialog is rendered:",
+      "list": {
+        "0": "<cd>inline</cd>: z-index based rendering (default, supports all browsers)",
+        "1": "<cd>top-layer</cd>: Uses HTML <cd>'<'dialog'>'</cd> element (modern browsers only)"
+      },
+      "6": "Top-layer mode has no z-index conflicts and leverages browser native features, but has limited browser support.",
+      "subtitle4": "backdropStyle",
+      "7": "Customizes the backdrop's CSS styles:",
+      "8": "You can use any valid React CSS properties.",
+      "subtitle5": "dismissCallback",
+      "9": "A callback function executed when the dialog closes:",
+      "10": "⚠️ <b>Warning</b>: Do not call <cd>grunfeld.remove()</cd> or <cd>grunfeld.clear()</cd> within this callback. Since the dialog is already being removed, it may cause infinite loops or unexpected behavior."
+    },
+    "position-system": {
+      "title": "Position System",
+      "0": "Grunfeld provides an intuitive position system that divides the screen into 9 sections. This allows you to place dialogs in exact positions.",
+      "subtitle1": "Grid Layout",
+      "1": "The screen is divided into 9 regions as follows:",
+      "subtitle2": "Position Usage Examples",
+      "2": "Use cases for each position:",
+      "list": {
+        "0": "<cd>center</cd> or <cd>center-center</cd>: Important confirmation dialogs, modals",
+        "1": "<cd>top-right</cd>: Notifications, toast messages",
+        "2": "<cd>bottom-center</cd>: Action sheets, cookie consent",
+        "3": "<cd>top-center</cd>: Banners, announcements",
+        "4": "<cd>bottom-right</cd>: Chat widget"
+      },
+      "subtitle3": "Multiple Dialogs",
+      "3": "When displaying multiple dialogs simultaneously, dialogs in the same position stack according to z-index:",
+      "4": "Each dialog is positioned independently, so you can display multiple dialogs in different regions simultaneously."
+    },
+    "render-modes": {
+      "title": "Render Modes",
+      "0": "Grunfeld supports two rendering modes: <cd>inline</cd> and <cd>top-layer</cd>. Each mode has different advantages and disadvantages.",
+      "subtitle1": "Inline Mode (Default)",
+      "1": "Traditional z-index based rendering:",
+      "list0": {
+        "0": "Supports all modern browsers (IE11+)",
+        "1": "Full style customization",
+        "2": "Predictable behavior",
+        "3": "JavaScript-based ESC key handling"
+      },
+      "2": "This mode is the most stable and provides wide browser support. It's recommended to use this mode in most cases.",
+      "subtitle2": "Top-layer Mode",
+      "3": "Native approach using HTML5 <cd>'<'dialog'>'</cd> element:",
+      "list1": {
+        "0": "No z-index conflicts",
+        "1": "Browser native ESC key handling",
+        "2": "Better accessibility",
+        "3": "Modern browsers only (Chrome 37+, Firefox 98+, Safari 15.4+)"
+      },
+      "4": "The <cd>'<'dialog'>'</cd> element is automatically rendered in the top layer, so it's not affected by other elements' z-index.",
+      "subtitle3": "Browser Compatibility",
+      "5": "Browser support for each mode:",
+      "6": "Choose the appropriate mode based on your project's target browsers.",
+      "subtitle4": "Mode Switching",
+      "7": "You can use different rendering modes for individual dialogs:",
+      "8": "Generally, it's recommended to consistently use one mode throughout the project."
+    }
+  },
+  "examples": {
+    "alert-dialog": {
+      "title": "Alert Dialog",
+      "0": "An alert dialog is the simplest form of dialog that conveys information to the user. It provides only a confirmation button and has no return value.",
+      "subtitle1": "Basic Alert",
+      "1": "The simplest form of alert:",
+      "subtitle2": "Success Alert",
+      "2": "An alert notifying task completion:",
+      "subtitle3": "Error Alert",
+      "3": "An alert displaying error messages:",
+      "subtitle4": "Auto-dismissing Alert",
+      "4": "An alert that automatically closes after a certain time:",
+      "5": "This pattern is useful for toast notifications or temporary messages."
+    },
+    "confirm-dialog": {
+      "title": "Confirmation Dialog",
+      "0": "Confirmation dialogs are used when a user decision is required. They typically return a boolean value and are used to obtain user consent before performing dangerous operations.",
+      "subtitle1": "Basic Confirmation",
+      "1": "Get confirmation before important operations like deletion:",
+      "subtitle2": "Destructive Confirmation",
+      "2": "For critical operations, you can require users to confirm the action:",
+      "subtitle3": "Conditional Actions",
+      "3": "Perform different actions based on confirmation result:",
+      "subtitle4": "Timed Confirmation",
+      "4": "Automatically cancels if no response within a certain time:"
+    },
+    "input-dialog": {
+      "title": "Input Dialog",
+      "0": "Input dialogs receive data from users. They can receive various types of input such as text, numbers, and selections.",
+      "subtitle1": "Text Input",
+      "1": "Receive text input from users:",
+      "subtitle2": "Validated Input",
+      "2": "Validate input values and display error messages:",
+      "subtitle3": "Multi-field Form",
+      "3": "A complex form containing multiple input fields:",
+      "subtitle4": "Selection Dialog",
+      "4": "Allow users to select one option from multiple choices:"
+    },
+    "custom-styling": {
+      "title": "Custom Styling",
+      "0": "Grunfeld supports full style customization. You can use any styling method such as CSS, Tailwind, CSS-in-JS.",
+      "subtitle1": "Tailwind CSS",
+      "1": "Styling using Tailwind classes:",
+      "subtitle2": "CSS Modules",
+      "2": "Styling using CSS Modules:",
+      "subtitle3": "Inline Styles",
+      "3": "Use inline styles when dynamic styling is needed:",
+      "subtitle4": "Backdrop Customization",
+      "4": "You can create various effects by changing the backdrop's style:",
+      "subtitle5": "Animations",
+      "5": "Add life to dialogs using CSS animations:"
+    },
+    "promise-handling": {
+      "title": "Promise Handling",
+      "0": "Leveraging Grunfeld's Promise-based API allows you to implement complex asynchronous workflows cleanly.",
+      "subtitle1": "Sequential Dialogs",
+      "1": "Display multiple dialogs sequentially:",
+      "subtitle2": "Conditional Flow",
+      "2": "Determine the next dialog based on the result of the previous one:",
+      "subtitle3": "Promise.race",
+      "3": "Handle whichever occurs first between timeout and user input:",
+      "subtitle4": "Error Handling",
+      "4": "Handle errors that occur during async operations with dialogs:",
+      "subtitle5": "Interruption Handling",
+      "5": "Detect interruptions caused by <cd>grunfeld.remove()</cd> or <cd>grunfeld.clear()</cd>:"
+    }
+  }
+}
