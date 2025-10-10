@@ -15,7 +15,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       default: t('default.title'),
       template: `%s | ${t('default.title')}`,
     },
-    description: t('default.description'),
     keywords: ['React', 'TypeScript', 'State Management', 'Form Validation', 'Dialog Management', 'UI Components'],
     authors: [{ name: 'ilokesto', url: 'https://github.com/ilokesto' }],
     creator: 'ilokesto',
@@ -25,13 +24,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       locale: locale,
       url: 'https://ilokesto.vercel.app',
       siteName: t('default.title'),
-      title: t('default.title'),
-      description: t('default.description'),
     },
     twitter: {
       card: 'summary_large_image',
-      title: t('default.title'),
-      description: t('default.description'),
     },
     robots: {
       index: true,
