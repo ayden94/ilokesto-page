@@ -1,14 +1,13 @@
 {
   "introduce": {
     "title": "Introducing utilinent",
-    "description": "utilinent provides a set of declarative, easy-to-read components for recurring UI patterns and logic in React applications. Inspired by the concise, opinionated style of SolidJS, utilinent encapsulates conditional rendering, list rendering, and lazy-loading into clear APIs so you can avoid exposing ternary operators or inline map implementations throughout your components. By extracting messy logic into reusable components, utilinent helps improve readability, maintainability, and overall team productivity.",
+    "description": "As React apps grow, JSX often becomes cluttered with nested ternary operators and bloated map callbacks, which rapidly degrades readability. utilinent was created to solve these recurring UI patterns by providing small, declarative components.<br><br/><br><br/>Inspired by the concise and expressive style of SolidJS, utilinent encapsulates common tasks — conditional rendering, list rendering, and lazy loading — into clear APIs. For example, replace complex ternaries with a <cd>Show</cd> component, or use <cd>For</cd> to render arrays along with a built-in fallback for empty data.<br><br/><br><br/>By moving noisy logic out of views and into reusable components, utilinent improves readability, maintainability, and lets developers focus more on business logic while boosting team productivity.",
     "installation": "Installation",
     "installationBody": "You can install utilinent using the methods below.",
     "quickStart": "Quick start",
     "0": "When handling async data in React, it's common to render different UI for loading, empty, or populated states. The examples below show typical patterns and how utilinent components simplify them.",
     "1": "utilinent's <cd>Show</cd> and <cd>For</cd> components make conditional and list rendering more declarative and concise. They help express loading and list states clearly so your UI intent is easier to read and maintain."
   },
-
   "show": {
     "0": "<cd>Show</cd> is a component for expressing conditional rendering in a declarative and readable way. In React, inline ternaries (<cd>? :</cd>) or logical operators (<cd>&&</cd>) frequently clutter JSX and obscure intent; <cd>Show</cd> replaces those with a clear API. When the <cd>when</cd> prop is truthy, children are rendered; when it is falsy, the <cd>fallback</cd> is shown. This makes conditional UI intent explicit and easier to maintain.",
     "subtitle1": "Basic usage",
@@ -18,7 +17,6 @@
     "subtitle3": "DOM-preserving variants",
     "3": "Use variants like <cd>Show.div</cd> or <cd>Show.span</cd> when you want the outer DOM node to always exist while swapping the inner content. This preserves layout and prevents CSS from breaking when content appears or disappears."
   },
-
   "observer": {
     "0": "<cd>Observer</cd> is a performance-focused component that renders content based on viewport visibility. Internally it combines conditional rendering (<cd>Show</cd>) with a <cd>useIntersectionObserver</cd> hook to detect element visibility. This pattern defers heavy rendering until the user actually sees the element, reducing initial load cost and avoiding wasted work. It's ideal for lazy-loading images, infinite scroll, and scroll-triggered animations.",
     "subtitle1": "Basic usage",
