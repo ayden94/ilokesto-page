@@ -46,6 +46,10 @@ const navigation = [
     href: '/',
   },
   {
+    title: 'API Reference',
+    href: '/api',
+  },
+  {
     title: 'Guides',
     children: [
       { title: 'Basic Usage', href: '/guides/basic-usage' },
@@ -54,14 +58,7 @@ const navigation = [
       { title: 'Async Handling', href: '/guides/async-handling' },
     ],
   },
-  {
-    title: 'API Reference',
-    children: [
-      { title: 'grunfeld.add()', href: '/api/add-method' },
-      { title: 'remove & clear', href: '/api/remove-clear' },
-      { title: 'TypeScript Types', href: '/api/types' },
-    ],
-  },
+
   {
     title: 'Configuration',
     children: [
