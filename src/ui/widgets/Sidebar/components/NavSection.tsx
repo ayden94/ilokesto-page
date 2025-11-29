@@ -1,8 +1,7 @@
+import { Link } from '@/shared/i18n/navigation'
 import { SIDEBAR_STYLES } from '../constants'
 import { normalizeTitle } from '../utils/normalize'
 import { ChevronIcon } from './ChevronIcon'
-
-import Link from 'next/link'
 
 interface NavSectionProps {
   title: string
