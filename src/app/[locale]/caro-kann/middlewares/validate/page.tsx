@@ -56,12 +56,12 @@ const useStore = create(
 
 export default function Page() {
   const [count, setCount] = useStore(store => store.count)
- 
+
   return (
     <div>
       <h1>{count}</h1>
-      <button onClick={() => setCount(count => count + 1)}>Increment</button>
-      <button onClick={() => setCount(count => count - 1)}>Decrement</button>
+      <button onClick={() => setCount(store => ({ count: store.count + 1 }))}>Increment</button>
+      <button onClick={() => setCount(store => ({ count: store.count - 1 }))}>Decrement</button>
     </div>
   )
 }`}</CodeBlock>
