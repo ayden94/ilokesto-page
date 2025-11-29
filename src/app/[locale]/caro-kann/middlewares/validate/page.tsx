@@ -40,9 +40,9 @@ export default async function Page() {
       <CodeBlock language="tsx">{`import { z } from "zod";
 import * as yup from "yup";
 import { object, number } from "superstruct";
-import { zodResolver } from "common-resolver/zod"
-import { yupResolver } from "common-resolver/yupResolver"
-import { superstructResolver } from "common-resolver/superstructResolver"
+import { zodResolver } from "@ilokesto/common-resolver/zod"
+import { yupResolver } from "@ilokesto/common-resolver/yupResolver"
+import { superstructResolver } from "@ilokesto/common-resolver/superstructResolver"
 
 const zSchema = z.object({ count: z.number().min(0) });
 const ySchema = yup.object({ count: yup.number().min(0).required() });

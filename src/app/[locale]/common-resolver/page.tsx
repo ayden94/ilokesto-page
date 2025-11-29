@@ -40,11 +40,11 @@ bun add @ilokesto/common-resolver`}
 
       <Textline>{t.rich('0', codeFormatObject)}</Textline>
 
-      <CodeBlock language="ts">{`import { zodResolver, isZodSchema } from "common-resolver/zod"
-import { yupResolver, isYupSchema } from "common-resolver/yup"
-import { superstructResolver, isSuperStructSchema } from "common-resolver/superstruct"
-import { getResolver } from "common-resolver/getResolver"
-import { ValidateSchema, Resolver } "common-resolver/types"`}</CodeBlock>
+      <CodeBlock language="ts">{`import { zodResolver, isZodSchema } from "@ilokesto/common-resolver/zod"
+import { yupResolver, isYupSchema } from "@ilokesto/common-resolver/yup"
+import { superstructResolver, isSuperStructSchema } from "@ilokesto/common-resolver/superstruct"
+import { getResolver } from "@ilokesto/common-resolver/getResolver"
+import { ValidateSchema, Resolver } "@ilokesto/common-resolver/types"`}</CodeBlock>
 
       <Textline>{t.rich('1', codeFormatObject)}</Textline>
 
@@ -56,8 +56,8 @@ zodResolver(zSchema).validate("").error // {root: "zSchema는 필수입니다"}
       <Heading.h2>{t.rich('subtitle1', codeFormatObject)}</Heading.h2>
 
       <Textline>{t.rich('2', codeFormatObject)}</Textline>
-      <CodeBlock language="ts">{`import { getResolver } from "common-resolver/getResolver";
-import { ValidateSchema } from "common-resolver/types";
+      <CodeBlock language="ts">{`import { getResolver } from "@ilokesto/common-resolver/getResolver";
+import { ValidateSchema } from "@ilokesto/common-resolver/types";
 
 export const validate: Middleware["validate"] = <T>(initState: T | MiddlewareStore<T>, validator: ValidateSchema<T>["zod" | "yup" | "superstruct"]) => {
   const Store = getStoreFromInitState(initState);
@@ -93,7 +93,7 @@ const useNumber = create(validate("", zSchema))`}</CodeBlock>
       <Heading.h2>{t.rich('subtitle2', codeFormatObject)}</Heading.h2>
 
       <Textline>{t.rich('4', codeFormatObject)}</Textline>
-      <CodeBlock language="ts">{`import type { Resolver } from "common-resolver/types";
+      <CodeBlock language="ts">{`import type { Resolver } from "@ilokesto/common-resolver/types";
 
 export class Validate<T extends InitState> implements IValidate {
   constructor(
@@ -117,9 +117,9 @@ export class Validate<T extends InitState> implements IValidate {
 }`}</CodeBlock>
 
       <Textline>{t.rich('5', codeFormatObject)}</Textline>
-      <CodeBlock language="ts">{`export { zodResolver } from "common-resolver/zod";
-export { yupResolver } from "common-resolver/yup";
-export { superstructResolver } from "common-resolver/superstruct";`}</CodeBlock>
+      <CodeBlock language="ts">{`export { zodResolver } from "@ilokesto/common-resolver/zod";
+export { yupResolver } from "@ilokesto/common-resolver/yup";
+export { superstructResolver } from "@ilokesto/common-resolver/superstruct";`}</CodeBlock>
 
       <Textline>{t.rich('6', codeFormatObject)}</Textline>
       <CodeBlock language="ts">{`import { CreateForm } from "sicilian"
