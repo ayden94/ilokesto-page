@@ -4,7 +4,7 @@
     "description": "react-hook-form, a widely used form state library in frontend development, operates around refs. That often requires wrapping components with forwardRef or using useFormContext. For many React developers, that constraint can be inconvenient.<br></br><br></br>sicilian addresses these issues by building on a global state approach. It manages each input as state and helps you write forms in a controlled-component style. Sicilian uses React's Context API internally to manage form state globally, so any component can access and manipulate form state without adding a separate global state library (e.g., Redux, Zustand).",
     "whatsNew": "What's new in sicilian@3.1.0",
     "list": {
-      "0": "Runtime validation support using zod, yup, and superstruct.",
+      "0": "Runtime validation support using zod (v3, v4), yup, and superstruct.",
       "1": "Fixed a bug in register for type=\"radio\".",
       "2": "Added <cd>validateOptions</cd> as a general replacement for <cd>handleValidate</cd>.",
       "3": "Added <cd>handleServerAction</cd> to support server actions.",

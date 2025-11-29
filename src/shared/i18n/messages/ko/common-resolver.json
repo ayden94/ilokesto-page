@@ -1,7 +1,7 @@
 {
   "introduce": {
     "title": "common-resolver를 소개합니다",
-    "description": "common-resolver는 다양한 환경에서 반복되는 문제를 간단하고 일관되게 해결하는 범용 라이브러리입니다. 특히 zod, yup, superstruct 같은 검증 라이브러리를 통일된 어댑터 인터페이스로 적용할 수 있어 검증 로직을 손쉽게 교체·재사용할 수 있으며, 최소한의 설정으로 빠르게 통합되고 모듈화된 설계로 확장성과 유연성을 제공합니다.",
+    "description": "common-resolver는 다양한 환경에서 반복되는 문제를 간단하고 일관되게 해결하는 범용 라이브러리입니다. 특히 zod (v3, v4), yup, superstruct 같은 검증 라이브러리를 통일된 어댑터 인터페이스로 적용할 수 있어 검증 로직을 손쉽게 교체·재사용할 수 있으며, 최소한의 설정으로 빠르게 통합되고 모듈화된 설계로 확장성과 유연성을 제공합니다.",
     "installation": "설치 방법",
     "installationBody": "common-resolver은 아래의 다양한 방법으로 설치할 수 있습니다.",
     "subtitle0": "기능 소개",

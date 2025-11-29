@@ -1,7 +1,7 @@
 {
   "introduce": {
     "title": "Introduce the common-resolver",
-    "description": "common-resolver is a lightweight, universal library designed to solve recurring validation and error-handling problems in a simple and consistent way across different environments. It provides adapter interfaces for validation libraries such as zod, yup, and superstruct so you can swap and reuse validation logic with minimal changes. Its modular design makes it quick to integrate and easy to extend, while keeping configuration minimal.",
+    "description": "common-resolver is a lightweight, universal library designed to solve recurring validation and error-handling problems in a simple and consistent way across different environments. It provides adapter interfaces for validation libraries such as zod (v3, v4), yup, and superstruct so you can swap and reuse validation logic with minimal changes. Its modular design makes it quick to integrate and easy to extend, while keeping configuration minimal.",
     "installation": "Installation",
     "installationBody": "You can install common-resolver using any of the methods shown below.",
     "subtitle0": "Features",

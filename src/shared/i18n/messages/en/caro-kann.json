@@ -163,7 +163,7 @@
     },
     "validate": {
       "0": "The validate middleware is a useful tool for enhancing type safety in state management. This middleware validates data against a predefined schema before the state is changed. This helps maintain state consistency and stability by preventing invalid data from being reflected in the application state. If an invalid state change attempt occurs, the change is blocked, and detailed error information is immediately printed to the console, facilitating debugging.",
-      "1": "The validate middleware in caro-kann internally utilizes <a><cd>@ilokesto/common-resolver</cd></a>, allowing for easy integration with various widely used validation libraries such as zod, yup, and superstruct. This offers the advantage that developers can effectively manage the integrity of state data using familiar tools or those already implemented in their projects."
+      "1": "The validate middleware in caro-kann internally utilizes <a><cd>@ilokesto/common-resolver</cd></a>, allowing for easy integration with various widely used validation libraries such as zod (v3, v4), yup, and superstruct. This offers the advantage that developers can effectively manage the integrity of state data using familiar tools or those already implemented in their projects."
     },
     "reducer": {
       "0": "The reducer middleware in caro-kann handles centralized state transformations, making state changes predictable and consistent. This pattern, commonly used in Redux, is designed to update state while maintaining immutability. The reducer middleware primarily changes state through actions, centralizing state update logic.",
