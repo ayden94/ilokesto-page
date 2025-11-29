@@ -51,6 +51,28 @@ function TodoList({ todos }) {
       <CodeBlock language="tsx">{`<For.ul each={items} className="list">
   {(item, index) => <li key={index}>{item.name}</li>}
 </For.ul>`}</CodeBlock>
+
+      <Heading.h2>{t('subtitle3')}</Heading.h2>
+
+      <Textline>{t.rich('3', codeFormatObject)}</Textline>
+
+      <CodeBlock language="tsx">{`import { For, Forrable } from '@ilokesto/utilinent';
+
+function ProductList({ products }) {
+  return (
+    <For.ul each={products} className="product-list">
+      <li className="header">Product List</li>
+      <Forrable>
+        {(product, index) => (
+          <li key={index}>
+            {product.name} - {product.price}
+          </li>
+        )}
+      </Forrable>
+      <li className="footer">Total: {products.length} items</li>
+    </For.ul>
+  );
+}`}</CodeBlock>
     </>
   )
 }

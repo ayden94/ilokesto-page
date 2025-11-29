@@ -15,7 +15,9 @@
     "subtitle2": "Multiple conditions (array)",
     "2": "If you pass an array to <cd>when</cd>, children will only render when every element of the array is truthy. The children receive the array values, so destructure them to perform checks and render accordingly.",
     "subtitle3": "DOM-preserving variants",
-    "3": "Use variants like <cd>Show.div</cd> or <cd>Show.span</cd> when you want the outer DOM node to always exist while swapping the inner content. This preserves layout and prevents CSS from breaking when content appears or disappears."
+    "3": "Use variants like <cd>Show.div</cd> or <cd>Show.span</cd> when you want the outer DOM node to always exist while swapping the inner content. This preserves layout and prevents CSS from breaking when content appears or disappears.",
+    "subtitle4": "Showable",
+    "4": "<cd>Showable</cd> is a special component used inside <cd>Show</cd> that is useful for mixing static and conditional content. While <cd>Show.div</cd> always renders, only the <cd>Showable</cd> inside it renders conditionally based on the <cd>when</cd> prop. This allows you to maintain fixed elements like headers or footers while conditionally displaying specific parts."
   },
   "observer": {
     "0": "<cd>Observer</cd> is a performance-focused component that renders content based on viewport visibility. Internally it combines conditional rendering (<cd>Show</cd>) with a <cd>useIntersectionObserver</cd> hook to detect element visibility. This pattern defers heavy rendering until the user actually sees the element, reducing initial load cost and avoiding wasted work. It's ideal for lazy-loading images, infinite scroll, and scroll-triggered animations.",
@@ -52,7 +54,9 @@
     "subtitle1": "Basic usage",
     "1": "Render list items declaratively and provide a <cd>fallback</cd> to display when the array is empty, null, or undefined.",
     "subtitle2": "DOM-preserving variants",
-    "2": "Variants such as <cd>For.ui</cd> or <cd>For.div</cd> let you keep the outer DOM node present while swapping inner content, preserving layout and avoiding CSS reflow issues when the list changes."
+    "2": "Variants such as <cd>For.ui</cd> or <cd>For.div</cd> let you keep the outer DOM node present while swapping inner content, preserving layout and avoiding CSS reflow issues when the list changes.",
+    "subtitle3": "Forrable",
+    "3": "<cd>Forrable</cd> is a special component used inside <cd>For</cd> that is useful for mixing static content with dynamic lists. While <cd>For.ul</cd> always renders, only the <cd>Forrable</cd> inside it repeats for each item in the array. This allows you to maintain fixed elements like headers or footers while repeating only specific parts."
   },
   "repeat": {
     "0": "<cd>Repeat</cd> is a small utility for rendering repeated UI blocks. Internally it delegates to the list-focused <cd>For</cd> component, so it supports index access, empty state handling, and tag-based variants. Use it for skeleton loaders, star ratings, or grid placeholders where you need to render an element N times.",
