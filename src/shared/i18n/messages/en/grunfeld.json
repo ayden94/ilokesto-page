@@ -51,6 +51,38 @@
       "2": "You can implement complex workflows by displaying multiple dialogs sequentially:",
       "subtitle3": "Timeout Handling",
       "3": "You can automatically close a dialog after a certain time and handle the Promise:"
+    },
+    "scenario": {
+      "title": "Scenario",
+      "0": "The scenario feature allows you to systematically manage and reuse complex dialog flows. You can group multi-step dialogs or conditional flows into a single logical unit.",
+      "subtitle1": "Basic Object Style",
+      "1": "The simplest and most intuitive way is to define a scenario as an object:",
+      "2": "Each step can be called as a method, and since it returns a Promise, you can execute them sequentially using <cd>await</cd>.",
+      "subtitle2": "Separated Style (Advanced)",
+      "3": "You can separate control logic and implementation to construct more complex scenarios:",
+      "4": "This approach separates business logic from UI implementation, improving maintainability.",
+      "subtitle3": "Passing Parameters",
+      "5": "You can implement dynamic behavior by passing parameters to scenario steps:",
+      "subtitle4": "Handling User Input",
+      "6": "You can receive user input and pass it to the next step or process it:",
+      "subtitle5": "Scenario Options",
+      "7": "You can control behavior by setting scenario execution options:",
+      "list": {
+        "0": "<cd>stopOnError</cd>: Whether to stop on error (default: true)",
+        "1": "<cd>stepDelay</cd>: Delay between steps (ms)",
+        "2": "<cd>onStepStart</cd>: Callback on step start",
+        "3": "<cd>onStepEnd</cd>: Callback on step end",
+        "4": "<cd>onStepError</cd>: Callback on error"
+      },
+      "subtitle6": "API Reference",
+      "8": "Main Scenario API methods:",
+      "apiList": {
+        "0": "<cd>scenario.step(name, params)</cd>: Execute a specific step",
+        "1": "<cd>scenario.run(paramsMap)</cd>: Execute all steps sequentially",
+        "2": "<cd>scenario.getSteps()</cd>: Return list of steps",
+        "3": "<cd>scenario.hasStep(name)</cd>: Check if step exists",
+        "4": "<cd>scenario.clone(newName)</cd>: Clone scenario"
+      }
     }
   },
   "api": {

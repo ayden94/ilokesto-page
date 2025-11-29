@@ -56,9 +56,9 @@ const navigation = [
       { title: 'Provider Setup', href: '/guides/provider-setup' },
       { title: 'Dialog Patterns', href: '/guides/dialog-patterns' },
       { title: 'Async Handling', href: '/guides/async-handling' },
+      { title: 'Scenario', href: '/guides/scenario' },
     ],
   },
-
   {
     title: 'Configuration',
     children: [

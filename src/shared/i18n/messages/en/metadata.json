@@ -11,7 +11,8 @@
       "basicUsage": "Basic Usage - Creating Dialogs with Grunfeld",
       "providerSetup": "Provider Setup - Configuring Grunfeld Provider",
       "dialogPatterns": "Dialog Patterns - Common Dialog Usage Patterns",
-      "asyncHandling": "Async Handling - Integrating Async Operations with Dialogs"
+      "asyncHandling": "Async Handling - Integrating Async Operations with Dialogs",
+      "scenario": "Scenario - Managing Complex Dialog Flows"
     },
     "api": {
       "title": "API Reference",

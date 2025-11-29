@@ -11,7 +11,8 @@
       "basicUsage": "기본 사용법 - Grunfeld로 다이얼로그 생성하기",
       "providerSetup": "Provider 설정 - Grunfeld Provider 구성하기",
       "dialogPatterns": "다이얼로그 패턴 - 일반적인 다이얼로그 사용 패턴",
-      "asyncHandling": "비동기 처리 - 비동기 작업과 다이얼로그 통합"
+      "asyncHandling": "비동기 처리 - 비동기 작업과 다이얼로그 통합",
+      "scenario": "시나리오 - 복잡한 대화상자 흐름 관리"
     },
     "api": {
       "title": "API 참조",
