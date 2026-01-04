@@ -24,8 +24,8 @@ export default async function Page() {
 
       <Textline>{t.rich('0', codeFormatObject)}</Textline>
 
-      <CodeBlock language="tsx">{`function OptionalWrapper(props: {
-  when: boolean;
+      <CodeBlock language="tsx">{`function OptionalWrapper<T>(props: {
+  when: T;
   children: React.ReactNode;
   wrapper: (children: React.ReactNode) => React.ReactNode;
   fallback?: (children: React.ReactNode) => React.ReactNode;
@@ -48,6 +48,18 @@ function Post({ post, withLink }) {
     </OptionalWrapper>
   );
 }`}</CodeBlock>
+
+      <Heading.h2>{t('subtitle2')}</Heading.h2>
+
+      <Textline>{t.rich('2', codeFormatObject)}</Textline>
+
+      <CodeBlock language="tsx">{`<OptionalWrapper
+  when={withLink}
+  wrapper={(children) => <a href={\`/posts/\${post.id}\`}>{children}</a>}
+  fallback={(children) => <span className="muted">{children}</span>}
+>
+  <h2>{post.title}</h2>
+</OptionalWrapper>`}</CodeBlock>
     </>
   )
 }

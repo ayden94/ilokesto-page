@@ -23,7 +23,7 @@ export default async function Page() {
 
       <CodeBlock language="tsx">{`// Basic usage
 function Show<T>(props: {
-  when: T | null | undefined | false;
+  when: T;
   children: React.ReactNode | ((value: NonNullable<T>) => React.ReactNode);
   fallback?: React.ReactNode;
 }): React.ReactNode;
@@ -75,27 +75,6 @@ function UserProfile({ user }) {
   admin
 </Show.div>`}</CodeBlock>
 
-      <Heading.h2>{t('subtitle4')}</Heading.h2>
-
-      <Textline>{t.rich('4', codeFormatObject)}</Textline>
-
-      <CodeBlock language="tsx">{`import { Show, Showable } from '@ilokesto/utilinent';
-
-function UserProfile({ user }) {
-  return (
-    <Show.div when={user} className="profile">
-      <h1>User Profile</h1>
-      <Showable fallback={<div>Please login to view profile.</div>}>
-        {(user) => (
-          <>
-            <p>Name: {user.name}</p>
-            <p>Email: {user.email}</p>
-          </>
-        )}
-      </Showable>
-    </Show.div>
-  );
-}`}</CodeBlock>
     </>
   )
 }

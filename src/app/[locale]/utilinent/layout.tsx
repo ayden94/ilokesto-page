@@ -49,12 +49,18 @@ const navigation = [
     title: 'Components',
     children: [
       { title: 'Show', href: '/components/show' },
+      { title: 'Switch & Match', href: '/components/switch' },
       { title: 'OptionalWrapper', href: '/components/optional-wrapper' },
-      { title: 'Observer', href: '/components/observer' },
-      { title: 'Slacker', href: '/components/slacker' },
       { title: 'For', href: '/components/for' },
       { title: 'Repeat', href: '/components/repeat' },
+      { title: 'Mount', href: '/components/mount' },
+      { title: 'Observer', href: '/components/observer' },
+      { title: 'Slacker', href: '/components/slacker' },
       { title: 'Slot', href: '/components/slot' },
     ],
+  },
+  {
+    title: 'Core',
+    children: [{ title: 'createProxy', href: '/core/create-proxy' }],
   },
 ]

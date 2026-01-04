@@ -52,7 +52,8 @@
   "utilinent": {
     "title": "Utilinent - React Control Flow Components",
     "description": "Lightweight library for declarative and intuitive conditional rendering and control flow",
-    "components": "Components - Control Flow Utilities"
+    "components": "Components - Control Flow Utilities",
+    "core": "Core - Extensibility"
   },
   "sicilian": {
     "title": "Sicilian - Form State Management",

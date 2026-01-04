@@ -66,7 +66,7 @@ function InfiniteScrollTrigger({ onLoadMore }) {
   );
 }`}</CodeBlock>
 
-      <Heading.h2>useIntersectionObserver</Heading.h2>
+      <Heading.h2>{t('subtitle3')}</Heading.h2>
       <Textline>{t.rich('3', codeFormatObject)}</Textline>
       <CodeBlock language="tsx">{`function useIntersectionObserver(options?: {
   threshold?: number | number[];

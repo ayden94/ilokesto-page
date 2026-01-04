@@ -56,21 +56,13 @@ function TodoList({ todos }) {
 
       <Textline>{t.rich('3', codeFormatObject)}</Textline>
 
-      <CodeBlock language="tsx">{`import { For, Forrable } from '@ilokesto/utilinent';
+      <CodeBlock language="tsx">{`import { For } from '@ilokesto/utilinent';
 
 function ProductList({ products }) {
   return (
-    <For.ul each={products} className="product-list">
-      <li className="header">Product List</li>
-      <Forrable>
-        {(product, index) => (
-          <li key={index}>
-            {product.name} - {product.price}
-          </li>
-        )}
-      </Forrable>
-      <li className="footer">Total: {products.length} items</li>
-    </For.ul>
+    <For each={products}>
+      {(product) => <ProductCard key={product.id} product={product} />}
+    </For>
   );
 }`}</CodeBlock>
     </>

@@ -9,61 +9,70 @@
     "1": "utilinent's <cd>Show</cd> and <cd>For</cd> components make conditional and list rendering more declarative and concise. They help express loading and list states clearly so your UI intent is easier to read and maintain."
   },
   "show": {
-    "0": "<cd>Show</cd> is a component for expressing conditional rendering in a declarative and readable way. In React, inline ternaries (<cd>? :</cd>) or logical operators (<cd>&&</cd>) frequently clutter JSX and obscure intent; <cd>Show</cd> replaces those with a clear API. When the <cd>when</cd> prop is truthy, children are rendered; when it is falsy, the <cd>fallback</cd> is shown. This makes conditional UI intent explicit and easier to maintain.",
+    "0": "<cd>Show</cd> is a declarative component for conditional rendering. When <cd>when</cd> is truthy it renders children; otherwise it renders the <cd>fallback</cd> (or nothing). This keeps branching logic out of JSX and makes intent explicit.",
     "subtitle1": "Basic usage",
-    "1": "In the simplest form, pass a condition to <cd>when</cd> and optionally provide <cd>fallback</cd>. If you pass children as a function, you receive the evaluated value in a type-safe way at render time.",
+    "1": "Pass a condition to <cd>when</cd> and optionally provide <cd>fallback</cd>. If children is a function, it receives the evaluated value at render time.",
     "subtitle2": "Multiple conditions (array)",
-    "2": "If you pass an array to <cd>when</cd>, children will only render when every element of the array is truthy. The children receive the array values, so destructure them to perform checks and render accordingly.",
+    "2": "If you pass an array to <cd>when</cd>, children render only when every item is truthy. The function child receives the array values.",
     "subtitle3": "DOM-preserving variants",
-    "3": "Use variants like <cd>Show.div</cd> or <cd>Show.span</cd> when you want the outer DOM node to always exist while swapping the inner content. This preserves layout and prevents CSS from breaking when content appears or disappears.",
-    "subtitle4": "Showable",
-    "4": "<cd>Showable</cd> is a special component used inside <cd>Show</cd> that is useful for mixing static and conditional content. While <cd>Show.div</cd> always renders, only the <cd>Showable</cd> inside it renders conditionally based on the <cd>when</cd> prop. This allows you to maintain fixed elements like headers or footers while conditionally displaying specific parts."
+    "3": "Use <cd>Show.div</cd> or <cd>Show.span</cd> to keep an outer element in the DOM while swapping inner content."
+  },
+  "switch": {
+    "0": "<cd>Switch</cd> renders the first matching <cd>Match</cd> child in order. Each <cd>Match</cd> is evaluated with the same truthiness rules as <cd>Show</cd>, and <cd>fallback</cd> is rendered when nothing matches.",
+    "subtitle1": "Basic usage",
+    "1": "Place multiple <cd>Match</cd> components inside <cd>Switch</cd> and provide an optional fallback.",
+    "subtitle2": "Function children",
+    "2": "If you pass a function to <cd>Match</cd>, it receives the evaluated value for that branch.",
+    "subtitle3": "DOM-preserving variants",
+    "3": "Use <cd>Switch.div</cd> to keep a wrapper element while swapping the matched content."
+  },
+  "mount": {
+    "0": "<cd>Mount</cd> renders children that may be a function returning a value or a promise. While the promise resolves, it shows <cd>fallback</cd> and reports errors via <cd>onError</cd>.",
+    "subtitle1": "Basic usage",
+    "1": "Return a React node or a promise from the children function to defer rendering until it resolves.",
+    "subtitle2": "Error handling",
+    "2": "Use <cd>onError</cd> to capture thrown errors or rejected promises, and show a safe <cd>fallback</cd> UI.",
+    "subtitle3": "DOM-preserving variants",
+    "3": "<cd>Mount.div</cd> and other tag variants keep a wrapper element while the resolved content swaps in."
+  },
+  "optional": {
+    "0": "<cd>OptionalWrapper</cd> conditionally applies a wrapper without duplicating markup. It uses <cd>Show</cd> internally, so truthy <cd>when</cd> values render the wrapped children and falsy values render the fallback or the original children.",
+    "subtitle1": "Basic usage",
+    "1": "Provide <cd>when</cd> and a <cd>wrapper</cd> function that receives the children and returns the wrapped result.",
+    "subtitle2": "Custom fallback wrapper",
+    "2": "Use <cd>fallback</cd> to return an alternate wrapper when the condition is false."
   },
   "observer": {
-    "0": "<cd>Observer</cd> is a performance-focused component that renders content based on viewport visibility. Internally it combines conditional rendering (<cd>Show</cd>) with a <cd>useIntersectionObserver</cd> hook to detect element visibility. This pattern defers heavy rendering until the user actually sees the element, reducing initial load cost and avoiding wasted work. It's ideal for lazy-loading images, infinite scroll, and scroll-triggered animations.",
+    "0": "<cd>Observer</cd> renders children only when the element becomes visible in the viewport. Provide a <cd>fallback</cd> for the hidden state and optionally react to intersections.",
     "subtitle1": "Basic usage",
-    "1": "Provide a <cd>fallback</cd> for the placeholder state; when the target enters the viewport the real children will be mounted. Useful for delaying heavy components until they are likely to be seen.",
-    "subtitle2": "Advanced usage",
-    "2": "Use the <cd>onIntersect</cd> callback to trigger side effects such as analytics events, prefetching data, or starting animations once a section becomes visible. This lets you proactively prepare content just-in-time for the user.",
+    "1": "Render a placeholder with <cd>fallback</cd> and mount heavy content only after the element intersects.",
+    "subtitle2": "Trigger once and callbacks",
+    "2": "Set <cd>triggerOnce</cd> to stop observing after the first intersection and use <cd>onIntersect</cd> for side effects.",
     "subtitle3": "useIntersectionObserver hook",
-    "3": "The internal <cd>useIntersectionObserver</cd> hook abstracts the native Intersection Observer API into a React-friendly hook. It accepts options like <cd>root</cd>, <cd>rootMargin</cd>, and <cd>threshold</cd>, and can be configured to trigger once or multiple times. The hook includes SSR guards so it safely degrades during server rendering. Use it directly for more advanced intersection-driven behavior such as prefetching or fine-grained animation triggers."
+    "3": "The hook exposes <cd>ref</cd>, <cd>isIntersecting</cd>, and the latest <cd>entry</cd> for custom intersection-driven behavior."
   },
-
-  "optional": {
-    "0": "<cd>OptionalWrapper</cd> is a utility for elegant conditional wrapping. Internally it uses <cd>Show</cd> to decide whether to apply a wrapper, avoiding nested ternaries or duplicated wrapper code. For example, you can render content wrapped in an <cd>a</cd> tag when a link is required, or render the content as-is when no wrapper is needed.",
-    "subtitle1": "Basic usage",
-    "1": "In the simplest case you provide a boolean condition and a wrapper (or 'as' prop); the content will be wrapped only when the condition is true. This pattern is useful for conditionally applying links, tooltips, or other wrappers without duplicating markup.",
-    "subtitle2": "Advanced usage",
-    "2": "OptionalWrapper can accept dynamic wrapper props or custom wrapper components. For example, you might pass different <cd>href</cd> or <cd>target</cd> values depending on the condition, or supply accessibility attributes (aria-*) dynamically.",
-    "subtitle3": "Typing and API",
-    "3": "When used in TypeScript, OptionalWrapper preserves the wrapper's prop types via generics. Because it delegates to <cd>Show</cd>, children are passed through unchanged. Typical props include <cd>as</cd> (to specify the element/component) and <cd>wrapperProps</cd> for passing attributes to the wrapper element."
-  },
-
   "slacker": {
-    "0": "<cd>Slacker</cd> is a data-lazy-loading component designed to dramatically improve initial load performance in large applications. It pairs with <cd>Observer</cd> to run a <cd>loader</cd> only when the component enters the viewport—deferring expensive API calls or dynamic imports until they are needed. Slacker includes built-in retry and error handling strategies to make deferred loading resilient.",
+    "0": "<cd>Slacker</cd> loads data when it enters the viewport. It combines <cd>Observer</cd> with a <cd>loader</cd> function and supports loading, error, and retry states.",
     "subtitle1": "Basic usage",
-    "1": "Provide a <cd>loader</cd> function; when the element becomes visible the loader runs and its result is passed to children. This is ideal for lazy-loading large image sets, widgets, or section-level data.",
+    "1": "Provide a <cd>loader</cd> and render the loaded data in children once it becomes visible.",
     "subtitle2": "Error handling & retries",
-    "2": "Pass an <cd>errorFallback</cd> function to receive the error info and a retry callback for custom UI. Configure <cd>maxRetries</cd> and backoff settings to automatically retry transient failures.",
-    "subtitle3": "Advanced options & SSR",
-    "3": "Slacker supports request cancellation (via AbortController), caching, and concurrency control. Use caching to avoid duplicate network requests and AbortController to cancel stale loads. For SSR, Slacker should render only placeholders on the server and run loaders on the client to avoid blocking server rendering."
+    "2": "Use <cd>errorFallback</cd>, <cd>maxRetries</cd>, and <cd>retryDelay</cd> to handle failures gracefully."
   },
-
   "for": {
-    "0": "<cd>For</cd> is a declarative component that unifies list rendering and empty-state handling. While React developers commonly use <cd>Array.map()</cd>, handling empty or null data often requires extra conditionals. <cd>For</cd> consolidates iteration and fallback behavior into a single, readable construct.",
+    "0": "<cd>For</cd> renders arrays with an optional empty-state fallback. It replaces <cd>map</cd> plus extra conditionals with a single declarative block.",
     "subtitle1": "Basic usage",
-    "1": "Render list items declaratively and provide a <cd>fallback</cd> to display when the array is empty, null, or undefined.",
+    "1": "Render items with a callback and provide <cd>fallback</cd> for empty, null, or undefined arrays.",
     "subtitle2": "DOM-preserving variants",
-    "2": "Variants such as <cd>For.ui</cd> or <cd>For.div</cd> let you keep the outer DOM node present while swapping inner content, preserving layout and avoiding CSS reflow issues when the list changes.",
-    "subtitle3": "Forrable",
-    "3": "<cd>Forrable</cd> is a special component used inside <cd>For</cd> that is useful for mixing static content with dynamic lists. While <cd>For.ul</cd> always renders, only the <cd>Forrable</cd> inside it repeats for each item in the array. This allows you to maintain fixed elements like headers or footers while repeating only specific parts."
+    "2": "Use <cd>For.ul</cd> or <cd>For.div</cd> to keep a container element while swapping the inner list.",
+    "subtitle3": "Keys and stable rendering",
+    "3": "Provide stable <cd>key</cd> values on the elements returned by the render function."
   },
   "repeat": {
-    "0": "<cd>Repeat</cd> is a small utility for rendering repeated UI blocks. Internally it delegates to the list-focused <cd>For</cd> component, so it supports index access, empty state handling, and tag-based variants. Use it for skeleton loaders, star ratings, or grid placeholders where you need to render an element N times.",
+    "0": "<cd>Repeat</cd> renders a block a fixed number of times. It is useful for skeletons, star ratings, and placeholders.",
     "subtitle1": "Basic usage",
-    "1": "Specify a repeat count and render a callback that receives the current index. This produces concise, intention-revealing code.",
+    "1": "Provide a positive integer <cd>times</cd> and render a callback that receives the current index. If <cd>times</cd> is not a positive integer, <cd>fallback</cd> is rendered.",
     "subtitle2": "DOM-preserving variants",
-    "2": "<cd>Repeat</cd> offers variants like <cd>Repeat.div</cd> so you can preserve a container element while repeating its children—handy for consistent skeletons or grid layouts."
+    "2": "<cd>Repeat.div</cd> and similar variants keep a wrapper element while repeating children."
   },
   "slot": {
     "0": "<cd>Slot</cd> implements a flexible composition pattern for components that need to render as different elements. Sometimes a Button component must render as a native <cd>button</cd> or as an <cd>a</cd> depending on usage. <cd>Slot</cd> merges parent props into the chosen child element while preserving styles, event handlers, and refs.",
@@ -71,5 +80,18 @@
     "1": "Use the <cd>asChild</cd> pattern to let consumers control the rendered element while maintaining the component's styling and behavior.",
     "subtitle2": "Slottable",
     "2": "Wrap parts of complex structures with <cd>Slottable</cd> to pass props to specific child elements—useful for buttons with icons or compound components."
+  },
+  "createProxy": {
+    "0": "<cd>createProxy</cd> builds component families like <cd>Show.div</cd> or <cd>For.ul</cd>, and it can be used externally to create your own proxy components. The steps below walk through a Custom Clickable example.",
+    "subtitle1": "Define props and base behavior",
+    "1": "Start by defining a base component that contains the shared behavior. The proxy reuses this base for every tag.",
+    "1a": "Why <cd>BaseClickableType&lt;X = object&gt;</cd>? The proxy must accept your custom props plus whatever props belong to each tag or registered component. <cd>X</cd> is the placeholder for those tag props, and <cd>X &amp; ClickableProps</cd> merges them. The default <cd>object</cd> keeps the base usable without extra props. Without the generic, variants like <cd>Clickable.div</cd> would lose native props such as <cd>className</cd>, <cd>href</cd>, or <cd>role</cd> at the type level.",
+    "subtitle2": "Add renderForTag + ProxyType",
+    "2": "Provide a tag renderer and declare the proxy type so tag variants like <cd>Clickable.div</cd> are typed.",
+    "2a": "Why <cd>BaseClickableFn extends BaseTypeHelperFn</cd> and <cd>this[\"props\"]</cd>? <cd>ProxyType</cd> treats <cd>BaseTypeHelperFn</cd> as a type-level function. It injects each tag's props into the <cd>props</cd> slot, then evaluates <cd>type</cd> to produce the final call signature. Using <cd>this[\"props\"]</cd> makes the signature depend on the tag, so <cd>Clickable.div</cd> gets <cd>ComponentPropsWithRef&lt;\"div\"&gt;</cd> merged with <cd>ClickableProps</cd>, while <cd>Clickable.Link</cd> picks up registered component props. If you hardcode <cd>ClickableProps</cd> here, the tag-specific props will not flow through.",
+    "subtitle3": "Register custom components (optional)",
+    "3": "Register components under a category and augment <cd>UtilinentRegister</cd> for type-safe <cd>Clickable.*</cd> usage.",
+    "subtitle4": "Usage examples",
+    "4": "Use the default component or tag/component variants once registered."
   }
 }

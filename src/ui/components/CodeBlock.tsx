@@ -20,6 +20,15 @@ export function CodeBlock({ language, children, filename, ...props }: CodeBlockP
   const { effectiveTheme, isHydrated } = useTheme()
   const style = effectiveTheme === 'dark' ? oneDark : oneLight
   const [isCopied, setIsCopied] = useState(false)
+  const codeTagProps = {
+    className: language ? `language-${language}` : undefined,
+    style: {
+      ...(style['code[class*="language-"]'] ?? {}),
+      ...(style[`code[class*="language-${language}"]`] ?? {}),
+      overflowWrap: 'anywhere',
+      wordBreak: 'break-word',
+    },
+  }
 
   const handleCopy = () => {
     navigator.clipboard.writeText(codeString).then(() => {
